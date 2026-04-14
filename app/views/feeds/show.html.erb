@@ -1,0 +1,58 @@
+<p style="color: green;"><%= notice %></p>
+
+<h1><%= @feed.name %></h1>
+
+<p>
+  <strong>Show ID:</strong>
+  <%= @feed.show_id %>
+</p>
+
+<p>
+  <strong>UID:</strong>
+  <code><%= @feed.uid %></code>
+</p>
+
+<p>
+  <strong>Exclude replays:</strong>
+  <%= @feed.exclude_replays ? 'Yes' : 'No' %>
+</p>
+
+<p>
+  <strong>RSS URL:</strong>
+  <%= link_to rss_feed_url(uid: @feed.uid, format: :rss), rss_feed_url(uid: @feed.uid, format: :rss) %>
+</p>
+
+<% if @show_error.present? %>
+  <p style="color: #b91c1c;">
+    <strong>Ohdio metadata error:</strong>
+    <%= @show_error %>
+  </p>
+<% elsif @show_metadata.present? %>
+  <h2>Show metadata</h2>
+
+  <p><strong>Title:</strong> <%= @show_metadata[:title] %></p>
+  <p><strong>Description:</strong> <%= sanitize_description(@show_metadata[:description]) %></p>
+  <p>
+    <strong>Image URL:</strong>
+    <% image_url = rss_image_url(@show_metadata[:image_url]) %>
+    <%= image_url.present? ? link_to(image_url, image_url, target: '_blank', rel: 'noopener') : 'N/A' %>
+  </p>
+  <p><strong>Type:</strong> <%= @show_metadata[:type] %></p>
+  <p><strong>Page:</strong> <%= @show_metadata[:page] %></p>
+  <p><strong>Page size:</strong> <%= @show_metadata[:page_size] %></p>
+  <p><strong>Total episodes:</strong> <%= @show_metadata[:total_episodes] %></p>
+  <p>
+    <strong>Show URL:</strong>
+    <%= @show_metadata[:url].present? ? link_to(@show_metadata[:url], @show_metadata[:url], target: '_blank', rel: 'noopener') : 'N/A' %>
+  </p>
+<% end %>
+
+<p>
+  <%= link_to 'View first 5 episodes', episodes_feed_path(@feed) %>
+  |
+  <%= link_to 'Edit this feed', edit_feed_path(@feed) %>
+  |
+  <%= link_to 'Back to feeds', feeds_path %>
+  |
+  <%= button_to 'Delete this feed', @feed, method: :delete, form: { style: 'display: inline;' } %>
+</p>

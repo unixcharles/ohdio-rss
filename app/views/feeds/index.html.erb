@@ -1,0 +1,36 @@
+<p style="color: green;"><%= notice %></p>
+
+<h1>Feeds</h1>
+
+<p><%= link_to 'New feed', new_feed_path %></p>
+
+<% if @feeds.any? %>
+  <table style="border-collapse: collapse; width: 100%; max-width: 900px;">
+    <thead>
+      <tr>
+        <th style="text-align: left; border-bottom: 1px solid #ddd; padding: 0.5rem;">Name</th>
+        <th style="text-align: left; border-bottom: 1px solid #ddd; padding: 0.5rem;">Show ID</th>
+        <th style="text-align: left; border-bottom: 1px solid #ddd; padding: 0.5rem;">UID</th>
+        <th style="text-align: left; border-bottom: 1px solid #ddd; padding: 0.5rem;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @feeds.each do |feed| %>
+        <tr>
+          <td style="padding: 0.5rem; border-bottom: 1px solid #f0f0f0;"><%= feed.name %></td>
+          <td style="padding: 0.5rem; border-bottom: 1px solid #f0f0f0;"><%= feed.show_id %></td>
+          <td style="padding: 0.5rem; border-bottom: 1px solid #f0f0f0;"><code><%= feed.uid %></code></td>
+          <td style="padding: 0.5rem; border-bottom: 1px solid #f0f0f0;">
+            <%= link_to 'Show', feed_path(feed) %>
+            |
+            <%= link_to 'Edit', edit_feed_path(feed) %>
+            |
+            <%= button_to 'Delete', feed_path(feed), method: :delete, style: 'display: inline;', form: { style: 'display: inline;' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No feeds yet.</p>
+<% end %>
