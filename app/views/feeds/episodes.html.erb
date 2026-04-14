@@ -1,0 +1,49 @@
+<h1><%= @feed.name %> - Episodes</h1>
+
+<% if @show_error.present? %>
+  <p style="color: #b91c1c;">
+    <strong>Ohdio metadata error:</strong>
+    <%= @show_error %>
+  </p>
+<% else %>
+  <p>Showing first 5 episodes in API order.</p>
+
+  <% if @episodes.any? %>
+    <% @episodes.each_with_index do |episode, index| %>
+      <% audio_url = @show.type == 'emission_premiere' ? nil : episode.audio_url %>
+      <div style="border: 1px solid #ddd; border-radius: 6px; padding: 0.8rem; margin-bottom: 0.8rem;">
+        <h3>Episode <%= index + 1 %>: <%= episode.title %></h3>
+        <p><strong>ID:</strong> <%= episode.id %></p>
+        <p><strong>Description:</strong> <%= sanitize_description(episode.description) %></p>
+        <p><strong>Published at:</strong> <%= episode.published_at %></p>
+        <p><strong>Duration:</strong> <%= episode.duration %></p>
+        <p><strong>Replay:</strong> <%= episode.is_replay %></p>
+        <p>
+          <strong>Episode URL:</strong>
+          <%= episode.url.present? ? link_to(episode.url, episode.url, target: '_blank', rel: 'noopener') : 'N/A' %>
+        </p>
+        <p>
+          <strong>Audio URL:</strong>
+          <%= audio_url.present? ? link_to(audio_url, audio_url, target: '_blank', rel: 'noopener') : 'N/A' %>
+        </p>
+        <% if audio_url.blank? %>
+          <p>
+            <strong>Combined MP3 URL:</strong>
+            <%= link_to episode_download_mp3_url(uid: @feed.uid, episode_id: episode.id), episode_download_mp3_url(uid: @feed.uid, episode_id: episode.id) %>
+          </p>
+        <% end %>
+        <p>
+          <%= link_to 'View segments', episode_segments_feed_path(@feed, episode_id: episode.id) %>
+        </p>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No episodes available.</p>
+  <% end %>
+<% end %>
+
+<p>
+  <%= link_to 'Back to feed', feed_path(@feed) %>
+  |
+  <%= link_to 'Back to feeds', feeds_path %>
+</p>

@@ -1,0 +1,31 @@
+<%= form_with(model: feed) do |form| %>
+  <% if feed.errors.any? %>
+    <div style="color: #b91c1c; margin-bottom: 1rem;">
+      <h3><%= pluralize(feed.errors.count, 'error') %> prevented this feed from being saved:</h3>
+      <ul>
+        <% feed.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div style="margin-bottom: 0.75rem;">
+    <%= form.label :name, style: 'display: block; font-weight: 600;' %>
+    <%= form.text_field :name, required: true, style: 'width: 24rem; max-width: 100%; padding: 0.5rem;' %>
+  </div>
+
+  <div style="margin-bottom: 0.75rem;">
+    <%= form.label :show_id, style: 'display: block; font-weight: 600;' %>
+    <%= form.number_field :show_id, required: true, style: 'width: 24rem; max-width: 100%; padding: 0.5rem;' %>
+  </div>
+
+  <div style="margin-bottom: 0.75rem;">
+    <label style="display: flex; align-items: center; gap: 0.5rem;">
+      <%= form.check_box :exclude_replays %>
+      Exclude replays from RSS and downloads
+    </label>
+  </div>
+
+  <%= form.submit style: 'padding: 0.55rem 0.9rem;' %>
+<% end %>
