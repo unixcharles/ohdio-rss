@@ -1,10 +1,222 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+:root {
+  --ohdio-header: #2f6f63;
+  --ohdio-subheader: #d8ebe4;
+  --surface: #ffffff;
+  --bg: #f3f5f4;
+  --text-primary: #1f2a27;
+  --text-secondary: #52605b;
+  --border: #d8dfdc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.45;
+}
+
+a {
+  color: var(--text-primary);
+}
+
+.site-header {
+  background: var(--ohdio-header);
+  color: #fff;
+}
+
+.site-header-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.site-title {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+
+.header-search-form {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.header-search-input {
+  width: 14rem;
+  max-width: 46vw;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.42rem 0.75rem;
+}
+
+.header-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.header-search-button {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.header-search-button svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+.page-shell {
+  max-width: 980px;
+  margin: 1rem auto 2rem;
+  padding: 0 1rem;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.subheader {
+  background: var(--ohdio-subheader);
+  border: 1px solid #c7ded5;
+}
+
+.muted {
+  color: var(--text-secondary);
+}
+
+.meta {
+  margin: 0.35rem 0;
+}
+
+.feed-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.feed-table th,
+.feed-table td {
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  padding: 0.65rem;
+}
+
+.feed-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.episode-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.episode-item h3 {
+  margin-top: 0;
+  margin-bottom: 0.45rem;
+}
+
+.actions {
+  margin-top: 1rem;
+}
+
+.inline-action-form {
+  display: inline;
+}
+
+.inline-action-button {
+  background: none;
+  border: 0;
+  color: var(--text-primary);
+  cursor: pointer;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.form-errors {
+  color: #b91c1c;
+  margin-bottom: 1rem;
+}
+
+.form-field {
+  margin-bottom: 0.75rem;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+}
+
+.form-input {
+  width: 24rem;
+  max-width: 100%;
+  padding: 0.5rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.button-primary {
+  padding: 0.55rem 0.9rem;
+}
+
+.show-thumb {
+  float: right;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin: 0 0 0.75rem 1rem;
+}
+
+.clear {
+  clear: both;
+}
+
+@media (max-width: 700px) {
+  .site-header-inner {
+    flex-wrap: wrap;
+  }
+
+  .header-search-form {
+    width: 100%;
+  }
+
+  .header-search-input {
+    flex: 1;
+    max-width: none;
+  }
+}

@@ -1,4 +1,6 @@
 class OhdioRssBuilder
+  include ApplicationHelper
+
   def initialize(feed:, base_url:)
     @feed = feed
     @base_url = base_url
@@ -6,6 +8,7 @@ class OhdioRssBuilder
 
   def generate
     show = @feed.show
+    raise ActiveRecord::RecordNotFound if show.nil?
 
     ApplicationController.render(
       template: "feeds/show",
@@ -14,7 +17,7 @@ class OhdioRssBuilder
       assigns: {
         feed: @feed,
         show: show,
-        rss_items: build_rss_items(show),
+          rss_items: build_rss_items,
         base_url: @base_url,
         channel_link: rss_feed_url
       }
@@ -23,55 +26,22 @@ class OhdioRssBuilder
 
   private
 
-  def build_rss_items(show)
-    if show.type == "emission_premiere"
-      show.episodes.filter_map do |episode|
-        next if replay_excluded?(episode)
-
-        segments = episode.segments
-        next if segments.empty?
-
-        {
-          title: episode.title,
-          description: episode.description,
-          published_at: episode.published_at,
-          duration: segments.sum { |segment| segment.duration.to_i },
-          guid: episode.url || "ohdio-episode-#{episode.id}",
-          link: episode.url,
-          enclosure_url: episode_download_url(episode.id),
-          enclosure_type: "audio/mpeg"
-        }
-      end
-    else
-      show.episodes.filter_map do |episode|
-        next if replay_excluded?(episode)
-
-        audio_url = episode.audio_url
-        next if audio_url.blank?
-
-        {
-          title: episode.title,
-          description: episode.description,
-          published_at: episode.published_at,
-          duration: episode.duration,
-          guid: episode.url || "ohdio-episode-#{episode.id}",
-          link: episode.url,
-          enclosure_url: audio_url,
-          enclosure_type: "audio/mpeg"
-        }
-      end
+  def build_rss_items
+    @feed.items.map do |item|
+      {
+        title: item.title,
+        description: item.description,
+        published_at: item.published_at,
+        duration: item.duration,
+        guid: item.guid,
+        link: item.link,
+        enclosure_url: item.download_url(base_url: @base_url),
+        enclosure_type: "audio/mpeg"
+      }
     end
-  end
-
-  def replay_excluded?(episode)
-    @feed.exclude_replays && episode.is_replay
   end
 
   def rss_feed_url
     "#{@base_url}#{Rails.application.routes.url_helpers.rss_feed_path(uid: @feed.uid, format: :rss)}"
-  end
-
-  def episode_download_url(episode_id)
-    "#{@base_url}#{Rails.application.routes.url_helpers.episode_download_mp3_path(uid: @feed.uid, episode_id: episode_id)}"
   end
 end

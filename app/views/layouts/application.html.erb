@@ -23,6 +23,31 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <%= link_to 'Ohdio RSS', feeds_path, class: 'site-title' %>
+        <%= form_with url: search_path, method: :get, local: true, html: { class: 'header-search-form' } do %>
+          <%= hidden_field_tag :filter, 'all' %>
+          <%= text_field_tag :q, params[:q], placeholder: 'Search shows', class: 'header-search-input', aria: { label: 'Search shows' } %>
+          <button type="submit" class="header-search-button" aria-label="Search">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M10.5 3a7.5 7.5 0 1 0 4.71 13.34l4.22 4.22 1.06-1.06-4.22-4.22A7.5 7.5 0 0 0 10.5 3Zm0 1.5a6 6 0 1 1 0 12 6 6 0 0 1 0-12Z"/>
+            </svg>
+          </button>
+        <% end %>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <% if notice.present? %>
+        <p><%= notice %></p>
+      <% end %>
+
+      <% if alert.present? %>
+        <p><%= alert %></p>
+      <% end %>
+
+      <%= yield %>
+    </main>
   </body>
 </html>

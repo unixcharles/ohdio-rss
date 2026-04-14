@@ -1,24 +1,19 @@
 <h1><%= @feed.name %> - Segments</h1>
 
-<% if @show_error.present? %>
-  <p style="color: #b91c1c;">
-    <strong>Ohdio metadata error:</strong>
-    <%= @show_error %>
-  </p>
-<% else %>
-  <p><strong>Episode:</strong> <%= @episode.title %> (<%= @episode.id %>)</p>
-  <p>Audio URLs are loaded per segment and cached globally by media ID.</p>
+<% if @show.present? %>
+  <p><strong>Episode:</strong> <%= display_episode_title(@episode.title) %> (<%= @episode.ohdio_episode_id %>)</p>
+  <p>Downloads are resolved in background jobs and stored per media ID.</p>
 
   <% if @segments.any? %>
     <% @segments.each_with_index do |segment, index| %>
-      <% audio_url = segment.media_id.present? ? Rails.cache.read(["media-url", segment.media_id]) : nil %>
-      <div style="border: 1px solid #ddd; border-radius: 6px; padding: 0.8rem; margin-bottom: 0.8rem;">
-        <h3>Segment <%= index + 1 %>: <%= segment.title %></h3>
+      <% audio_url = segment.medium&.audio_url if segment.medium&.resolved? %>
+      <div class="episode-item">
+        <h3>Segment <%= index + 1 %>: <%= TextEntityNormalizer.call(segment.title) %></h3>
         <p><strong>Duration:</strong> <%= segment.duration %></p>
         <p><strong>Seek time:</strong> <%= segment.seek_time %></p>
         <p><strong>Media ID:</strong> <%= segment.media_id %></p>
         <p>
-          <strong>Audio URL:</strong>
+          <strong>Download:</strong>
           <% if audio_url.present? %>
             <% start_time = segment.seek_time.to_i %>
             <% duration = segment.duration.to_i %>
@@ -27,9 +22,9 @@
             else
               "#{audio_url}#t=#{start_time}"
             end %>
-            <%= link_to(timed_audio_url, timed_audio_url, target: '_blank', rel: 'noopener') %>
+            <%= link_to('Download', timed_audio_url, target: '_blank', rel: 'noopener') %>
           <% elsif segment.media_id.present? %>
-            <%= link_to 'Load audio URL', episode_segments_feed_path(@feed, episode_id: @episode.id, resolve_media_id: segment.media_id) %>
+            Resolving in background...
           <% else %>
             N/A
           <% end %>
@@ -39,6 +34,8 @@
   <% else %>
     <p>No segments available for this episode.</p>
   <% end %>
+<% else %>
+  <p>Segment data is syncing in the background. Refresh in a few moments.</p>
 <% end %>
 
 <p>

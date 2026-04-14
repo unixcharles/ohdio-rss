@@ -1,0 +1,23 @@
+<% episode = item.episode %>
+<% audio_url = item.download_url(base_url: "") %>
+
+<div class="episode-item">
+  <h3>
+    <% if item.link.present? %>
+      <%= link_to item.title, item.link, target: '_blank', rel: 'noopener' %>
+    <% else %>
+      <%= item.title %>
+    <% end %>
+  </h3>
+  <p><%= sanitize_description(item.description) %></p>
+  <p><strong>Published:</strong> <%= item.published_at.present? ? l(item.published_at, format: :long) : 'N/A' %></p>
+  <p>
+    <strong>Download:</strong>
+    <%= audio_url.present? ? link_to('Download', audio_url, target: '_blank', rel: 'noopener') : 'N/A' %>
+  </p>
+  <% if item.show_segments_link? %>
+    <p>
+      <%= link_to 'View segments', item.segment_link_path %>
+    </p>
+  <% end %>
+</div>

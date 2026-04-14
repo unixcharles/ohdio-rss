@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
   root "feeds#index"
 
-  resources :feeds do
+  resources :feeds, except: %i[edit update] do
     get :episodes, on: :member
     get "episodes/:episode_id/segments", to: "feeds#segments", on: :member, as: :episode_segments
   end
 
+  get "search", to: "search#index"
+
   get "rss/:uid", to: "rss#show", as: :rss_feed, defaults: { format: :rss }
   get "downloads/:uid/episodes/:episode_id.mp3", to: "downloads#episode_mp3", as: :episode_download_mp3
+  get "downloads/:uid/segments/:segment_id.mp3", to: "downloads#segment_mp3", as: :segment_download_mp3
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

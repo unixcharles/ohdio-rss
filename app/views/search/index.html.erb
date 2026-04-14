@@ -1,0 +1,55 @@
+<h1>Search</h1>
+
+<%= form_with url: search_path, method: :get, local: true do %>
+  <p>
+    <label for="q">Search</label><br>
+    <input id="q" name="q" type="text" value="<%= @query %>">
+  </p>
+
+  <fieldset>
+    <legend>Filter</legend>
+    <% FeedsController::SEARCH_FILTERS.each do |filter| %>
+      <label>
+        <input type="radio" name="filter" value="<%= filter %>" <%= 'checked' if @filter == filter %>>
+        <%= filter.humanize %>
+      </label>
+    <% end %>
+  </fieldset>
+
+  <p>
+    <button type="submit">Search</button>
+  </p>
+<% end %>
+
+<% if @query.present? %>
+  <h2>Results for "<%= @query %>"</h2>
+
+  <% if @results.any? %>
+    <table class="feed-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Show ID</th>
+          <th>Type</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @results.each do |show| %>
+          <tr>
+            <td><%= show.title.presence || "Show ##{show.id}" %></td>
+            <td><%= show.id %></td>
+            <td><%= display_ohdio_type(show.type) %></td>
+            <td>
+              <%= link_to 'Select', new_feed_path(show_id: show.id, name: show.title.presence || "Show ##{show.id}") %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No show results found.</p>
+  <% end %>
+<% end %>
+
+<p><%= link_to 'Back to feeds', feeds_path %></p>

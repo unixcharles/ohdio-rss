@@ -1,45 +1,51 @@
-<h1><%= @feed.name %> - Episodes</h1>
+<h1><%= @feed.name %> - <%= @feed.segment_query.present? && @show&.emission_premiere? ? 'Filtered segments' : 'Episodes' %></h1>
 
-<% if @show_error.present? %>
-  <p style="color: #b91c1c;">
-    <strong>Ohdio metadata error:</strong>
-    <%= @show_error %>
-  </p>
-<% else %>
-  <p>Showing first 5 episodes in API order.</p>
+<% if @show.present? %>
+  <section class="panel subheader">
+    <h2><%= @show.title %></h2>
+    <h3 class="muted"><%= display_ohdio_type(@show.ohdio_type) %></h3>
+    <p><%= sanitize_description(@show.description) %></p>
+  </section>
 
-  <% if @episodes.any? %>
-    <% @episodes.each_with_index do |episode, index| %>
-      <% audio_url = @show.type == 'emission_premiere' ? nil : episode.audio_url %>
-      <div style="border: 1px solid #ddd; border-radius: 6px; padding: 0.8rem; margin-bottom: 0.8rem;">
-        <h3>Episode <%= index + 1 %>: <%= episode.title %></h3>
-        <p><strong>ID:</strong> <%= episode.id %></p>
-        <p><strong>Description:</strong> <%= sanitize_description(episode.description) %></p>
-        <p><strong>Published at:</strong> <%= episode.published_at %></p>
-        <p><strong>Duration:</strong> <%= episode.duration %></p>
-        <p><strong>Replay:</strong> <%= episode.is_replay %></p>
-        <p>
-          <strong>Episode URL:</strong>
-          <%= episode.url.present? ? link_to(episode.url, episode.url, target: '_blank', rel: 'noopener') : 'N/A' %>
-        </p>
-        <p>
-          <strong>Audio URL:</strong>
-          <%= audio_url.present? ? link_to(audio_url, audio_url, target: '_blank', rel: 'noopener') : 'N/A' %>
-        </p>
-        <% if audio_url.blank? %>
-          <p>
-            <strong>Combined MP3 URL:</strong>
-            <%= link_to episode_download_mp3_url(uid: @feed.uid, episode_id: episode.id), episode_download_mp3_url(uid: @feed.uid, episode_id: episode.id) %>
-          </p>
-        <% end %>
-        <p>
-          <%= link_to 'View segments', episode_segments_feed_path(@feed, episode_id: episode.id) %>
-        </p>
-      </div>
+  <% if @pagy.present? && @pagy.pages > 1 %>
+    <% current_page = [params[:page].to_i, 1].max %>
+    <p>
+      <% if @pagy.previous %>
+        <%= link_to 'Previous page', episodes_feed_path(@feed, page: @pagy.previous) %>
+      <% end %>
+      <strong>Page <%= current_page %> of <%= @pagy.pages %></strong>
+      <% if @pagy.next %>
+        <%= link_to 'Next page', episodes_feed_path(@feed, page: @pagy.next) %>
+      <% end %>
+    </p>
+  <% end %>
+
+  <% if @items.any? %>
+    <% @items.each do |item| %>
+      <% if item.segment? %>
+        <%= render 'segment_item', item: item %>
+      <% else %>
+        <%= render 'episode_item', item: item %>
+      <% end %>
     <% end %>
   <% else %>
-    <p>No episodes available.</p>
+    <p>No items available.</p>
   <% end %>
+
+  <% if @pagy.present? && @pagy.pages > 1 %>
+    <% current_page = [params[:page].to_i, 1].max %>
+    <p>
+      <% if @pagy.previous %>
+        <%= link_to 'Previous page', episodes_feed_path(@feed, page: @pagy.previous) %>
+      <% end %>
+      <strong>Page <%= current_page %> of <%= @pagy.pages %></strong>
+      <% if @pagy.next %>
+        <%= link_to 'Next page', episodes_feed_path(@feed, page: @pagy.next) %>
+      <% end %>
+    </p>
+  <% end %>
+<% else %>
+  <p>Episode data is syncing in the background. Refresh in a few moments.</p>
 <% end %>
 
 <p>

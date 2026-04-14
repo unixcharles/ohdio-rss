@@ -1,76 +1,12 @@
-<h1>New feed</h1>
+<h1>Create a new feed</h1>
 
-<% if alert.present? %>
-  <p style="color: #b91c1c;"><%= alert %></p>
-<% end %>
-
-<h2>Find a show</h2>
-
-<%= form_with url: new_feed_path, method: :get, local: true do %>
-  <p>
-    <label for="query">Search</label><br>
-    <input id="query" name="query" type="text" value="<%= @query %>" style="width: 26rem; max-width: 100%; padding: 0.5rem;">
-  </p>
-
-  <fieldset style="margin-bottom: 0.8rem;">
-    <legend>Filter</legend>
-    <% FeedsController::SEARCH_FILTERS.each do |filter| %>
-      <label style="margin-right: 0.75rem;">
-        <input type="radio" name="filter" value="<%= filter %>" <%= 'checked' if @filter == filter %>>
-        <%= filter.humanize %>
-      </label>
-    <% end %>
-  </fieldset>
-
-  <p>
-    <label>
-      <input type="checkbox" name="exclude_replays" value="1" <%= 'checked' if @exclude_replays %>>
-      Exclude replays for new feed
-    </label>
-  </p>
-
-  <button type="submit" style="padding: 0.55rem 0.9rem;">Search</button>
-<% end %>
-
-<% if @query.present? %>
-  <h2>Results for "<%= @query %>"</h2>
-
-  <% if @results.any? %>
-    <table style="border-collapse: collapse; width: 100%; max-width: 1000px;">
-      <thead>
-        <tr>
-          <th style="text-align: left; border-bottom: 1px solid #ddd; padding: 0.5rem;">Title</th>
-          <th style="text-align: left; border-bottom: 1px solid #ddd; padding: 0.5rem;">Show ID</th>
-          <th style="text-align: left; border-bottom: 1px solid #ddd; padding: 0.5rem;">Type</th>
-          <th style="text-align: left; border-bottom: 1px solid #ddd; padding: 0.5rem;">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @results.each do |show| %>
-          <tr>
-            <td style="padding: 0.5rem; border-bottom: 1px solid #f0f0f0;"><%= show.title.presence || "Show ##{show.id}" %></td>
-            <td style="padding: 0.5rem; border-bottom: 1px solid #f0f0f0;"><%= show.id %></td>
-            <td style="padding: 0.5rem; border-bottom: 1px solid #f0f0f0;"><%= show.type %></td>
-            <td style="padding: 0.5rem; border-bottom: 1px solid #f0f0f0;">
-              <%= form_with url: feeds_path, method: :post, local: true do %>
-                <%= hidden_field_tag 'feed[name]', show.title.presence || "Show ##{show.id}" %>
-                <%= hidden_field_tag 'feed[show_id]', show.id %>
-                <%= hidden_field_tag 'feed[exclude_replays]', @exclude_replays ? 1 : 0 %>
-                <button type="submit">Create feed</button>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+<p>
+  <% if @show_id.present? %>
+    <strong>Selected show ID:</strong> <%= @show_id %>
   <% else %>
-    <p>No show results found.</p>
+    Select a show from <%= link_to 'search', search_path %> first.
   <% end %>
-<% end %>
-
-<hr>
-
-<h2>Create manually</h2>
+</p>
 
 <%= render 'form', feed: @feed %>
 

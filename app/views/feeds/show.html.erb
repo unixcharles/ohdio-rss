@@ -1,58 +1,49 @@
-<p style="color: green;"><%= notice %></p>
-
 <h1><%= @feed.name %></h1>
 
-<p>
-  <strong>Show ID:</strong>
-  <%= @feed.show_id %>
-</p>
+<section class="panel">
+  <p class="meta"><strong>RSS URL:</strong> <%= link_to rss_feed_url(uid: @feed.uid, format: :rss), rss_feed_url(uid: @feed.uid, format: :rss) %></p>
+</section>
 
-<p>
-  <strong>UID:</strong>
-  <code><%= @feed.uid %></code>
-</p>
-
-<p>
-  <strong>Exclude replays:</strong>
-  <%= @feed.exclude_replays ? 'Yes' : 'No' %>
-</p>
-
-<p>
-  <strong>RSS URL:</strong>
-  <%= link_to rss_feed_url(uid: @feed.uid, format: :rss), rss_feed_url(uid: @feed.uid, format: :rss) %>
-</p>
-
-<% if @show_error.present? %>
-  <p style="color: #b91c1c;">
-    <strong>Ohdio metadata error:</strong>
-    <%= @show_error %>
-  </p>
-<% elsif @show_metadata.present? %>
-  <h2>Show metadata</h2>
-
-  <p><strong>Title:</strong> <%= @show_metadata[:title] %></p>
-  <p><strong>Description:</strong> <%= sanitize_description(@show_metadata[:description]) %></p>
-  <p>
-    <strong>Image URL:</strong>
-    <% image_url = rss_image_url(@show_metadata[:image_url]) %>
-    <%= image_url.present? ? link_to(image_url, image_url, target: '_blank', rel: 'noopener') : 'N/A' %>
-  </p>
-  <p><strong>Type:</strong> <%= @show_metadata[:type] %></p>
-  <p><strong>Page:</strong> <%= @show_metadata[:page] %></p>
-  <p><strong>Page size:</strong> <%= @show_metadata[:page_size] %></p>
-  <p><strong>Total episodes:</strong> <%= @show_metadata[:total_episodes] %></p>
-  <p>
-    <strong>Show URL:</strong>
-    <%= @show_metadata[:url].present? ? link_to(@show_metadata[:url], @show_metadata[:url], target: '_blank', rel: 'noopener') : 'N/A' %>
-  </p>
+<% if @show_metadata.present? %>
+  <section class="panel subheader">
+    <% if @show_metadata[:image_url].present? %>
+      <%= image_tag rss_image_url(@show_metadata[:image_url]), alt: @show_metadata[:title], class: 'show-thumb' %>
+    <% end %>
+    <h2><%= @show_metadata[:title] %></h2>
+    <h3 class="muted"><%= display_ohdio_type(@show_metadata[:type]) %></h3>
+    <p><%= sanitize_description(@show_metadata[:description]) %></p>
+    <% if @show_metadata[:url].present? %>
+      <p><%= link_to @show_metadata[:url], @show_metadata[:url], target: '_blank', rel: 'noopener' %></p>
+    <% end %>
+    <div class="clear"></div>
+  </section>
+<% else %>
+  <p>Show metadata is syncing in the background. Refresh in a few moments.</p>
 <% end %>
 
-<p>
-  <%= link_to 'View first 5 episodes', episodes_feed_path(@feed) %>
-  |
-  <%= link_to 'Edit this feed', edit_feed_path(@feed) %>
+<% if @first_item.present? %>
+  <% if @first_item.segment? %>
+    <%= render 'segment_item', item: @first_item %>
+  <% else %>
+    <%= render 'episode_item', item: @first_item %>
+  <% end %>
+<% end %>
+
+<section class="panel">
+  <p class="meta"><strong>Replay:</strong> <%= @feed.exclude_replays ? 'No' : 'Yes' %></p>
+  <p class="meta"><strong>Max episodes:</strong> <%= @feed.max_episodes %></p>
+  <% if @feed.episode_query.present? %>
+    <p class="meta"><strong>Episode filter query:</strong> <%= @feed.episode_query %></p>
+  <% end %>
+  <% if @feed.segment_query.present? %>
+    <p class="meta"><strong>Segment filter query:</strong> <%= @feed.segment_query %></p>
+  <% end %>
+</section>
+
+<p class="actions">
+  <%= link_to 'Episode list', episodes_feed_path(@feed) %>
   |
   <%= link_to 'Back to feeds', feeds_path %>
   |
-  <%= button_to 'Delete this feed', @feed, method: :delete, form: { style: 'display: inline;' } %>
+  <%= button_to 'Delete this feed', @feed, method: :delete, form: { class: 'inline-action-form' }, class: 'inline-action-button', data: { turbo_confirm: 'Delete this feed?' } %>
 </p>

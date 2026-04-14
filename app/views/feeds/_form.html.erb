@@ -1,6 +1,6 @@
 <%= form_with(model: feed) do |form| %>
   <% if feed.errors.any? %>
-    <div style="color: #b91c1c; margin-bottom: 1rem;">
+    <div class="form-errors">
       <h3><%= pluralize(feed.errors.count, 'error') %> prevented this feed from being saved:</h3>
       <ul>
         <% feed.errors.full_messages.each do |message| %>
@@ -10,22 +10,46 @@
     </div>
   <% end %>
 
-  <div style="margin-bottom: 0.75rem;">
-    <%= form.label :name, style: 'display: block; font-weight: 600;' %>
-    <%= form.text_field :name, required: true, style: 'width: 24rem; max-width: 100%; padding: 0.5rem;' %>
+  <div class="form-field">
+    <%= form.label :name, class: 'form-label' %>
+    <%= form.text_field :name, required: true, class: 'form-input' %>
   </div>
 
-  <div style="margin-bottom: 0.75rem;">
-    <%= form.label :show_id, style: 'display: block; font-weight: 600;' %>
-    <%= form.number_field :show_id, required: true, style: 'width: 24rem; max-width: 100%; padding: 0.5rem;' %>
+  <%= form.hidden_field :show_id %>
+
+  <div class="form-field">
+    <%= form.label :max_episodes, 'Max episodes', class: 'form-label' %>
+    <%= form.number_field :max_episodes,
+                          required: true,
+                          min: 1,
+                          max: Feed::MAX_MAX_EPISODES,
+                          step: 1,
+                          class: 'form-input' %>
+    <small>Sync and include up to <%= Feed::MAX_MAX_EPISODES %> latest episodes.</small>
   </div>
 
-  <div style="margin-bottom: 0.75rem;">
-    <label style="display: flex; align-items: center; gap: 0.5rem;">
+  <div class="form-field">
+    <%= form.label :episode_query, 'Episode query', class: 'form-label' %>
+    <%= form.text_field :episode_query,
+                        placeholder: 'Simon OR Tyler AND NOT Frank',
+                        class: 'form-input' %>
+    <small>Filter by title/description using AND, OR, NOT.</small>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :segment_query, 'Segment query', class: 'form-label' %>
+    <%= form.text_field :segment_query,
+                        placeholder: 'politique OR humour',
+                        class: 'form-input' %>
+    <small>For segment-based shows, filter stitched segments using AND, OR, NOT.</small>
+  </div>
+
+  <div class="form-field">
+    <label class="checkbox-label">
       <%= form.check_box :exclude_replays %>
       Exclude replays from RSS and downloads
     </label>
   </div>
 
-  <%= form.submit style: 'padding: 0.55rem 0.9rem;' %>
+  <%= form.submit(feed.persisted? ? 'Save' : 'Create feed', class: 'button-primary') %>
 <% end %>
