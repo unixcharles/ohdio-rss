@@ -44,6 +44,9 @@ jobs:
             type=raw,value=latest
             type=sha
 
+      - name: Verify vendored ohdio is present
+        run: test -d vendor/ohdio
+
       - name: Build and push image
         uses: docker/build-push-action@v6
         with:
