@@ -5,8 +5,8 @@ require_relative 'lib/ohdio/version'
 Gem::Specification.new do |spec|
   spec.name = 'ohdio'
   spec.version = Ohdio::VERSION
-  spec.authors = ['Charles Barbier']
-  spec.email = ['unixcharles@gmail.com']
+  spec.authors = [ 'Charles Barbier' ]
+  spec.email = [ 'unixcharles@gmail.com' ]
 
   spec.summary = 'A Ruby client for the Radio-Canada Ohdio audio streaming API'
   spec.description = 'Fetches programme data, episodes, segments, and audio URLs from Radio-Canada\'s Ohdio service'
@@ -18,17 +18,17 @@ Gem::Specification.new do |spec|
   spec.metadata['changelog_uri'] = 'https://github.com/unixcharles/ohdio/blob/main/CHANGELOG.md'
 
   # Specify which files should be added to the gem when it is released.
-  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
+  # Use a pure Ruby file listing so this works without git.
   gemspec = File.basename(__FILE__)
-  spec.files = IO.popen(%w[git ls-files -z], chdir: __dir__, err: IO::NULL) do |ls|
-    ls.readlines(0.chr, chomp: true).reject do |f|
-      (f == gemspec) ||
-        f.start_with?(*%w[bin/ Gemfile .gitignore .rspec spec/ .github/])
-    end
+  spec.files = Dir.glob("**/*", File::FNM_DOTMATCH, base: __dir__).reject do |f|
+    next true if [ ".", "..", gemspec ].include?(f)
+    next true if File.directory?(File.join(__dir__, f))
+
+    f.start_with?(*%w[bin/ Gemfile .gitignore .rspec spec/ .github/ .git/ .claude/])
   end
   spec.bindir = 'exe'
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
-  spec.require_paths = ['lib']
+  spec.require_paths = [ 'lib' ]
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
