@@ -20,7 +20,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_15_160000) do
     t.boolean "resolved", default: false, null: false
     t.datetime "resolved_at"
     t.datetime "updated_at", null: false
-    t.index [ "external_id" ], name: "index_audio_contents_on_external_id", unique: true
+    t.index ["external_id"], name: "index_audio_contents_on_external_id", unique: true
   end
 
   create_table "episodes", force: :cascade do |t|
@@ -37,9 +37,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_15_160000) do
     t.string "title"
     t.datetime "updated_at", null: false
     t.string "url"
-    t.index [ "audio_content_external_id" ], name: "index_episodes_on_audio_content_external_id"
-    t.index [ "show_id", "ohdio_episode_id" ], name: "index_episodes_on_show_id_and_ohdio_episode_id", unique: true
-    t.index [ "show_id" ], name: "index_episodes_on_show_id"
+    t.index ["audio_content_external_id"], name: "index_episodes_on_audio_content_external_id"
+    t.index ["show_id", "ohdio_episode_id"], name: "index_episodes_on_show_id_and_ohdio_episode_id", unique: true
+    t.index ["show_id"], name: "index_episodes_on_show_id"
   end
 
   create_table "feeds", force: :cascade do |t|
@@ -52,8 +52,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_15_160000) do
     t.integer "show_external_id", null: false
     t.string "uid", null: false
     t.datetime "updated_at", null: false
-    t.index [ "show_external_id" ], name: "index_feeds_on_show_external_id"
-    t.index [ "uid" ], name: "index_feeds_on_uid", unique: true
+    t.index ["show_external_id"], name: "index_feeds_on_show_external_id"
+    t.index ["uid"], name: "index_feeds_on_uid", unique: true
   end
 
   create_table "segments", force: :cascade do |t|
@@ -65,9 +65,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_15_160000) do
     t.integer "seek_time"
     t.string "title"
     t.datetime "updated_at", null: false
-    t.index [ "episode_id", "audio_content_external_id" ], name: "index_segments_on_episode_id_and_audio_content_external_id"
-    t.index [ "episode_id", "position" ], name: "index_segments_on_episode_id_and_position"
-    t.index [ "episode_id" ], name: "index_segments_on_episode_id"
+    t.index ["episode_id", "audio_content_external_id"], name: "index_segments_on_episode_id_and_audio_content_external_id"
+    t.index ["episode_id", "position"], name: "index_segments_on_episode_id_and_position"
+    t.index ["episode_id"], name: "index_segments_on_episode_id"
   end
 
   create_table "shows", force: :cascade do |t|
@@ -85,7 +85,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_15_160000) do
     t.integer "total_episodes"
     t.datetime "updated_at", null: false
     t.string "url"
-    t.index [ "external_id" ], name: "index_shows_on_external_id", unique: true
+    t.index ["external_id"], name: "index_shows_on_external_id", unique: true
   end
 
   add_foreign_key "episodes", "shows"

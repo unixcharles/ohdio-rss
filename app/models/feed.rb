@@ -30,8 +30,9 @@ class Feed < ApplicationRecord
   def filtered_episodes(show: self.show)
     return Episode.none if show.nil?
 
-    limited_ids = show.episodes.newest_first.limit(max_episodes).select(:id)
-    scope = show.episodes.where(id: limited_ids).newest_first
+    order_scope = show.chronological_order? ? :oldest_first : :newest_first
+    limited_ids = show.episodes.send(order_scope).limit(max_episodes).select(:id)
+    scope = show.episodes.where(id: limited_ids).send(order_scope)
     scope = scope.where(is_replay: [ false, nil ]) if exclude_replays
     scope = EpisodeQueryFilter.apply(scope, episode_query)
     scope = scope.where(has_valid_segments: true) if show.emission_premiere?

@@ -3,6 +3,7 @@ class Episode < ApplicationRecord
   has_many :segments, dependent: :destroy
 
   scope :newest_first, -> { order(published_at: :desc, id: :desc) }
+  scope :oldest_first, -> { order(published_at: :asc, id: :asc) }
 
   after_commit :enqueue_trim_job, on: :create
 

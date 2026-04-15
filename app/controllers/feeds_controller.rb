@@ -73,7 +73,8 @@ class FeedsController < ApplicationController
       description: @show.description,
       image_url: @show.image_url,
       type: @show.ohdio_type,
-      url: @show.url
+      url: @show.url,
+      chronological_order: @show.chronological_order?
     }
   end
 

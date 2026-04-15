@@ -23,6 +23,7 @@
 <% end %>
 
 <% if @first_item.present? %>
+  <p class="meta"><strong><%= @show_metadata[:chronological_order] ? 'First episode' : 'Latest episode' %></strong></p>
   <% if @first_item.segment? %>
     <%= render 'segment_item', item: @first_item %>
   <% else %>

@@ -7,4 +7,8 @@ class Show < ApplicationRecord
   def emission_premiere?
     ohdio_type == "emission_premiere"
   end
+
+  def chronological_order?
+    ohdio_type.in?(%w[audiobook grande_serie])
+  end
 end
