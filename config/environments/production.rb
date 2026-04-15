@@ -12,6 +12,9 @@ Rails.application.configure do
   # Full error reports are disabled.
   config.consider_all_requests_local = false
 
+  # Load runtime secrets from environment variables.
+  config.require_master_key = false
+
   # Turn on fragment caching in view templates.
   config.action_controller.perform_caching = true
 
