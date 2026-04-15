@@ -8,7 +8,7 @@ gem "propshaft"
 gem "sqlite3", ">= 2.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
-gem "ohdio", path: "../ohdio"
+gem "ohdio", path: "vendor/ohdio"
 gem "down"
 gem "pagy"
 

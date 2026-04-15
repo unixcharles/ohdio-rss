@@ -1,5 +1,5 @@
 PATH
-  remote: ../ohdio
+  remote: vendor/ohdio
   specs:
     ohdio (0.1.0)
 
