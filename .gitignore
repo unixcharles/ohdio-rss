@@ -33,3 +33,5 @@
 # Ignore key files for decrypting credentials and more.
 /config/*.key
 
+# Local AI assistant settings
+/.claude/
