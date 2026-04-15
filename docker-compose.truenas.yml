@@ -37,6 +37,7 @@ services:
       DB_HOST: db
       DB_PORT: "5432"
       DB_NAME: ohdio_rss_production
+      DB_QUEUE_NAME: ohdio_rss_production_queue
       DB_USER: ohdio_rss
       DB_PASSWORD: "CHANGE_ME_DB_PASSWORD"
     volumes:

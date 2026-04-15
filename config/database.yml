@@ -24,12 +24,7 @@ production:
     database: <%= ENV.fetch("DB_NAME", "ohdio_rss_production") %>
     username: <%= ENV.fetch("DB_USER", "ohdio_rss") %>
     password: <%= ENV["DB_PASSWORD"] %>
-  cache:
-    <<: *primary_production
-    migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
+    database: <%= ENV.fetch("DB_QUEUE_NAME", "ohdio_rss_production_queue") %>
     migrations_paths: db/queue_migrate
-  cable:
-    <<: *primary_production
-    migrations_paths: db/cable_migrate
