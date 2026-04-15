@@ -8,8 +8,7 @@ services:
       POSTGRES_USER: ohdio_rss
       POSTGRES_PASSWORD: "CHANGE_ME_DB_PASSWORD"
     volumes:
-      # Replace "tank" with your TrueNAS pool name.
-      - /mnt/tank/apps/ohdio-rss/postgres:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ohdio_rss -d ohdio_rss_production"]
       interval: 10s
@@ -37,5 +36,12 @@ services:
       DB_USER: ohdio_rss
       DB_PASSWORD: "CHANGE_ME_DB_PASSWORD"
     volumes:
-      # Replace "tank" with your TrueNAS pool name.
-      - /mnt/tank/apps/ohdio-rss/storage:/rails/storage
+      - app-storage:/rails/storage
+
+volumes:
+  app-storage:
+    external: true
+    name: ix-ohdio-rss_app-storage
+  postgres-data:
+    external: true
+    name: ix-ohdio-rss_postgres-data
