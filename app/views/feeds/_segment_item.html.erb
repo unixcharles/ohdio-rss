@@ -9,6 +9,6 @@
   <p><strong>Published:</strong> <%= item.published_at.present? ? l(item.published_at, format: :long) : 'N/A' %></p>
   <p>
     <strong>Download:</strong>
-    <%= link_to 'Download', item.download_url(base_url: ""), target: '_blank', rel: 'noopener' %>
+    <%= link_to 'Download', item.download_url(base_url: public_base_url), target: '_blank', rel: 'noopener' %>
   </p>
 </div>

@@ -1,7 +1,8 @@
 <h1><%= @feed.name %></h1>
 
 <section class="panel">
-  <p class="meta"><strong>RSS URL:</strong> <%= link_to rss_feed_url(uid: @feed.uid, format: :rss), rss_feed_url(uid: @feed.uid, format: :rss) %></p>
+  <% rss_url = public_rss_feed_url(@feed) %>
+  <p class="meta"><strong>RSS URL:</strong> <%= link_to rss_url, rss_url, target: '_blank', rel: 'noopener' %></p>
 </section>
 
 <% if @show_metadata.present? %>

@@ -25,7 +25,7 @@
               <% end %>
             </span>
           </td>
-          <td><%= link_to 'RSS', rss_feed_path(uid: feed.uid, format: :rss) %></td>
+          <td><%= link_to 'RSS', public_rss_feed_url(feed), target: '_blank', rel: 'noopener' %></td>
         </tr>
       <% end %>
     </tbody>

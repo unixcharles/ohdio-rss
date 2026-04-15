@@ -26,4 +26,15 @@ module ApplicationHelper
   def display_ohdio_type(value)
     value.to_s.tr("_", " ").squish.titleize
   end
+
+  def public_base_url
+    configured = ENV["PUBLIC_BASE_URL"].to_s.strip
+    base_url = configured.presence || request.base_url
+
+    base_url.chomp("/")
+  end
+
+  def public_rss_feed_url(feed)
+    "#{public_base_url}#{rss_feed_path(uid: feed.uid, format: :rss)}"
+  end
 end

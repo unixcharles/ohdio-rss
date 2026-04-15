@@ -30,6 +30,9 @@ services:
       RAILS_LOG_LEVEL: info
       # Use env-only runtime secrets; do not set RAILS_MASTER_KEY.
       SECRET_KEY_BASE: "CHANGE_ME_SECRET_KEY_BASE"
+      # Optional: force absolute RSS and download links to this public host.
+      # Example: https://rss.example.com
+      PUBLIC_BASE_URL: ""
       SOLID_QUEUE_IN_PUMA: "true"
       DB_HOST: db
       DB_PORT: "5432"
