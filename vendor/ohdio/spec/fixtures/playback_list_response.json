@@ -1,0 +1,201 @@
+{
+  "data": {
+    "playbackListByGlobalId": {
+      "typename": "PlaybackListEpisodePremiere",
+      "currentIndex": 0,
+      "hasNext": false,
+      "hasPrevious": false,
+      "items": [
+        {
+          "typename": "PlaybackListItemEpisodePremiereCue",
+          "ad": {
+            "adUnit": "/6642/ohdio/emissions/toutunmatin",
+            "parameters": [
+              {
+                "key": "domain",
+                "value": "com.radio-canada.ohdio"
+              },
+              {
+                "key": "avdif",
+                "value": "differe"
+              },
+              {
+                "key": "bu",
+                "value": "ohdio"
+              },
+              {
+                "key": "episode",
+                "value": "1730"
+              },
+              {
+                "key": "avdur",
+                "value": "009"
+              },
+              {
+                "key": "idMedia",
+                "value": "10640292"
+              },
+              {
+                "key": "medium",
+                "value": "audio"
+              },
+              {
+                "key": "scha",
+                "value": "premiere"
+              },
+              {
+                "key": "soustheme",
+                "value": "aucun"
+              },
+              {
+                "key": "theme",
+                "value": "societe"
+              },
+              {
+                "key": "displaytheme",
+                "value": "aucun"
+              }
+            ]
+          },
+          "appCode": "medianet",
+          "audioType": "episode-talk",
+          "duration": {
+            "durationInSeconds": 540
+          },
+          "mediaPlaybackItem": {
+            "globalId": {
+              "contentType": {
+                "id": 18,
+                "name": "Épisode"
+              },
+              "id": "1020434"
+            },
+            "mediaId": "10640292",
+            "mediaSeekTime": 0
+          },
+          "mlConfigUrl": "https://services.radio-canada.ca/ml/config/ohdio/16006/1.0.0.json",
+          "picture": {
+            "alt": "Tout un matin, avec Patrick Masbourian.",
+            "credit": "Radio-Canada",
+            "pattern": "https://images.radio-canada.ca/q_auto,w_{width}/v1/audio/generateur-images/{ratio}/tum-ohdio-nouveau-visuel-moteur-2024-2025.jpg"
+          },
+          "playlistCollectionIndex": null,
+          "playlistItemIndex": 0,
+          "primaryClassificationTagId": 16023,
+          "productTitle": "Tout un matin",
+          "productTypeName": "Émission ICI Première",
+          "share": {
+            "url": "/premiere/emissions/tout-un-matin/segments/rattrapage/2347125/ouverture-emission-avec-patrick-masbourian-et-son-equipe"
+          },
+          "subtitle": "Tout un matin - 13 avril 2026",
+          "title": "Ouverture de l'émission avec Patrick Masbourian et son équipe",
+          "url": "/premiere/emissions/tout-un-matin/episodes/1020434/lundi-13-avril-2026",
+          "brandName": "premiere",
+          "broadcastedFirstTimeAt": "2026-04-13T09:30:00.000Z",
+          "programmeGlobalId": {
+            "contentType": {
+              "id": 24
+            },
+            "id": "1124"
+          },
+          "programmePrimaryClassificationTagId": 16006,
+          "programmeTitle": "Tout un matin"
+        },
+        {
+          "typename": "PlaybackListItemEpisodePremiereCue",
+          "ad": null,
+          "appCode": "medianet",
+          "audioType": "episode-talk",
+          "duration": {
+            "durationInSeconds": 713
+          },
+          "mediaPlaybackItem": {
+            "globalId": {
+              "contentType": {
+                "id": 18,
+                "name": "Épisode"
+              },
+              "id": "1020434"
+            },
+            "mediaId": "10640292",
+            "mediaSeekTime": 540
+          },
+          "mlConfigUrl": "https://services.radio-canada.ca/ml/config/ohdio/16006/1.0.0.json",
+          "picture": {
+            "alt": "Tout un matin, avec Patrick Masbourian.",
+            "credit": "Radio-Canada",
+            "pattern": "https://images.radio-canada.ca/q_auto,w_{width}/v1/audio/generateur-images/{ratio}/tum-ohdio-nouveau-visuel-moteur-2024-2025.jpg"
+          },
+          "playlistCollectionIndex": null,
+          "playlistItemIndex": 1,
+          "primaryClassificationTagId": 16023,
+          "productTitle": "Tout un matin",
+          "productTypeName": "Émission ICI Première",
+          "share": {
+            "url": "/premiere/emissions/tout-un-matin/segments/rattrapage/2347126/ce-qu-il-faut-savoir-avec-hugo-lavoie-portrait-christine-frechette"
+          },
+          "subtitle": "Tout un matin - 13 avril 2026",
+          "title": "Ce qu'il faut savoir avec Hugo Lavoie&nbsp;:&nbsp;Le portrait de Christine Fréchette",
+          "url": "/premiere/emissions/tout-un-matin/episodes/1020434/lundi-13-avril-2026",
+          "brandName": "premiere",
+          "broadcastedFirstTimeAt": "2026-04-13T09:30:00.000Z",
+          "programmeGlobalId": {
+            "contentType": {
+              "id": 24
+            },
+            "id": "1124"
+          },
+          "programmePrimaryClassificationTagId": 16006,
+          "programmeTitle": "Tout un matin"
+        },
+        {
+          "typename": "PlaybackListItemEpisodePremiereCue",
+          "ad": null,
+          "appCode": "medianet",
+          "audioType": "episode-talk",
+          "duration": {
+            "durationInSeconds": 187
+          },
+          "mediaPlaybackItem": {
+            "globalId": {
+              "contentType": {
+                "id": 18,
+                "name": "Épisode"
+              },
+              "id": "1020434"
+            },
+            "mediaId": "10640292",
+            "mediaSeekTime": 1253
+          },
+          "mlConfigUrl": "https://services.radio-canada.ca/ml/config/ohdio/16006/1.0.0.json",
+          "picture": {
+            "alt": "Tout un matin, avec Patrick Masbourian.",
+            "credit": "Radio-Canada",
+            "pattern": "https://images.radio-canada.ca/q_auto,w_{width}/v1/audio/generateur-images/{ratio}/tum-ohdio-nouveau-visuel-moteur-2024-2025.jpg"
+          },
+          "playlistCollectionIndex": null,
+          "playlistItemIndex": 2,
+          "primaryClassificationTagId": 16023,
+          "productTitle": "Tout un matin",
+          "productTypeName": "Émission ICI Première",
+          "share": {
+            "url": "/premiere/emissions/tout-un-matin/segments/rattrapage/2347127/reseaux-sociaux-avec-julien-poirier-malo-karaoke-surprise"
+          },
+          "subtitle": "Tout un matin - 13 avril 2026",
+          "title": "Réseaux sociaux avec Julien Poirier-Malo&nbsp;:&nbsp;Le karaoké surprise",
+          "url": "/premiere/emissions/tout-un-matin/episodes/1020434/lundi-13-avril-2026",
+          "brandName": "premiere",
+          "broadcastedFirstTimeAt": "2026-04-13T09:30:00.000Z",
+          "programmeGlobalId": {
+            "contentType": {
+              "id": 24
+            },
+            "id": "1124"
+          },
+          "programmePrimaryClassificationTagId": 16006,
+          "programmeTitle": "Tout un matin"
+        }
+      ]
+    }
+  }
+}

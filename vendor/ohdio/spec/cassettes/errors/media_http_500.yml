@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://services.radio-canada.ca/media/validation/v2?appCode=medianet&connectionType=hd&deviceType=ipad&idMedia=10640801&multibitrate=true&output=json&tech=progressive
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/120.0.0.0 Safari/537.36
+      Host:
+      - services.radio-canada.ca
+      Content-Type:
+      - application/json
+      Apollo-Require-Preflight:
+      - 'true'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '390'
+      X-Aspnetmvc-Version:
+      - '5.0'
+      Server-Time:
+      - '1776115177'
+      Expires:
+      - Mon, 13 Apr 2026 21:19:40 GMT
+      Cache-Control:
+      - max-age=0, no-cache, no-store
+      Pragma:
+      - no-cache
+      Date:
+      - Mon, 13 Apr 2026 21:19:40 GMT
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+    body:
+      encoding: ASCII-8BIT
+      string: '{"url":"https://rcavmedias-download.akamaized.net/mp4/c2004504-9928-4ddd-b56a-34f6002b7302/2026-04-13_14_25_00_lajourneeestencorejeuneohdio_0000_128.mp4","message":null,"errorCode":0,"params":[{"name":"mediaType","value":"audio"},{"name":"contentType","value":"audio/mpeg"},{"name":"tokenId","value":6}],"bitrates":[{"bitrate":128,"width":0,"height":0,"lines":"128k","param":null,"max":0}]}'
+  recorded_at: Mon, 13 Apr 2026 21:19:40 GMT
+recorded_with: VCR 6.4.0

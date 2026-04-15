@@ -1,0 +1,451 @@
+{
+  "data": {
+    "programmeById": {
+      "typename": "EmissionPremiere",
+      "canonicalUrl": "/premiere/emissions/1124/tout-un-matin",
+      "contact": {
+        "contactFormUrl": "/ohdio/nous-joindre/1124",
+        "email": "toutunmatin@radio-canada.ca",
+        "participate": "https://interaction.radio-canada.ca/quiz/1767538_2852/tout-un-matin-concours-trousse-de-survie.html",
+        "phone": "4383408817",
+        "socialMedias": [
+          {
+            "name": "twitter",
+            "url": "https://twitter.com/Toutunmatin"
+          },
+          {
+            "name": "facebook",
+            "url": "https://www.facebook.com/toutunmatin"
+          },
+          {
+            "name": "instagram",
+            "url": "https://www.instagram.com/toutunmatin/?hl=fr-ca"
+          }
+        ]
+      },
+      "content": {
+        "typename": "ProgrammeContentNewSchema",
+        "contactUsAvailable": true,
+        "about": {
+          "typename": "ProgrammeContentAboutNewSchema",
+          "broadcastedRegions": [
+            "Grand Montréal"
+          ],
+          "broadcastedTracks": null,
+          "credits": "<p><strong>Animation</strong>&nbsp;<strong>:</strong> Patrick Masbourian<br/><strong>Réalisation</strong>&nbsp;<strong>:</strong> Dominique Depatie</p><p><strong>Assistance à la réalisation</strong>&nbsp;<strong>:</strong> Andrée-Anne Tremblay<br/><strong>Chroniques</strong>&nbsp;<strong>:</strong>  Sébastien Bovet (politique provinciale), Catherine Ethier (billet d&#x27;humeur), Chantal Hébert (politique fédérale), Véronique Hivon (carte blanche), Paul-Antoine Jetté (économie et finance), Pierre-Yves McSween (économie et finance), Véronique Prince (politique provinciale) et Daniel Thibeault (politique fédérale)<br/><br/><em>Les analyses politiques</em><br/><strong>Lundi</strong>&nbsp;<strong>:</strong> Paul Journet et Jean-François Lisée<br/><strong>Mardi</strong>&nbsp;<strong>:</strong> Emilie Nicolas<br/><strong>Mercredi</strong>&nbsp;<strong>:</strong> Michelle Courchesne et Paul Journet <br/><strong>Jeudi</strong>&nbsp;<strong>:</strong> Emilie Foster et Alain Rayes<br/><strong>Vendredi</strong>&nbsp;<strong>:</strong> Véronique Hivon<br/><strong></strong><br/><strong>Collaborations</strong>&nbsp;<strong>:</strong> Claudia Hébert (culture), Hugo Lavoie (revue des médias), Véronique Mayrand (météo et circulation), Olivier Pellerin (sport) et Julien Poirier-Malo (revue du web)<br/><strong>Contenus numériques</strong>&nbsp;<strong>:</strong> Guillaume Cyr<br/><strong>Recherche</strong>&nbsp;<strong>:</strong> Catherine Bordeleau, Eric St-Pierre, Yoann D. Vincent, Félix Lemieux et Aurélie Girard<br/><strong>Technique</strong>&nbsp;<strong>:</strong> Jérémy Sauvé</p><p><em>Pour joindre Véronique Mayrand à la circulation</em>&nbsp;<em>: 514 409-7367</em></p><p><strong>Gala Les Olivier 2026</strong>&nbsp;<strong>: </strong>finaliste dans la catégorie du meilleur sketch radio humoristique pour <em>Itinérance, le parcours du combattant</em> de Catherine Ethier</p>",
+          "rssFeed": {
+            "id": "rss",
+            "url": "http://feeds.feedburner.com/ToutUnMatin"
+          },
+          "summary": "<p>Commencez la journée du bon pied avec Patrick Masbourian et son équipe de collaborateurs, qui vous offrent un rendez-vous matinal complet d'information et de services. Actualités locales, nationales et internationales; météo; circulation; sport et culture: les essentiels de votre journée seront mis au premier plan.</p>"
+        },
+        "contentDetail": {
+          "typename": "PagedCardsListWithAdsNewSchema",
+          "areAdsEnabled": true,
+          "displayAd": {
+            "listAds": [
+              {
+                "companion": false,
+                "id": "ad-ohdio-main-with-aside-first-position",
+                "position": 0,
+                "positionDfp": 1
+              },
+              {
+                "companion": false,
+                "id": "ad-ohdio-main-with-aside-second-position",
+                "position": 1,
+                "positionDfp": 2
+              },
+              {
+                "companion": false,
+                "id": "ad-ohdio-billboard-to-leaderboard",
+                "position": 2,
+                "positionDfp": 3
+              }
+            ],
+            "pageInformation": {
+              "adUnitPage": "/6642/app.radio-canada.ohdio/emissions/tout-un-matin",
+              "parameters": [
+                {
+                  "key": "bu",
+                  "value": "ohdio"
+                },
+                {
+                  "key": "device",
+                  "value": "desktop"
+                },
+                {
+                  "key": "domain",
+                  "value": "ici.radio-canada.ca"
+                },
+                {
+                  "key": "version",
+                  "value": "1.0.0"
+                }
+              ]
+            }
+          },
+          "items": [
+            {
+              "typename": "CardContentSummary",
+              "broadcastedFirstTimeAt": "2026-04-13T09:30:00.000Z",
+              "duration": {
+                "durationInSeconds": 10620
+              },
+              "index": {
+                "accessibleValue": null,
+                "value": null
+              },
+              "isBroadcastedReplay": false,
+              "isPlayable": true,
+              "picture": null,
+              "playlistItemId": {
+                "globalId2": {
+                  "contentType": {
+                    "id": 18,
+                    "name": "Épisode"
+                  },
+                  "id": "1020434"
+                },
+                "hasTranscription": false,
+                "mediaId": null,
+                "mediaStartPosition": null
+              },
+              "primaryClassificationTagId": 16023,
+              "share": {
+                "title": "Lundi 13 avr 2026 : Christine Fréchette, élue cheffe de la CAQ, et le cancer au Canada en 2026",
+                "url": "/premiere/emissions/tout-un-matin/episodes/1020434/lundi-13-avril-2026"
+              },
+              "subtitle": null,
+              "summary": "<p>L&#x27;élection de Christine Fréchette comme cheffe de la Coalition avenir Québec (CAQ), qui devient donc première ministre désignée du Québec; la projection des cas de cancer au Canada en 2026; le premier ministre d’extrême droite Viktor Orbán défait lors des élections en Hongrie; l&#x27;échec des négociations à Islamabad entre les États-Unis et l’Iran; et le web québécois médusé par le karaoké du caucus de la CAQ.&nbsp;</p>",
+              "title": "Lundi 13 avr 2026 : Christine Fréchette, élue cheffe de la CAQ, et le cancer au Canada en 2026",
+              "url": "/premiere/emissions/tout-un-matin/episodes/1020434/lundi-13-avril-2026",
+              "urlDescription": "Détails"
+            },
+            {
+              "typename": "CardContentSummary",
+              "broadcastedFirstTimeAt": "2026-04-10T09:30:00.000Z",
+              "duration": {
+                "durationInSeconds": 10620
+              },
+              "index": {
+                "accessibleValue": null,
+                "value": null
+              },
+              "isBroadcastedReplay": false,
+              "isPlayable": true,
+              "picture": null,
+              "playlistItemId": {
+                "globalId2": {
+                  "contentType": {
+                    "id": 18,
+                    "name": "Épisode"
+                  },
+                  "id": "1020433"
+                },
+                "hasTranscription": false,
+                "mediaId": null,
+                "mediaStartPosition": null
+              },
+              "primaryClassificationTagId": 16023,
+              "share": {
+                "title": "Vendredi 10 avr. 2026 : Le premier ministre du Canada, Mark Carney, et le 50e but de Cole Caufield",
+                "url": "/premiere/emissions/tout-un-matin/episodes/1020433/vendredi-10-avril-2026"
+              },
+              "subtitle": null,
+              "summary": "<p>Une longue entrevue avec le premier ministre du Canada, Mark Carney, sur les transfuges au Parti libéral du Canada (PLC), l’itinérance et sa première année au pouvoir; le 50e but du joueur du Canadien de Montréal, Cole Caufield; la Journée mondiale de la maladie de Parkinson; la passion pour les arts visuels de Patrick Masbourian dans la trousse de survie de <em>Tout un matin</em>; les 5000 personnes en situation d’itinérance recensées à Montréal; et le retour sur Terre des astronautes d’Artemis II analysé par l’astronaute David Saint-Jacques.</p>",
+              "title": "Vendredi 10 avr. 2026 : Le premier ministre du Canada, Mark Carney, et le 50e but de Cole Caufield",
+              "url": "/premiere/emissions/tout-un-matin/episodes/1020433/vendredi-10-avril-2026",
+              "urlDescription": "Détails"
+            }
+          ],
+          "pagedConfiguration": {
+            "pageMaxLength": 5,
+            "pageNumber": 1,
+            "pageSize": 5,
+            "totalNumberOfItems": 1434
+          }
+        },
+        "id": 1124,
+        "sponsoredContentWarning": null
+      },
+      "description": {
+        "typename": "ProductDescriptionNewSchema",
+        "references": null,
+        "summary": "<p class=\"articleBody first\" itemprop=\"articleBody\">En semaine de 5 h 30 à 9 h</p>\n<p class=\"articleBody\" itemprop=\"articleBody\"></p>",
+        "title": "Avec Patrick Masbourian"
+      },
+      "header": {
+        "typename": "ProductHeaderNewSchema",
+        "duration": null,
+        "globalId": {
+          "contentType": {
+            "id": 24,
+            "name": "Émission"
+          },
+          "id": "1124"
+        },
+        "isPlayable": false,
+        "kicker": null,
+        "media2": {
+          "context": {
+            "contentType": {
+              "id": 18,
+              "name": "Épisode"
+            },
+            "id": "1020434"
+          }
+        },
+        "picture": {
+          "alt": "Tout un matin, avec Patrick Masbourian.",
+          "credit": "Radio-Canada",
+          "pattern": "https://images.radio-canada.ca/q_auto,w_{width}/v1/audio/generateur-images/{ratio}/tum-ohdio-nouveau-visuel-moteur-2024-2025.jpg"
+        },
+        "playlistItemId": null,
+        "share": {
+          "title": "Tout un matin",
+          "url": "/premiere/emissions/1124/tout-un-matin"
+        },
+        "subtitle": "Avec Patrick Masbourian",
+        "summary": "<p>Commencez la journée du bon pied avec Patrick Masbourian et son équipe de collaborateurs, qui vous offrent un rendez-vous matinal complet d'information et de services. Actualités locales, nationales et internationales; météo; circulation; sport et culture: les essentiels de votre journée seront mis au premier plan.</p>",
+        "template": {
+          "id": "Audio-100"
+        },
+        "title": "Tout un matin",
+        "url": null
+      },
+      "meta": {
+        "description": "Écoutez Tout un matin sur Première : liste des épisodes, musique diffusée, et plus.",
+        "icon": "Ohdio",
+        "image": "https://images.radio-canada.ca/v1/audio/generateur-images/16x9/tum-ohdio-nouveau-visuel-moteur-2024-2025.jpg",
+        "tags": [
+          {
+            "content": "app-id=319839618",
+            "name": "apple-itunes-app",
+            "type": "name"
+          },
+          {
+            "content": "app-id=rc.appradio.android&hl=fr",
+            "name": "google-play-app",
+            "type": "name"
+          },
+          {
+            "content": "Écoutez Tout un matin sur Première : liste des épisodes, musique diffusée, et plus.",
+            "name": "description",
+            "type": "name"
+          },
+          {
+            "content": "Écoutez Tout un matin sur Première : liste des épisodes, musique diffusée, et plus.",
+            "name": "og:description",
+            "type": "property"
+          },
+          {
+            "content": "Tout un matin | OHdio | Radio-Canada",
+            "name": "og:title",
+            "type": "property"
+          },
+          {
+            "content": "https://images.radio-canada.ca/v1/audio/generateur-images/16x9/tum-ohdio-nouveau-visuel-moteur-2024-2025.jpg",
+            "name": "og:image",
+            "type": "property"
+          }
+        ],
+        "title": "Tout un matin | OHdio | Radio-Canada"
+      },
+      "metrik": {
+        "chartbeat": null,
+        "omnitureValues": [
+          {
+            "key": "accesViaAlerte",
+            "value": ""
+          },
+          {
+            "key": "Application",
+            "value": ""
+          },
+          {
+            "key": "Audience",
+            "value": "grandpublic18plus"
+          },
+          {
+            "key": "Blogue",
+            "value": ""
+          },
+          {
+            "key": "CanonicalWebLink",
+            "value": ""
+          },
+          {
+            "key": "Chaine",
+            "value": ""
+          },
+          {
+            "key": "Classification",
+            "value": ""
+          },
+          {
+            "key": "CodeEmission",
+            "value": "toutunmatin"
+          },
+          {
+            "key": "CodePage",
+            "value": "accueil"
+          },
+          {
+            "key": "DateCreation",
+            "value": ""
+          },
+          {
+            "key": "DateModification",
+            "value": ""
+          },
+          {
+            "key": "Domaine",
+            "value": "radio-canada.ca"
+          },
+          {
+            "key": "Dossier",
+            "value": ""
+          },
+          {
+            "key": "Emission",
+            "value": "Tout un matin"
+          },
+          {
+            "key": "Etiquette",
+            "value": ""
+          },
+          {
+            "key": "Format",
+            "value": "emission"
+          },
+          {
+            "key": "FormatApplication",
+            "value": ""
+          },
+          {
+            "key": "GroupeSection",
+            "value": "montreal"
+          },
+          {
+            "key": "IdMedia",
+            "value": "1124"
+          },
+          {
+            "key": "IdsCollection",
+            "value": "|ProgramId:1124|"
+          },
+          {
+            "key": "Niveau",
+            "value": "accueil"
+          },
+          {
+            "key": "NomPage",
+            "value": "regions:montreal:emi:toutunmatin:accueil:accueil"
+          },
+          {
+            "key": "NomPartie2",
+            "value": "regions:montreal"
+          },
+          {
+            "key": "NomPartie3",
+            "value": "regions:montreal:emi"
+          },
+          {
+            "key": "NomPartie4",
+            "value": "regions:montreal:emi:toutunmatin"
+          },
+          {
+            "key": "NomPartie5",
+            "value": "regions:montreal:emi:toutunmatin:accueil"
+          },
+          {
+            "key": "MetasPrimaire",
+            "value": "CodeEmission,CodePage,GroupeSection,Format,IdMedia,IdsCollection,Niveau,NomPage,PageSegment,Reseau,Section,Segment,SousSecteur,Theme,Titre,TypeContenu,Audience,ThematiqueAffichage"
+          },
+          {
+            "key": "PageSegment",
+            "value": "accueil"
+          },
+          {
+            "key": "Partenaires",
+            "value": ""
+          },
+          {
+            "key": "Questions",
+            "value": ""
+          },
+          {
+            "key": "Recherche",
+            "value": ""
+          },
+          {
+            "key": "Region",
+            "value": "montreal"
+          },
+          {
+            "key": "RegionalisationPrincipale",
+            "value": ""
+          },
+          {
+            "key": "Reseau",
+            "value": "premiere"
+          },
+          {
+            "key": "Saison",
+            "value": ""
+          },
+          {
+            "key": "Section",
+            "value": "regions"
+          },
+          {
+            "key": "Segment",
+            "value": "emission"
+          },
+          {
+            "key": "Signature",
+            "value": ""
+          },
+          {
+            "key": "SousSecteur",
+            "value": "premiere-grand-montreal"
+          },
+          {
+            "key": "SousTheme",
+            "value": ""
+          },
+          {
+            "key": "Sport",
+            "value": ""
+          },
+          {
+            "key": "ThematiqueAffichage",
+            "value": ""
+          },
+          {
+            "key": "Theme",
+            "value": "societe"
+          },
+          {
+            "key": "Titre",
+            "value": "Tout un matin - accueil"
+          },
+          {
+            "key": "TypeContenu",
+            "value": "episode"
+          },
+          {
+            "key": "TypeDocument",
+            "value": "document"
+          },
+          {
+            "key": "Version",
+            "value": "2"
+          }
+        ]
+      },
+      "primaryClassificationTagId": 16006
+    }
+  }
+}

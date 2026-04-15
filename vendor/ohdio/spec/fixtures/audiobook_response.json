@@ -1,0 +1,597 @@
+{
+  "data": {
+    "audioBookById": {
+      "typename": "AudioBook",
+      "canonicalUrl": "/livres-audio/42418/du-bon-usage-des-etoiles",
+      "content": {
+        "typename": "AudioBookContent",
+        "about": {
+          "typename": "AudioBookContentAbout",
+          "publisherInformation": "<p><strong>Lauréat du Prix Gens de Mer 2009</strong><br><br>Publié en&nbsp;2008&nbsp;| Éditions&nbsp;Alto | 344&nbsp;pages |&nbsp;Tout&nbsp;public</p>",
+          "summary": "<p>Mai 1845, sir John Franklin part à la conquête du passage du Nord-Ouest avec assez de provisions pour survivre trois ans aux rigueurs de l’Arctique. Ses deux navires se trouvent bientôt prisonniers des glaces. Commence alors un autre voyage, au cœur de la nuit polaire et vers les profondeurs de l’être, dont le commandant Crozier rend compte dans son journal. Il se languit de la belle Sophia, restée à Londres, où les thés et les bals se succèdent en un tourbillon de mondanités. Inspiré de la dernière expédition de Franklin, ce roman brosse un tableau des lubies de la société victorienne dans une mosaïque qui mêle avec bonheur le roman au journal, l’histoire, le récit d’aventures, le traité scientifique et la recette d’un plum-pudding. | Résumé adapté à partir de celui de l'éditeur</p>\n<p><strong>Réalisation</strong>&nbsp;: Patricia Landry</p>"
+        },
+        "contentDetail": {
+          "typename": "PagedCardsListWithAdsNewSchema",
+          "areAdsEnabled": true,
+          "displayAd": {
+            "listAds": [
+              {
+                "companion": false,
+                "id": "ad-ohdio-main-with-aside-first-position",
+                "position": 0,
+                "positionDfp": 1
+              },
+              {
+                "companion": false,
+                "id": "ad-ohdio-main-with-aside-second-position",
+                "position": 1,
+                "positionDfp": 2
+              },
+              {
+                "companion": false,
+                "id": "ad-ohdio-billboard-to-leaderboard",
+                "position": 2,
+                "positionDfp": 3
+              }
+            ],
+            "pageInformation": {
+              "adUnitPage": "/6642/app.radio-canada.ohdio/livre-audio/du-bon-usage-des-etoiles",
+              "parameters": [
+                {
+                  "key": "bu",
+                  "value": "ohdio"
+                },
+                {
+                  "key": "device",
+                  "value": "desktop"
+                },
+                {
+                  "key": "domain",
+                  "value": "ici.radio-canada.ca"
+                },
+                {
+                  "key": "version",
+                  "value": "1.0.0"
+                }
+              ]
+            }
+          },
+          "items": [
+            {
+              "typename": "CardContentSummary",
+              "broadcastedFirstTimeAt": null,
+              "duration": {
+                "durationInSeconds": 2849
+              },
+              "index": null,
+              "isBroadcastedReplay": false,
+              "isPlayable": true,
+              "picture": null,
+              "playlistItemId": {
+                "globalId2": {
+                  "contentType": {
+                    "id": 60,
+                    "name": "Livre audio"
+                  },
+                  "id": "42418"
+                },
+                "hasTranscription": false,
+                "mediaId": "7270050",
+                "mediaStartPosition": null
+              },
+              "primaryClassificationTagId": 6108,
+              "share": {
+                "title": "Du bon usage des étoiles - Partie 1 - Argo Navis",
+                "url": "/livres-audio/42418/du-bon-usage-des-etoiles/7270050-0"
+              },
+              "subtitle": null,
+              "summary": "",
+              "title": "Partie 1 - Argo Navis",
+              "url": "/livres-audio/42418/du-bon-usage-des-etoiles/7270050-0",
+              "urlDescription": null
+            },
+            {
+              "typename": "CardContentSummary",
+              "broadcastedFirstTimeAt": null,
+              "duration": {
+                "durationInSeconds": 2993
+              },
+              "index": null,
+              "isBroadcastedReplay": false,
+              "isPlayable": true,
+              "picture": null,
+              "playlistItemId": {
+                "globalId2": {
+                  "contentType": {
+                    "id": 60,
+                    "name": "Livre audio"
+                  },
+                  "id": "42418"
+                },
+                "hasTranscription": false,
+                "mediaId": "7270051",
+                "mediaStartPosition": null
+              },
+              "primaryClassificationTagId": 6108,
+              "share": {
+                "title": "Du bon usage des étoiles - Partie 2 - Les voiles 1",
+                "url": "/livres-audio/42418/du-bon-usage-des-etoiles/7270051-0"
+              },
+              "subtitle": null,
+              "summary": "",
+              "title": "Partie 2 - Les voiles 1",
+              "url": "/livres-audio/42418/du-bon-usage-des-etoiles/7270051-0",
+              "urlDescription": null
+            },
+            {
+              "typename": "CardContentSummary",
+              "broadcastedFirstTimeAt": null,
+              "duration": {
+                "durationInSeconds": 2428
+              },
+              "index": null,
+              "isBroadcastedReplay": false,
+              "isPlayable": true,
+              "picture": null,
+              "playlistItemId": {
+                "globalId2": {
+                  "contentType": {
+                    "id": 60,
+                    "name": "Livre audio"
+                  },
+                  "id": "42418"
+                },
+                "hasTranscription": false,
+                "mediaId": "7270055",
+                "mediaStartPosition": null
+              },
+              "primaryClassificationTagId": 6108,
+              "share": {
+                "title": "Du bon usage des étoiles - Partie 3 - Les voiles 2",
+                "url": "/livres-audio/42418/du-bon-usage-des-etoiles/7270055-0"
+              },
+              "subtitle": null,
+              "summary": "",
+              "title": "Partie 3 - Les voiles 2",
+              "url": "/livres-audio/42418/du-bon-usage-des-etoiles/7270055-0",
+              "urlDescription": null
+            },
+            {
+              "typename": "CardContentSummary",
+              "broadcastedFirstTimeAt": null,
+              "duration": {
+                "durationInSeconds": 3793
+              },
+              "index": null,
+              "isBroadcastedReplay": false,
+              "isPlayable": true,
+              "picture": null,
+              "playlistItemId": {
+                "globalId2": {
+                  "contentType": {
+                    "id": 60,
+                    "name": "Livre audio"
+                  },
+                  "id": "42418"
+                },
+                "hasTranscription": false,
+                "mediaId": "7270065",
+                "mediaStartPosition": null
+              },
+              "primaryClassificationTagId": 6108,
+              "share": {
+                "title": "Du bon usage des étoiles - Partie 4 - Les voiles 3",
+                "url": "/livres-audio/42418/du-bon-usage-des-etoiles/7270065-0"
+              },
+              "subtitle": null,
+              "summary": "",
+              "title": "Partie 4 - Les voiles 3",
+              "url": "/livres-audio/42418/du-bon-usage-des-etoiles/7270065-0",
+              "urlDescription": null
+            },
+            {
+              "typename": "CardContentSummary",
+              "broadcastedFirstTimeAt": null,
+              "duration": {
+                "durationInSeconds": 2743
+              },
+              "index": null,
+              "isBroadcastedReplay": false,
+              "isPlayable": true,
+              "picture": null,
+              "playlistItemId": {
+                "globalId2": {
+                  "contentType": {
+                    "id": 60,
+                    "name": "Livre audio"
+                  },
+                  "id": "42418"
+                },
+                "hasTranscription": false,
+                "mediaId": "7270069",
+                "mediaStartPosition": null
+              },
+              "primaryClassificationTagId": 6108,
+              "share": {
+                "title": "Du bon usage des étoiles - Partie 5 - La croix du sud",
+                "url": "/livres-audio/42418/du-bon-usage-des-etoiles/7270069-0"
+              },
+              "subtitle": null,
+              "summary": "",
+              "title": "Partie 5 - La croix du sud",
+              "url": "/livres-audio/42418/du-bon-usage-des-etoiles/7270069-0",
+              "urlDescription": null
+            },
+            {
+              "typename": "CardContentSummary",
+              "broadcastedFirstTimeAt": null,
+              "duration": {
+                "durationInSeconds": 4863
+              },
+              "index": null,
+              "isBroadcastedReplay": false,
+              "isPlayable": true,
+              "picture": null,
+              "playlistItemId": {
+                "globalId2": {
+                  "contentType": {
+                    "id": 60,
+                    "name": "Livre audio"
+                  },
+                  "id": "42418"
+                },
+                "hasTranscription": false,
+                "mediaId": "7271123",
+                "mediaStartPosition": null
+              },
+              "primaryClassificationTagId": 6108,
+              "share": {
+                "title": "Du bon usage des étoiles - Partie 6 - Cathedra Foraminata",
+                "url": "/livres-audio/42418/du-bon-usage-des-etoiles/7271123-0"
+              },
+              "subtitle": null,
+              "summary": "",
+              "title": "Partie 6 - Cathedra Foraminata",
+              "url": "/livres-audio/42418/du-bon-usage-des-etoiles/7271123-0",
+              "urlDescription": null
+            },
+            {
+              "typename": "CardContentSummary",
+              "broadcastedFirstTimeAt": null,
+              "duration": {
+                "durationInSeconds": 1745
+              },
+              "index": null,
+              "isBroadcastedReplay": false,
+              "isPlayable": true,
+              "picture": null,
+              "playlistItemId": {
+                "globalId2": {
+                  "contentType": {
+                    "id": 60,
+                    "name": "Livre audio"
+                  },
+                  "id": "42418"
+                },
+                "hasTranscription": false,
+                "mediaId": "7270078",
+                "mediaStartPosition": null
+              },
+              "primaryClassificationTagId": 6108,
+              "share": {
+                "title": "Du bon usage des étoiles - Partie 7 - Stella Maris",
+                "url": "/livres-audio/42418/du-bon-usage-des-etoiles/7270078-0"
+              },
+              "subtitle": null,
+              "summary": "",
+              "title": "Partie 7 - Stella Maris",
+              "url": "/livres-audio/42418/du-bon-usage-des-etoiles/7270078-0",
+              "urlDescription": null
+            }
+          ],
+          "pagedConfiguration": null
+        }
+      },
+      "description": {
+        "typename": "ProductDescription",
+        "references": null,
+        "summary": null,
+        "title": "<p>Bruno Marcil et Catherine Trudeau</p>"
+      },
+      "header": {
+        "typename": "ProductHeaderNewSchema",
+        "duration": {
+          "durationInSeconds": 21414
+        },
+        "globalId": {
+          "contentType": {
+            "id": 60,
+            "name": "Livre audio"
+          },
+          "id": "42418"
+        },
+        "isPlayable": true,
+        "kicker": "Roman",
+        "media2": {
+          "context": {
+            "contentType": {
+              "id": 60,
+              "name": "Livre audio"
+            },
+            "id": "42418"
+          }
+        },
+        "picture": {
+          "alt": "Du bon usage des étoiles",
+          "credit": "Éditions Alto",
+          "pattern": "https://images.radio-canada.ca/q_auto,w_{width}/v1/ici-premiere/livres/{ratio}/du-bon-usage-des-etoiles.jpg"
+        },
+        "playlistItemId": {
+          "globalId2": {
+            "contentType": {
+              "id": 60,
+              "name": "Livre audio"
+            },
+            "id": "42418"
+          },
+          "mediaId": null,
+          "mediaStartPosition": null
+        },
+        "share": {
+          "title": "Du bon usage des étoiles",
+          "url": "/livres-audio/42418/du-bon-usage-des-etoiles"
+        },
+        "subtitle": "<p>Dominique Fortier</p>",
+        "summary": "<p>Mai 1845, sir John Franklin part à la conquête du passage du Nord-Ouest avec assez de provisions pour survivre trois ans aux rigueurs de l’Arctique. Ses deux navires se trouvent bientôt prisonniers des glaces. Commence alors un autre voyage, au cœur de la nuit polaire et vers les profondeurs de l’être, dont le commandant Crozier rend compte dans son journal. Il se languit de la belle Sophia, restée à Londres, où les thés et les bals se succèdent en un tourbillon de mondanités. Inspiré de la dernière expédition de Franklin, ce roman brosse un tableau des lubies de la société victorienne dans une mosaïque qui mêle avec bonheur le roman au journal, l’histoire, le récit d’aventures, le traité scientifique et la recette d’un plum-pudding. | Résumé adapté à partir de celui de l'éditeur</p>\n<p><strong>Réalisation</strong>&nbsp;: Patricia Landry</p>",
+        "template": {
+          "id": "Audio-102"
+        },
+        "title": "Du bon usage des étoiles",
+        "url": null
+      },
+      "meta": {
+        "description": "Écoutez gratuitement le livre audio Du bon usage des étoiles",
+        "icon": "Ohdio",
+        "image": "https://images.radio-canada.ca/v1/ici-premiere/livres/16x9/du-bon-usage-des-etoiles.jpg",
+        "tags": [
+          {
+            "content": "app-id=319839618",
+            "name": "apple-itunes-app",
+            "type": "name"
+          },
+          {
+            "content": "app-id=rc.appradio.android&hl=fr",
+            "name": "google-play-app",
+            "type": "name"
+          },
+          {
+            "content": "Écoutez gratuitement le livre audio Du bon usage des étoiles",
+            "name": "description",
+            "type": "name"
+          },
+          {
+            "content": "Écoutez gratuitement le livre audio Du bon usage des étoiles",
+            "name": "og:description",
+            "type": "property"
+          },
+          {
+            "content": "Du bon usage des étoiles | OHdio | Radio-Canada",
+            "name": "og:title",
+            "type": "property"
+          },
+          {
+            "content": "https://images.radio-canada.ca/v1/ici-premiere/livres/16x9/du-bon-usage-des-etoiles.jpg",
+            "name": "og:image",
+            "type": "property"
+          }
+        ],
+        "title": "Du bon usage des étoiles | OHdio | Radio-Canada"
+      },
+      "metrik": {
+        "charbeat": null,
+        "omnitureValues": [
+          {
+            "key": "accesViaAlerte",
+            "value": ""
+          },
+          {
+            "key": "Application",
+            "value": ""
+          },
+          {
+            "key": "Audience",
+            "value": "grandpublic18plus"
+          },
+          {
+            "key": "Blogue",
+            "value": ""
+          },
+          {
+            "key": "CanonicalWebLink",
+            "value": ""
+          },
+          {
+            "key": "Chaine",
+            "value": ""
+          },
+          {
+            "key": "Classification",
+            "value": ""
+          },
+          {
+            "key": "CodeEmission",
+            "value": "du-bon-usage-des-etoiles"
+          },
+          {
+            "key": "CodePage",
+            "value": "accueil"
+          },
+          {
+            "key": "DateCreation",
+            "value": ""
+          },
+          {
+            "key": "DateModification",
+            "value": ""
+          },
+          {
+            "key": "Domaine",
+            "value": "radio-canada.ca"
+          },
+          {
+            "key": "Dossier",
+            "value": ""
+          },
+          {
+            "key": "Emission",
+            "value": "Du bon usage des étoiles"
+          },
+          {
+            "key": "Etiquette",
+            "value": ""
+          },
+          {
+            "key": "Filtre",
+            "value": ""
+          },
+          {
+            "key": "Format",
+            "value": "livre-audio"
+          },
+          {
+            "key": "FormatApplication",
+            "value": ""
+          },
+          {
+            "key": "GroupeSection",
+            "value": "premiere"
+          },
+          {
+            "key": "IdMedia",
+            "value": "42418"
+          },
+          {
+            "key": "IdsCollection",
+            "value": "|AudioBookId:42418|"
+          },
+          {
+            "key": "Niveau",
+            "value": "accueil"
+          },
+          {
+            "key": "NomPage",
+            "value": "radio:premiere:livre-audio:du-bon-usage-de:accueil:accueil"
+          },
+          {
+            "key": "NomPartie2",
+            "value": "radio:premiere"
+          },
+          {
+            "key": "NomPartie3",
+            "value": "radio:premiere:livre-audio"
+          },
+          {
+            "key": "NomPartie4",
+            "value": "radio:premiere:livre-audio:du-bon-usage-de"
+          },
+          {
+            "key": "NomPartie5",
+            "value": "radio:premiere:livre-audio:du-bon-usage-de:accueil"
+          },
+          {
+            "key": "MetasPrimaire",
+            "value": "CodeEmission,CodePage,GroupeSection,Format,IdMedia,IdsCollection,Niveau,NomPage,PageSegment,Reseau,Section,Segment,SousSecteur,Theme,Titre,TypeContenu,Audience,ThematiqueAffichage"
+          },
+          {
+            "key": "PageSegment",
+            "value": "accueil"
+          },
+          {
+            "key": "Partenaires",
+            "value": ""
+          },
+          {
+            "key": "Questions",
+            "value": ""
+          },
+          {
+            "key": "Recherche",
+            "value": ""
+          },
+          {
+            "key": "Region",
+            "value": ""
+          },
+          {
+            "key": "RegionalisationPrincipale",
+            "value": ""
+          },
+          {
+            "key": "Reseau",
+            "value": "premiere"
+          },
+          {
+            "key": "Saison",
+            "value": ""
+          },
+          {
+            "key": "Section",
+            "value": "radio"
+          },
+          {
+            "key": "Segment",
+            "value": "livre-audio"
+          },
+          {
+            "key": "Signature",
+            "value": ""
+          },
+          {
+            "key": "SousSecteur",
+            "value": "premiere-national"
+          },
+          {
+            "key": "SousTheme",
+            "value": "litterature"
+          },
+          {
+            "key": "Sport",
+            "value": ""
+          },
+          {
+            "key": "Theme",
+            "value": "arts_et_divertissement"
+          },
+          {
+            "key": "ThematiqueAffichage",
+            "value": ""
+          },
+          {
+            "key": "Titre",
+            "value": "Du bon usage des étoiles"
+          },
+          {
+            "key": "Tri",
+            "value": ""
+          },
+          {
+            "key": "TypeContenu",
+            "value": "episode"
+          },
+          {
+            "key": "TypeDocument",
+            "value": "document"
+          },
+          {
+            "key": "Url",
+            "value": ""
+          },
+          {
+            "key": "Version",
+            "value": "2"
+          }
+        ]
+      }
+    }
+  }
+}

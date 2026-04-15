@@ -1,0 +1,29 @@
+{
+  "url": "https://rcavmedias-download.akamaized.net/mp4/c2004504-9928-4ddd-b56a-34f6002b7302/2026-04-13_14_25_00_lajourneeestencorejeuneohdio_0000_128.mp4",
+  "message": null,
+  "errorCode": 0,
+  "params": [
+    {
+      "name": "mediaType",
+      "value": "audio"
+    },
+    {
+      "name": "contentType",
+      "value": "audio/mpeg"
+    },
+    {
+      "name": "tokenId",
+      "value": 6
+    }
+  ],
+  "bitrates": [
+    {
+      "bitrate": 128,
+      "width": 0,
+      "height": 0,
+      "lines": "128k",
+      "param": null,
+      "max": 0
+    }
+  ]
+}

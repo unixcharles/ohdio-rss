@@ -1,0 +1,427 @@
+{
+  "data": {
+    "programmeById": {
+      "typename": "EmissionGrandesSeries",
+      "canonicalUrl": "/premiere/grandes-series/108/attendezquonsesouvienne",
+      "contact": null,
+      "content": {
+        "typename": "ProgrammeContentNewSchema",
+        "contactUsAvailable": false,
+        "about": {
+          "typename": "ProgrammeContentAboutNewSchema",
+          "broadcastedRegions": [],
+          "broadcastedTracks": null,
+          "credits": "<p></p>",
+          "rssFeed": null,
+          "summary": "<p>La série <em>Attendez qu'on se souvienne</em> a été un rendez-vous hebdomadaire incontournable pour quiconque s'intéresse à l'histoire d'ici ou d'ailleurs. En compagnie d'invités passionnés et passionnants, René Homier-Roy s'est penché sur une foule d'événements et de personnages qui ont marqué notre société, que ce soit dans la sphère politique, sociale ou culturelle.</p><p>Série diffusée originalement de 2006 à 2012</p>"
+        },
+        "contentDetail": {
+          "typename": "PagedCardsListWithAdsNewSchema",
+          "areAdsEnabled": true,
+          "displayAd": {
+            "listAds": [
+              {
+                "companion": false,
+                "id": "ad-ohdio-main-with-aside-first-position",
+                "position": 0,
+                "positionDfp": 1
+              },
+              {
+                "companion": false,
+                "id": "ad-ohdio-main-with-aside-second-position",
+                "position": 1,
+                "positionDfp": 2
+              },
+              {
+                "companion": false,
+                "id": "ad-ohdio-billboard-to-leaderboard",
+                "position": 2,
+                "positionDfp": 3
+              }
+            ],
+            "pageInformation": {
+              "adUnitPage": "/6642/app.radio-canada.ohdio/emissions/attendez-qu-on-se-souvienne",
+              "parameters": [
+                {
+                  "key": "bu",
+                  "value": "ohdio"
+                },
+                {
+                  "key": "device",
+                  "value": "desktop"
+                },
+                {
+                  "key": "domain",
+                  "value": "ici.radio-canada.ca"
+                },
+                {
+                  "key": "version",
+                  "value": "1.0.0"
+                }
+              ]
+            }
+          },
+          "items": [
+            {
+              "typename": "CardContentSummary",
+              "broadcastedFirstTimeAt": "2016-11-23T05:00:00.000Z",
+              "duration": {
+                "durationInSeconds": 2936
+              },
+              "index": {
+                "accessibleValue": null,
+                "value": null
+              },
+              "isBroadcastedReplay": false,
+              "isPlayable": true,
+              "picture": null,
+              "playlistItemId": {
+                "globalId2": {
+                  "contentType": {
+                    "id": 18,
+                    "name": "Épisode"
+                  },
+                  "id": "368647"
+                },
+                "hasTranscription": true,
+                "mediaId": "7633079",
+                "mediaStartPosition": null
+              },
+              "primaryClassificationTagId": 16024,
+              "share": {
+                "title": "La conquête de l'espace",
+                "url": "/premiere/grandes-series/108/attendezquonsesouvienne/368647/conquete-espace-lune"
+              },
+              "subtitle": null,
+              "summary": "<p>Le soir où Neil Armstrong a posé son pied sur la Lune, le 20 juillet 1969, René Homier-Roy travaillait à la salle de rédaction de <em>La Presse</em>, où il venait d'être embauché. &laquo;&nbsp;Tout le monde se souvient de ces images qui étaient toutes croches!&nbsp;&raquo; Il replonge dans ce souvenir avec ses invités et ses collaborateurs, dont Catherine Perrin, qui n'avait que 5&nbsp;ans à cette époque</p>",
+              "title": "La conquête de l'espace",
+              "url": "/premiere/grandes-series/108/attendezquonsesouvienne/368647/conquete-espace-lune",
+              "urlDescription": "Détails"
+            },
+            {
+              "typename": "CardContentSummary",
+              "broadcastedFirstTimeAt": "2016-11-23T05:00:00.000Z",
+              "duration": {
+                "durationInSeconds": 2938
+              },
+              "index": {
+                "accessibleValue": null,
+                "value": null
+              },
+              "isBroadcastedReplay": false,
+              "isPlayable": true,
+              "picture": null,
+              "playlistItemId": {
+                "globalId2": {
+                  "contentType": {
+                    "id": 18,
+                    "name": "Épisode"
+                  },
+                  "id": "368650"
+                },
+                "hasTranscription": true,
+                "mediaId": "7633084",
+                "mediaStartPosition": null
+              },
+              "primaryClassificationTagId": 16024,
+              "share": {
+                "title": "Présidents en péril et princesse à la une",
+                "url": "/premiere/grandes-series/108/attendezquonsesouvienne/368650/presidents-princess-peril-scandales"
+              },
+              "subtitle": null,
+              "summary": "<p>La princesse Diana est morte tragiquement le 31 août 1997. René Homier-Roy s'en rappelle bien, puisqu'il faisait ses débuts à l'émission <em>C'est bien meilleur le matin</em>. Il s'intéresse à cette histoire ainsi qu'à deux scandales qui ont touchés des présidents américains&nbsp;: l'affaire Monica Lewinsky et le Watergate. Jean-François Lisée raconte comment ce dernier scandale lui a donné l'envie de devenir journaliste. Il avait alors 14&nbsp;ans.</p>",
+              "title": "Présidents en péril et princesse à la une",
+              "url": "/premiere/grandes-series/108/attendezquonsesouvienne/368650/presidents-princess-peril-scandales",
+              "urlDescription": "Détails"
+            }
+          ],
+          "pagedConfiguration": {
+            "pageMaxLength": 25,
+            "pageNumber": 1,
+            "pageSize": 25,
+            "totalNumberOfItems": 27
+          }
+        },
+        "id": 108,
+        "sponsoredContentWarning": null
+      },
+      "description": {
+        "typename": "ProductDescriptionNewSchema",
+        "references": null,
+        "summary": null,
+        "title": null
+      },
+      "header": {
+        "typename": "ProductHeaderNewSchema",
+        "duration": null,
+        "globalId": {
+          "contentType": {
+            "id": 24,
+            "name": "Émission"
+          },
+          "id": "108"
+        },
+        "isPlayable": false,
+        "kicker": null,
+        "media2": {
+          "context": {
+            "contentType": {
+              "id": 24,
+              "name": "Émission"
+            },
+            "id": "108"
+          }
+        },
+        "picture": {
+          "alt": "Attendez qu'on se souvienne, audionumérique.",
+          "credit": "Radio-Canada",
+          "pattern": "https://images.radio-canada.ca/q_auto,w_{width}/v1/audio/emission/{ratio}/attendez-quon-se-souvienne-grande-serie-premiere.jpg"
+        },
+        "playlistItemId": null,
+        "share": {
+          "title": "Attendez qu'on se souvienne",
+          "url": "/premiere/grandes-series/108/attendezquonsesouvienne"
+        },
+        "subtitle": null,
+        "summary": "<p>La série <em>Attendez qu'on se souvienne</em> a été un rendez-vous hebdomadaire incontournable pour quiconque s'intéresse à l'histoire d'ici ou d'ailleurs. En compagnie d'invités passionnés et passionnants, René Homier-Roy s'est penché sur une foule d'événements et de personnages qui ont marqué notre société, que ce soit dans la sphère politique, sociale ou culturelle.</p><p>Série diffusée originalement de 2006 à 2012</p>",
+        "template": {
+          "id": "Audio-100"
+        },
+        "title": "Attendez qu'on se souvienne",
+        "url": null
+      },
+      "meta": {
+        "description": "Écoutez gratuitement le balado Attendez qu'on se souvienne",
+        "icon": "Ohdio",
+        "image": "https://images.radio-canada.ca/v1/audio/emission/16x9/attendez-quon-se-souvienne-grande-serie-premiere.jpg",
+        "tags": [
+          {
+            "content": "app-id=319839618",
+            "name": "apple-itunes-app",
+            "type": "name"
+          },
+          {
+            "content": "app-id=rc.appradio.android&hl=fr",
+            "name": "google-play-app",
+            "type": "name"
+          },
+          {
+            "content": "Écoutez gratuitement le balado Attendez qu'on se souvienne",
+            "name": "description",
+            "type": "name"
+          },
+          {
+            "content": "Écoutez gratuitement le balado Attendez qu'on se souvienne",
+            "name": "og:description",
+            "type": "property"
+          },
+          {
+            "content": "Attendez qu'on se souvienne | OHdio | Radio-Canada",
+            "name": "og:title",
+            "type": "property"
+          },
+          {
+            "content": "https://images.radio-canada.ca/v1/audio/emission/16x9/attendez-quon-se-souvienne-grande-serie-premiere.jpg",
+            "name": "og:image",
+            "type": "property"
+          }
+        ],
+        "title": "Attendez qu'on se souvienne | OHdio | Radio-Canada"
+      },
+      "metrik": {
+        "chartbeat": null,
+        "omnitureValues": [
+          {
+            "key": "accesViaAlerte",
+            "value": ""
+          },
+          {
+            "key": "Application",
+            "value": ""
+          },
+          {
+            "key": "Audience",
+            "value": "grandpublic18plus"
+          },
+          {
+            "key": "Blogue",
+            "value": ""
+          },
+          {
+            "key": "CanonicalWebLink",
+            "value": ""
+          },
+          {
+            "key": "Chaine",
+            "value": ""
+          },
+          {
+            "key": "Classification",
+            "value": ""
+          },
+          {
+            "key": "CodeEmission",
+            "value": "attendezquonsesouvienne"
+          },
+          {
+            "key": "CodePage",
+            "value": "accueil"
+          },
+          {
+            "key": "DateCreation",
+            "value": ""
+          },
+          {
+            "key": "DateModification",
+            "value": ""
+          },
+          {
+            "key": "Domaine",
+            "value": "radio-canada.ca"
+          },
+          {
+            "key": "Dossier",
+            "value": ""
+          },
+          {
+            "key": "Emission",
+            "value": "Attendez qu'on se souvienne"
+          },
+          {
+            "key": "Etiquette",
+            "value": ""
+          },
+          {
+            "key": "Format",
+            "value": "grande-serie"
+          },
+          {
+            "key": "FormatApplication",
+            "value": ""
+          },
+          {
+            "key": "GroupeSection",
+            "value": "premiere"
+          },
+          {
+            "key": "IdMedia",
+            "value": "108"
+          },
+          {
+            "key": "IdsCollection",
+            "value": "|ProgramId:108|"
+          },
+          {
+            "key": "Niveau",
+            "value": "accueil"
+          },
+          {
+            "key": "NomPage",
+            "value": "radio:premiere:emi:attendezquonses:accueil:accueil"
+          },
+          {
+            "key": "NomPartie2",
+            "value": "radio:premiere"
+          },
+          {
+            "key": "NomPartie3",
+            "value": "radio:premiere:emi"
+          },
+          {
+            "key": "NomPartie4",
+            "value": "radio:premiere:emi:attendezquonses"
+          },
+          {
+            "key": "NomPartie5",
+            "value": "radio:premiere:emi:attendezquonses:accueil"
+          },
+          {
+            "key": "MetasPrimaire",
+            "value": "CodeEmission,CodePage,GroupeSection,Format,IdMedia,IdsCollection,Niveau,NomPage,PageSegment,Reseau,Section,Segment,SousSecteur,Theme,Titre,TypeContenu,Audience,ThematiqueAffichage"
+          },
+          {
+            "key": "PageSegment",
+            "value": "accueil"
+          },
+          {
+            "key": "Partenaires",
+            "value": ""
+          },
+          {
+            "key": "Questions",
+            "value": ""
+          },
+          {
+            "key": "Recherche",
+            "value": ""
+          },
+          {
+            "key": "Region",
+            "value": ""
+          },
+          {
+            "key": "RegionalisationPrincipale",
+            "value": ""
+          },
+          {
+            "key": "Reseau",
+            "value": "premiere"
+          },
+          {
+            "key": "Saison",
+            "value": ""
+          },
+          {
+            "key": "Section",
+            "value": "radio"
+          },
+          {
+            "key": "Segment",
+            "value": "emission"
+          },
+          {
+            "key": "Signature",
+            "value": ""
+          },
+          {
+            "key": "SousSecteur",
+            "value": "premiere-national"
+          },
+          {
+            "key": "SousTheme",
+            "value": "histoire"
+          },
+          {
+            "key": "Sport",
+            "value": ""
+          },
+          {
+            "key": "ThematiqueAffichage",
+            "value": "histoire"
+          },
+          {
+            "key": "Theme",
+            "value": "societe"
+          },
+          {
+            "key": "Titre",
+            "value": "Attendez qu'on se souvienne - accueil"
+          },
+          {
+            "key": "TypeContenu",
+            "value": "episode"
+          },
+          {
+            "key": "TypeDocument",
+            "value": "document"
+          },
+          {
+            "key": "Version",
+            "value": "2"
+          }
+        ]
+      },
+      "primaryClassificationTagId": 16000
+    }
+  }
+}

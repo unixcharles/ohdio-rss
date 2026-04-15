@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:ici.radio-canada.ca)",
+      "Bash(curl -s -X POST https://services.radio-canada.ca/bff/audio/graphql -H 'Content-Type: application/json' -d '{:*)",
+      "Bash(curl -s \"https://ici.radio-canada.ca/ohdio/balados/6196\")",
+      "WebSearch",
+      "Bash(curl -s \"https://api.github.com/repos/keotl/ohdieux/contents/src/main/scala/ca\")",
+      "Bash(curl -s \"https://ici.radio-canada.ca/ohdio/premiere/emissions\")",
+      "Bash(curl -s \"https://ici.radio-canada.ca/ohdio/categories/1003064/balados\")",
+      "Bash(curl -s 'https://api.github.com/repos/keotl/ohdieux/contents/src/main/scala/ca/ligature/ohdieux/ohdio')",
+      "Bash(python3 -c \"import sys,json; [print\\(x['name']\\) for x in json.load\\(sys.stdin\\)]\")",
+      "Bash(curl -s 'https://api.github.com/repos/keotl/ohdieux/contents/src/main/scala/ca/ligature/ohdieux/ohdio/Queries.scala')",
+      "Bash(python3 -c \"import sys,json,base64; print\\(base64.b64decode\\(json.load\\(sys.stdin\\)['content']\\).decode\\(\\)\\)\")"
+    ]
+  }
+}

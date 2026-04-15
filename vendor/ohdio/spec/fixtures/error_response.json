@@ -1,0 +1,10 @@
+{
+  "errors": [
+    {
+      "message": "Invalid AST Node: undefined.",
+      "extensions": {
+        "code": "INTERNAL_SERVER_ERROR"
+      }
+    }
+  ]
+}

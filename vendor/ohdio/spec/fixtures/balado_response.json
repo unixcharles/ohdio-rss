@@ -1,0 +1,446 @@
+{
+  "data": {
+    "programmeById": {
+      "typename": "EmissionBalado",
+      "canonicalUrl": "/balados/9887/la-journee-est-encore-jeune",
+      "contact": {
+        "contactFormUrl": "/ohdio/nous-joindre/9887",
+        "email": "lajournee@radio-canada.ca",
+        "participate": "",
+        "phone": "4386197133",
+        "socialMedias": [
+          {
+            "name": "facebook",
+            "url": "https://www.facebook.com/lajourneeestencorejeune"
+          },
+          {
+            "name": "instagram",
+            "url": "https://www.instagram.com/lajourneeestencorejeune"
+          },
+          {
+            "name": "youtube",
+            "url": "https://www.youtube.com/playlist?list=PLJ7ZzojPlv5CdUscr501kDTvjcHuEaLa-"
+          }
+        ]
+      },
+      "content": {
+        "typename": "ProgrammeContentNewSchema",
+        "contactUsAvailable": true,
+        "about": {
+          "typename": "ProgrammeContentAboutNewSchema",
+          "broadcastedRegions": [],
+          "broadcastedTracks": null,
+          "credits": "<p><strong>Diffusé sur ICI</strong>&nbsp;<strong>Première en semaine de 13 h à 13 h 30 et en rediffusion incluant le prologue à 20 h 30.  Rediffusion de l&#x27;épisode du vendredi le samedi à 3 h 30. </strong><br/><strong></strong><br/><strong>Animation</strong>&nbsp;<strong>:</strong> Suzie Bouchard, Pierre Brassard, Jean-Sébastien Girard, Rose-Aimée Automne T. Morin et Jean-Philippe Wauthier<br/><strong>Réalisation</strong>&nbsp;<strong>:</strong> Philippe Roberge<br/><br/><strong>Chronique</strong>&nbsp;<strong>: </strong>Jean-Sébastien Girard et Olivier Niquet<br/><strong>Collaborations</strong>&nbsp;<strong>:</strong> Gaétan Barrette, Charles Beauchesne, Louise Beaudoin, Josée Boileau, Suzie Bouchard, Pierre Brassard, Marc Cassivi, Gabrielle Côté, Simon Duchesne, Hugo Dumas, Monique Jérôme-Forget, Paul Journet, Régis Labeaume, Kim Lévesque-Lizotte, Nathalie Petrowski, Justine Philie, Alain Rayes, Tyler Rourke et Louis T <br/><strong>Contenus numériques</strong>&nbsp;<strong>:</strong> Mylène Gagnon<br/><strong>Habillage sonore</strong>&nbsp;<strong>:</strong> Philippe Roberge<br/><strong>Recherche</strong>&nbsp;<strong>:</strong> Barbara-Judith Caron, Louis-Pierre Parenteau et Oliver Vinette</p>",
+          "rssFeed": null,
+          "summary": "<p>Jean-Philippe Wauthier et ses complices, dont le bel Olivier Niquet, passent l'actualité dans le tordeur, avec l'esprit mordant et affûté qu'on leur connaît. Évidemment, Jean-Sébastien Girard y fait quelques saucettes. Les fans de l'émission culte <em>La soirée est (encore) jeune</em> en retrouveront l'énergie, le plaisir et le côté juste assez piquant.</p><p>Retrouvez les produits dérivés de<em> La journée (est encore jeune)</em>&nbsp;<em></em><a title=\"https://ifboutiqueweb.com/categorie-produit/la-journee-est-encore-jeune/\" href=\"https://ifboutiqueweb.com/categorie-produit/la-journee-est-encore-jeune/\">ici</a>.</p>"
+        },
+        "contentDetail": {
+          "typename": "PagedCardsListWithAdsNewSchema",
+          "areAdsEnabled": true,
+          "displayAd": {
+            "listAds": [
+              {
+                "companion": false,
+                "id": "ad-ohdio-main-with-aside-first-position",
+                "position": 0,
+                "positionDfp": 1
+              },
+              {
+                "companion": false,
+                "id": "ad-ohdio-main-with-aside-second-position",
+                "position": 1,
+                "positionDfp": 2
+              },
+              {
+                "companion": false,
+                "id": "ad-ohdio-billboard-to-leaderboard",
+                "position": 2,
+                "positionDfp": 3
+              }
+            ],
+            "pageInformation": {
+              "adUnitPage": "/6642/app.radio-canada.ohdio/emissions/la-journee-est-encore-jeune",
+              "parameters": [
+                {
+                  "key": "bu",
+                  "value": "ohdio"
+                },
+                {
+                  "key": "device",
+                  "value": "desktop"
+                },
+                {
+                  "key": "domain",
+                  "value": "ici.radio-canada.ca"
+                },
+                {
+                  "key": "version",
+                  "value": "1.0.0"
+                }
+              ]
+            }
+          },
+          "items": [
+            {
+              "typename": "CardContentSummary",
+              "broadcastedFirstTimeAt": "2026-04-13T18:28:00.000Z",
+              "duration": {
+                "durationInSeconds": 1770
+              },
+              "index": {
+                "accessibleValue": null,
+                "value": null
+              },
+              "isBroadcastedReplay": false,
+              "isPlayable": true,
+              "picture": null,
+              "playlistItemId": {
+                "globalId2": {
+                  "contentType": {
+                    "id": 18,
+                    "name": "Épisode"
+                  },
+                  "id": "1163849"
+                },
+                "hasTranscription": true,
+                "mediaId": "10640801",
+                "mediaStartPosition": null
+              },
+              "primaryClassificationTagId": 16024,
+              "share": {
+                "title": "Lundi 13 avr. 2026 : Julien Morissette et Marie-Michèle Sioui",
+                "url": "/balados/9887/la-journee-est-encore-jeune/1163849/lundi-13-avr-2026-julien-morissette-et-marie-michele-sioui"
+              },
+              "subtitle": null,
+              "summary": "<p>Jean-Philippe est scandalisé par la chorale en hommage à François Legault. Marie-Michèle Sioui se penche sur les propositions politiques de la prochaine première ministre, Christine Fréchette. Et Julien Corriveau parle d’une course sur des chaises de bureau au Japon.</p>",
+              "title": "Lundi 13 avr. 2026 : Julien Morissette et Marie-Michèle Sioui",
+              "url": "/balados/9887/la-journee-est-encore-jeune/1163849/lundi-13-avr-2026-julien-morissette-et-marie-michele-sioui",
+              "urlDescription": "Détails"
+            },
+            {
+              "typename": "CardContentSummary",
+              "broadcastedFirstTimeAt": "2026-04-11T11:00:00.000Z",
+              "duration": {
+                "durationInSeconds": 2526
+              },
+              "index": {
+                "accessibleValue": null,
+                "value": null
+              },
+              "isBroadcastedReplay": false,
+              "isPlayable": true,
+              "picture": null,
+              "playlistItemId": {
+                "globalId2": {
+                  "contentType": {
+                    "id": 18,
+                    "name": "Épisode"
+                  },
+                  "id": "1163378"
+                },
+                "hasTranscription": true,
+                "mediaId": "10639150",
+                "mediaStartPosition": null
+              },
+              "primaryClassificationTagId": 16024,
+              "share": {
+                "title": "Samedi 11 avr. 2026 : Olivier Niquet en brochette",
+                "url": "/balados/9887/la-journee-est-encore-jeune/1163378/samedi-11-avr-2026-olivier-niquet-en-brochette"
+              },
+              "subtitle": null,
+              "summary": "<p>Dimitri Soudas traite Paul St-Pierre Plamondon de <q data-attributes=\"{&quot;lang&quot;:{&quot;value&quot;:&quot;fr&quot;,&quot;label&quot;:&quot;Français&quot;},&quot;value&quot;:{&quot;html&quot;:&quot;trou de cul &quot;,&quot;text&quot;:&quot;trou de cul &quot;}}\"><span lang=\"fr\" title=\"Français\">trou de cul », la ministre de l’Habitation, Caroline Proulx, affirme qu’une sécheuse aurait pu être élue à sa place, et Paul St-Pierre Plamondon accorde une entrevue à Rebel News.</p>",
+              "title": "Samedi 11 avr. 2026 : Olivier Niquet en brochette",
+              "url": "/balados/9887/la-journee-est-encore-jeune/1163378/samedi-11-avr-2026-olivier-niquet-en-brochette",
+              "urlDescription": "Détails"
+            }
+          ],
+          "pagedConfiguration": {
+            "pageMaxLength": 25,
+            "pageNumber": 1,
+            "pageSize": 25,
+            "totalNumberOfItems": 735
+          }
+        },
+        "id": 9887,
+        "sponsoredContentWarning": null
+      },
+      "description": {
+        "typename": "ProductDescriptionNewSchema",
+        "references": null,
+        "summary": null,
+        "title": "Avec Jean-Philippe Wauthier"
+      },
+      "header": {
+        "typename": "ProductHeaderNewSchema",
+        "duration": null,
+        "globalId": {
+          "contentType": {
+            "id": 24,
+            "name": "Émission"
+          },
+          "id": "9887"
+        },
+        "isPlayable": false,
+        "kicker": null,
+        "media2": {
+          "context": {
+            "contentType": {
+              "id": 24,
+              "name": "Émission"
+            },
+            "id": "9887"
+          }
+        },
+        "picture": {
+          "alt": "Jean-Sébastien Girard, Jean-Philippe Wauthier et Olivier Niquet.",
+          "credit": "Radio-Canada",
+          "pattern": "https://images.radio-canada.ca/q_auto,w_{width}/v1/audio/emission/{ratio}/la-journee-est-encore-jeune-visuel-moteur.jpg"
+        },
+        "playlistItemId": null,
+        "share": {
+          "title": "La journée (est encore jeune)",
+          "url": "/balados/9887/la-journee-est-encore-jeune"
+        },
+        "subtitle": "Avec Jean-Philippe Wauthier",
+        "summary": "<p>Jean-Philippe Wauthier et ses complices, dont le bel Olivier Niquet, passent l'actualité dans le tordeur, avec l'esprit mordant et affûté qu'on leur connaît. Évidemment, Jean-Sébastien Girard y fait quelques saucettes. Les fans de l'émission culte <em>La soirée est (encore) jeune</em> en retrouveront l'énergie, le plaisir et le côté juste assez piquant.</p><p>Retrouvez les produits dérivés de<em> La journée (est encore jeune)</em>&nbsp;<em></em><a title=\"https://ifboutiqueweb.com/categorie-produit/la-journee-est-encore-jeune/\" href=\"https://ifboutiqueweb.com/categorie-produit/la-journee-est-encore-jeune/\">ici</a>.</p>",
+        "template": {
+          "id": "Audio-100"
+        },
+        "title": "La journée (est encore jeune)",
+        "url": null
+      },
+      "meta": {
+        "description": "Écoutez gratuitement le balado La journée (est encore jeune)",
+        "icon": "Ohdio",
+        "image": "https://images.radio-canada.ca/v1/audio/emission/16x9/la-journee-est-encore-jeune-visuel-moteur.jpg",
+        "tags": [
+          {
+            "content": "app-id=319839618",
+            "name": "apple-itunes-app",
+            "type": "name"
+          },
+          {
+            "content": "app-id=rc.appradio.android&hl=fr",
+            "name": "google-play-app",
+            "type": "name"
+          },
+          {
+            "content": "Écoutez gratuitement le balado La journée (est encore jeune)",
+            "name": "description",
+            "type": "name"
+          },
+          {
+            "content": "Écoutez gratuitement le balado La journée (est encore jeune)",
+            "name": "og:description",
+            "type": "property"
+          },
+          {
+            "content": "La journée (est encore jeune) | OHdio | Radio-Canada",
+            "name": "og:title",
+            "type": "property"
+          },
+          {
+            "content": "https://images.radio-canada.ca/v1/audio/emission/16x9/la-journee-est-encore-jeune-visuel-moteur.jpg",
+            "name": "og:image",
+            "type": "property"
+          }
+        ],
+        "title": "La journée (est encore jeune) | OHdio | Radio-Canada"
+      },
+      "metrik": {
+        "chartbeat": null,
+        "omnitureValues": [
+          {
+            "key": "accesViaAlerte",
+            "value": ""
+          },
+          {
+            "key": "Application",
+            "value": ""
+          },
+          {
+            "key": "Audience",
+            "value": "grandpublic18plus"
+          },
+          {
+            "key": "Blogue",
+            "value": ""
+          },
+          {
+            "key": "CanonicalWebLink",
+            "value": ""
+          },
+          {
+            "key": "Chaine",
+            "value": ""
+          },
+          {
+            "key": "Classification",
+            "value": ""
+          },
+          {
+            "key": "CodeEmission",
+            "value": "lajourneeestencorejeune"
+          },
+          {
+            "key": "CodePage",
+            "value": "accueil"
+          },
+          {
+            "key": "DateCreation",
+            "value": ""
+          },
+          {
+            "key": "DateModification",
+            "value": ""
+          },
+          {
+            "key": "Domaine",
+            "value": "radio-canada.ca"
+          },
+          {
+            "key": "Dossier",
+            "value": ""
+          },
+          {
+            "key": "Emission",
+            "value": "La journée (est encore jeune)"
+          },
+          {
+            "key": "Etiquette",
+            "value": ""
+          },
+          {
+            "key": "Format",
+            "value": "balados"
+          },
+          {
+            "key": "FormatApplication",
+            "value": ""
+          },
+          {
+            "key": "GroupeSection",
+            "value": "premiere"
+          },
+          {
+            "key": "IdMedia",
+            "value": "9887"
+          },
+          {
+            "key": "IdsCollection",
+            "value": "|ProgramId:9887|"
+          },
+          {
+            "key": "Niveau",
+            "value": "accueil"
+          },
+          {
+            "key": "NomPage",
+            "value": "radio:premiere:emi:lajourneeestenc:accueil:accueil"
+          },
+          {
+            "key": "NomPartie2",
+            "value": "radio:premiere"
+          },
+          {
+            "key": "NomPartie3",
+            "value": "radio:premiere:emi"
+          },
+          {
+            "key": "NomPartie4",
+            "value": "radio:premiere:emi:lajourneeestenc"
+          },
+          {
+            "key": "NomPartie5",
+            "value": "radio:premiere:emi:lajourneeestenc:accueil"
+          },
+          {
+            "key": "MetasPrimaire",
+            "value": "CodeEmission,CodePage,GroupeSection,Format,IdMedia,IdsCollection,Niveau,NomPage,PageSegment,Reseau,Section,Segment,SousSecteur,Theme,Titre,TypeContenu,Audience,ThematiqueAffichage"
+          },
+          {
+            "key": "PageSegment",
+            "value": "accueil"
+          },
+          {
+            "key": "Partenaires",
+            "value": ""
+          },
+          {
+            "key": "Questions",
+            "value": ""
+          },
+          {
+            "key": "Recherche",
+            "value": ""
+          },
+          {
+            "key": "Region",
+            "value": ""
+          },
+          {
+            "key": "RegionalisationPrincipale",
+            "value": ""
+          },
+          {
+            "key": "Reseau",
+            "value": "premiere"
+          },
+          {
+            "key": "Saison",
+            "value": ""
+          },
+          {
+            "key": "Section",
+            "value": "radio"
+          },
+          {
+            "key": "Segment",
+            "value": "emission"
+          },
+          {
+            "key": "Signature",
+            "value": ""
+          },
+          {
+            "key": "SousSecteur",
+            "value": "premiere-national"
+          },
+          {
+            "key": "SousTheme",
+            "value": "humour"
+          },
+          {
+            "key": "Sport",
+            "value": ""
+          },
+          {
+            "key": "ThematiqueAffichage",
+            "value": "humour"
+          },
+          {
+            "key": "Theme",
+            "value": "dramatique_et_varietes"
+          },
+          {
+            "key": "Titre",
+            "value": "La journée (est encore jeune) - accueil"
+          },
+          {
+            "key": "TypeContenu",
+            "value": "episode"
+          },
+          {
+            "key": "TypeDocument",
+            "value": "document"
+          },
+          {
+            "key": "Version",
+            "value": "2"
+          }
+        ]
+      },
+      "primaryClassificationTagId": 16011
+    }
+  }
+}
