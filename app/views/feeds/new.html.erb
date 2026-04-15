@@ -1,8 +1,8 @@
 <h1>Create a new feed</h1>
 
 <p>
-  <% if @show_id.present? %>
-    <strong>Selected show ID:</strong> <%= @show_id %>
+  <% if @show_external_id.present? %>
+    <strong>Selected show ID:</strong> <%= @show_external_id %>
   <% else %>
     Select a show from <%= link_to 'search', search_path %> first.
   <% end %>

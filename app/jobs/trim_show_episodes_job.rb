@@ -1,21 +1,22 @@
 class TrimShowEpisodesJob < ApplicationJob
   queue_as :default
 
-  ORPHAN_MEDIA_DELETE_DELAY = 7.days
+  ORPHAN_AUDIO_CONTENT_DELETE_DELAY = 7.days
 
   def perform(show_id)
     show = Show.find_by(id: show_id)
     return if show.nil?
 
-    episodes_to_trim = show.episodes.where("position > ?", Feed::MAX_MAX_EPISODES)
+    ids_to_keep = show.episodes.newest_first.limit(Feed::MAX_MAX_EPISODES).select(:id)
+    episodes_to_trim = show.episodes.where.not(id: ids_to_keep)
     return if episodes_to_trim.empty?
 
-    media_ids = Segment.where(episode_id: episodes_to_trim.select(:id)).where.not(media_id: nil).distinct.pluck(:media_id)
+    audio_content_external_ids = Segment.where(episode_id: episodes_to_trim.select(:id)).where.not(audio_content_external_id: nil).distinct.pluck(:audio_content_external_id)
 
     episodes_to_trim.destroy_all
 
-    return if media_ids.empty?
+    return if audio_content_external_ids.empty?
 
-    DeleteOrphanMediaJob.set(wait: ORPHAN_MEDIA_DELETE_DELAY).perform_later(media_ids)
+    DeleteOrphanAudioContentJob.set(wait: ORPHAN_AUDIO_CONTENT_DELETE_DELAY).perform_later(audio_content_external_ids)
   end
 end

@@ -25,11 +25,11 @@ class FeedsController < ApplicationController
     @max_episodes = max_episodes_from_params
     @episode_query = params[:episode_query].to_s.strip
     @segment_query = params[:segment_query].to_s.strip
-    @show_id = params[:show_id].to_s.strip
+    @show_external_id = params[:show_external_id].to_s.strip
     @name = params[:name].to_s.strip
     @feed = Feed.new(
       name: @name,
-      show_id: @show_id,
+      show_external_id: @show_external_id,
       exclude_replays: @exclude_replays,
       max_episodes: @max_episodes,
       episode_query: @episode_query,
@@ -59,7 +59,7 @@ class FeedsController < ApplicationController
   end
 
   def feed_params
-    params.expect(feed: %i[name show_id exclude_replays max_episodes episode_query segment_query])
+    params.expect(feed: %i[name show_external_id exclude_replays max_episodes episode_query segment_query])
   end
 
   def load_show_metadata
@@ -101,7 +101,7 @@ class FeedsController < ApplicationController
 
     @episode = @feed.filtered_episodes(show: @show).find_by!(ohdio_episode_id: params[:episode_id].to_s)
 
-    @segments = @episode.segments.includes(:medium).order(:position)
+    @segments = @episode.segments.includes(:audio_content).order(:position)
   end
 
   def max_episodes_from_params
@@ -112,6 +112,6 @@ class FeedsController < ApplicationController
   end
 
   def enqueue_feed_refresh
-    FeedRefreshScheduler.enqueue(@feed.show_id)
+    FeedRefreshScheduler.enqueue(@feed.show_external_id)
   end
 end

@@ -1,19 +1,21 @@
 class SyncShowJob < OhdioApiJob
-  def perform(show_id)
-    max_episodes = effective_max_episodes(show_id)
-    show_record, fetched_show = OhdioShowSyncService.new(show_id: show_id, max_episodes: max_episodes).call
-    enqueue_remaining_pages(show_record, fetched_show, max_episodes)
+  def perform(show_external_id)
+    max_episodes = effective_max_episodes(show_external_id)
+    show_record, fetched_show, sync_summary = OhdioShowSyncService.new(show_external_id: show_external_id, max_episodes: max_episodes).call
+    enqueue_remaining_pages(show_record, fetched_show, max_episodes, sync_summary)
   end
 
   private
 
-  def enqueue_remaining_pages(show_record, fetched_show, max_episodes)
+  def enqueue_remaining_pages(show_record, fetched_show, max_episodes, sync_summary)
+    return unless page_had_any_change?(sync_summary)
+
     total_pages = total_pages_for(fetched_show, max_episodes)
     return if total_pages <= 1
 
     show_type = show_record.ohdio_type
     (2..total_pages).each do |page|
-      SyncShowPageJob.perform_later(show_record.ohdio_id, show_type, page, max_episodes)
+      SyncShowPageJob.perform_later(show_record.external_id, show_type, page, max_episodes)
     end
   end
 
@@ -26,10 +28,16 @@ class SyncShowJob < OhdioApiJob
     (requested_episodes.to_f / page_size).ceil
   end
 
-  def effective_max_episodes(show_id)
-    configured = Feed.where(show_id: show_id).maximum(:max_episodes).to_i
+  def effective_max_episodes(show_external_id)
+    configured = Feed.where(show_external_id: show_external_id).maximum(:max_episodes).to_i
     configured = Feed::DEFAULT_MAX_EPISODES if configured <= 0
 
     [ configured, Feed::MAX_MAX_EPISODES ].min
+  end
+
+  def page_had_any_change?(sync_summary)
+    return true if sync_summary.nil?
+
+    sync_summary.fetch(:page_had_any_change, true)
   end
 end

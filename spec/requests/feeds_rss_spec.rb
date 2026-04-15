@@ -5,10 +5,10 @@ RSpec.describe 'Feeds RSS', type: :request do
     allow(FeedRefreshScheduler).to receive(:enqueue)
   end
 
-  let(:feed) { Feed.create!(name: 'Test Feed', show_id: 123) }
+  let(:feed) { Feed.create!(name: 'Test Feed', show_external_id: 123) }
   let!(:show) do
     Show.create!(
-      ohdio_id: 123,
+      external_id: 123,
       title: 'My Show',
       description: 'Show description',
       image_url: 'https://images.example.com/{width}/cover_{ratio}.jpg',
@@ -24,13 +24,11 @@ RSpec.describe 'Feeds RSS', type: :request do
       description: 'Episode with segments',
       published_at: Time.zone.parse('2024-01-02 10:00:00'),
       is_replay: false,
-      url: 'https://ici.radio-canada.ca/ohdio/balados/1/episode-two',
-      position: 1,
-      page_number: 1
+      url: 'https://ici.radio-canada.ca/ohdio/balados/1/episode-two'
     )
 
-    medium = Medium.create!(media_id: 'm1', audio_url: 'https://cdn.example.com/part-1.mp3', resolved: true, resolved_at: Time.current)
-    episode_resolved.segments.create!(title: 'Part 1', duration: 30, seek_time: 0, media_id: medium.media_id, position: 1)
+    audio_content = AudioContent.create!(external_id: 'm1', audio_url: 'https://cdn.example.com/part-1.mp3', resolved: true, resolved_at: Time.current)
+    episode_resolved.segments.create!(title: 'Part 1', duration: 30, seek_time: 0, audio_content_external_id: audio_content.external_id, position: 1)
 
     episode_unresolved = show.episodes.create!(
       ohdio_episode_id: 'ep-3',
@@ -38,11 +36,9 @@ RSpec.describe 'Feeds RSS', type: :request do
       description: 'Episode pending',
       published_at: Time.zone.parse('2024-01-03 10:00:00'),
       is_replay: false,
-      url: 'https://ici.radio-canada.ca/ohdio/balados/1/episode-three',
-      position: 2,
-      page_number: 1
+      url: 'https://ici.radio-canada.ca/ohdio/balados/1/episode-three'
     )
-    episode_unresolved.segments.create!(title: 'Part A', duration: 30, seek_time: 0, media_id: 'm2', position: 1)
+    episode_unresolved.segments.create!(title: 'Part A', duration: 30, seek_time: 0, audio_content_external_id: 'm2', position: 1)
 
     get "/rss/#{feed.uid}.rss"
 
@@ -68,16 +64,14 @@ RSpec.describe 'Feeds RSS', type: :request do
       ohdio_episode_id: 'ep-1',
       title: 'Newest Episode',
       is_replay: false,
-      position: 1,
-      page_number: 1,
+      published_at: Time.zone.parse('2024-01-02 10:00:00'),
       audio_url: 'https://cdn.example.com/newest.mp3'
     )
     show.episodes.create!(
       ohdio_episode_id: 'ep-2',
       title: 'Older Episode',
       is_replay: false,
-      position: 2,
-      page_number: 1,
+      published_at: Time.zone.parse('2024-01-01 10:00:00'),
       audio_url: 'https://cdn.example.com/older.mp3'
     )
     show.update!(ohdio_type: 'balado')
@@ -97,24 +91,18 @@ RSpec.describe 'Feeds RSS', type: :request do
       ohdio_episode_id: 'ep-1',
       title: 'Simon raconte',
       is_replay: false,
-      position: 1,
-      page_number: 1,
       audio_url: 'https://cdn.example.com/ep1.mp3'
     )
     show.episodes.create!(
       ohdio_episode_id: 'ep-2',
       title: 'Tyler et Frank',
       is_replay: false,
-      position: 2,
-      page_number: 1,
       audio_url: 'https://cdn.example.com/ep2.mp3'
     )
     show.episodes.create!(
       ohdio_episode_id: 'ep-3',
       title: 'Tyler raconte',
       is_replay: false,
-      position: 3,
-      page_number: 1,
       audio_url: 'https://cdn.example.com/ep3.mp3'
     )
 
@@ -132,23 +120,19 @@ RSpec.describe 'Feeds RSS', type: :request do
     matching_episode = show.episodes.create!(
       ohdio_episode_id: 'ep-match',
       title: 'Episode parent',
-      is_replay: false,
-      position: 1,
-      page_number: 1
+      is_replay: false
     )
     excluded_episode = show.episodes.create!(
       ohdio_episode_id: 'ep-excluded',
       title: 'Episode culture',
-      is_replay: false,
-      position: 2,
-      page_number: 1
+      is_replay: false
     )
 
-    m1 = Medium.create!(media_id: 'm1', audio_url: 'https://cdn.example.com/part-1.mp3', resolved: true, resolved_at: Time.current)
-    m2 = Medium.create!(media_id: 'm2', audio_url: 'https://cdn.example.com/part-2.mp3', resolved: true, resolved_at: Time.current)
+    m1 = AudioContent.create!(external_id: 'm1', audio_url: 'https://cdn.example.com/part-1.mp3', resolved: true, resolved_at: Time.current)
+    m2 = AudioContent.create!(external_id: 'm2', audio_url: 'https://cdn.example.com/part-2.mp3', resolved: true, resolved_at: Time.current)
 
-    matching_segment = matching_episode.segments.create!(title: 'bloc politique', duration: 30, seek_time: 0, media_id: m1.media_id, position: 1)
-    excluded_episode.segments.create!(title: 'bloc culture', duration: 30, seek_time: 0, media_id: m2.media_id, position: 1)
+    matching_segment = matching_episode.segments.create!(title: 'bloc politique', duration: 30, seek_time: 0, audio_content_external_id: m1.external_id, position: 1)
+    excluded_episode.segments.create!(title: 'bloc culture', duration: 30, seek_time: 0, audio_content_external_id: m2.external_id, position: 1)
 
     get "/rss/#{feed.uid}.rss"
 

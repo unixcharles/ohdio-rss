@@ -1,18 +1,18 @@
 require "rails_helper"
 
 RSpec.describe EpisodeQueryFilter do
-  let(:show) { Show.create!(ohdio_id: 999, title: "Query Show") }
+  let(:show) { Show.create!(external_id: 999, title: "Query Show") }
 
   def episode_ids_for(query)
-    scope = show.episodes.order(:position)
+    scope = show.episodes.order(:ohdio_episode_id)
     described_class.apply(scope, query).pluck(:ohdio_episode_id)
   end
 
   before do
-    show.episodes.create!(ohdio_episode_id: "ep-1", title: "Simon et Tyler racontent", description: "discussion", position: 1)
-    show.episodes.create!(ohdio_episode_id: "ep-2", title: "Tyler parle", description: "sans Frank", position: 2)
-    show.episodes.create!(ohdio_episode_id: "ep-3", title: "Tyler et Frank", description: "duo", position: 3)
-    show.episodes.create!(ohdio_episode_id: "ep-4", title: "Autre sujet", description: "Simon mentionne", position: 4)
+    show.episodes.create!(ohdio_episode_id: "ep-1", title: "Simon et Tyler racontent", description: "discussion")
+    show.episodes.create!(ohdio_episode_id: "ep-2", title: "Tyler parle", description: "sans Frank")
+    show.episodes.create!(ohdio_episode_id: "ep-3", title: "Tyler et Frank", description: "duo")
+    show.episodes.create!(ohdio_episode_id: "ep-4", title: "Autre sujet", description: "Simon mentionne")
   end
 
   it "matches plain string" do

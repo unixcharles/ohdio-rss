@@ -1,7 +1,7 @@
 class DownloadsController < ApplicationController
   def episode_mp3
     feed = Feed.find_by!(uid: params[:uid])
-    FeedRefreshScheduler.enqueue(feed.show_id)
+    FeedRefreshScheduler.enqueue(feed.show_external_id)
 
     show = feed.show
     raise ActiveRecord::RecordNotFound if show.nil?
@@ -28,7 +28,7 @@ class DownloadsController < ApplicationController
 
   def segment_mp3
     feed = Feed.find_by!(uid: params[:uid])
-    FeedRefreshScheduler.enqueue(feed.show_id)
+    FeedRefreshScheduler.enqueue(feed.show_external_id)
 
     show = feed.show
     raise ActiveRecord::RecordNotFound if show.nil? || !show.emission_premiere?
@@ -40,7 +40,7 @@ class DownloadsController < ApplicationController
 
     output_path = RemoteAudioSegmentJoiner.new(segments: [
       {
-        url: segment.medium.audio_url,
+        url: segment.audio_content.audio_url,
         start_time: segment.seek_time.to_f,
         duration: segment.duration.to_f
       }
@@ -58,15 +58,15 @@ class DownloadsController < ApplicationController
     if show.emission_premiere?
       selected_segments = feed.filtered_segments_for_episode(episode: episode)
       unresolved = selected_segments.any? do |segment|
-        segment.media_id.present? && (segment.medium.nil? || !segment.medium.resolved?)
+        segment.audio_content_external_id.present? && (segment.audio_content.nil? || !segment.audio_content.resolved?)
       end
 
       if feed.segment_query.blank?
-        urls = selected_segments.filter_map { |segment| segment.medium&.audio_url }
+        urls = selected_segments.filter_map { |segment| segment.audio_content&.audio_url }
         [ urls, [], unresolved ]
       else
         segments = selected_segments.filter_map do |segment|
-          audio_url = segment.medium&.audio_url
+          audio_url = segment.audio_content&.audio_url
           next if audio_url.blank?
 
           {
@@ -94,7 +94,7 @@ class DownloadsController < ApplicationController
       segment = feed.filtered_segments_for_episode(episode: episode).find_by(id: segment_id)
       next if segment.nil?
 
-      unresolved = segment.media_id.present? && (segment.medium.nil? || !segment.medium.resolved?)
+      unresolved = segment.audio_content_external_id.present? && (segment.audio_content.nil? || !segment.audio_content.resolved?)
       return [ segment, unresolved ]
     end
 

@@ -2,16 +2,16 @@
 
 <% if @show.present? %>
   <p><strong>Episode:</strong> <%= display_episode_title(@episode.title) %> (<%= @episode.ohdio_episode_id %>)</p>
-  <p>Downloads are resolved in background jobs and stored per media ID.</p>
+  <p>Downloads are resolved in background jobs and stored per audio content ID.</p>
 
   <% if @segments.any? %>
     <% @segments.each_with_index do |segment, index| %>
-      <% audio_url = segment.medium&.audio_url if segment.medium&.resolved? %>
+      <% audio_url = segment.audio_content&.audio_url if segment.audio_content&.resolved? %>
       <div class="episode-item">
         <h3>Segment <%= index + 1 %>: <%= TextEntityNormalizer.call(segment.title) %></h3>
         <p><strong>Duration:</strong> <%= segment.duration %></p>
         <p><strong>Seek time:</strong> <%= segment.seek_time %></p>
-        <p><strong>Media ID:</strong> <%= segment.media_id %></p>
+        <p><strong>Audio content ID:</strong> <%= segment.audio_content_external_id %></p>
         <p>
           <strong>Download:</strong>
           <% if audio_url.present? %>
@@ -23,7 +23,7 @@
               "#{audio_url}#t=#{start_time}"
             end %>
             <%= link_to('Download', timed_audio_url, target: '_blank', rel: 'noopener') %>
-          <% elsif segment.media_id.present? %>
+          <% elsif segment.audio_content_external_id.present? %>
             Resolving in background...
           <% else %>
             N/A

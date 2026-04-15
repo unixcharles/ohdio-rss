@@ -6,10 +6,10 @@ class Feed < ApplicationRecord
   after_commit :enqueue_initial_sync, on: :create
   after_commit :enqueue_sync_on_show_change, on: :update
 
-  has_one :show, class_name: "Show", foreign_key: :ohdio_id, primary_key: :show_id, inverse_of: :feeds
+  belongs_to :show, class_name: "Show", foreign_key: :show_external_id, primary_key: :external_id, optional: true, inverse_of: :feeds
 
   validates :name, presence: true
-  validates :show_id, presence: true, numericality: { only_integer: true }
+  validates :show_external_id, presence: true, numericality: { only_integer: true }
   validates :uid, presence: true, uniqueness: true
   validates :max_episodes, presence: true,
                            numericality: {
@@ -30,8 +30,8 @@ class Feed < ApplicationRecord
   def filtered_episodes(show: self.show)
     return Episode.none if show.nil?
 
-    limited_ids = show.episodes.order(:position).limit(max_episodes).select(:id)
-    scope = show.episodes.where(id: limited_ids).order(:position)
+    limited_ids = show.episodes.newest_first.limit(max_episodes).select(:id)
+    scope = show.episodes.where(id: limited_ids).newest_first
     scope = scope.where(is_replay: [ false, nil ]) if exclude_replays
     scope = EpisodeQueryFilter.apply(scope, episode_query)
     scope = scope.where(has_valid_segments: true) if show.emission_premiere?
@@ -39,7 +39,7 @@ class Feed < ApplicationRecord
   end
 
   def filtered_segments_for_episode(episode:)
-    scope = episode.segments.includes(:medium).order(:position).where.not(media_id: nil)
+    scope = episode.segments.includes(:audio_content).order(:position).where.not(audio_content_external_id: nil)
     return scope if segment_query.blank?
 
     scope = scope.where("duration > 0")
@@ -65,7 +65,7 @@ class Feed < ApplicationRecord
       if show_record.emission_premiere?
         segments = filtered_segments_for_episode(episode: episode)
         next if segments.empty?
-        next if segments.any? { |segment| segment.media_id.present? && (segment.medium.nil? || !segment.medium.resolved?) }
+        next if segments.any? { |segment| segment.audio_content_external_id.present? && (segment.audio_content.nil? || !segment.audio_content.resolved?) }
       else
         next if episode.audio_url.blank?
       end
@@ -77,8 +77,8 @@ class Feed < ApplicationRecord
   def segment_items(show_record)
     filtered_episodes(show: show_record).flat_map do |episode|
       filtered_segments_for_episode(episode: episode).filter_map do |segment|
-        next if segment.media_id.present? && (segment.medium.nil? || !segment.medium.resolved?)
-        next if segment.medium&.audio_url.blank?
+        next if segment.audio_content_external_id.present? && (segment.audio_content.nil? || !segment.audio_content.resolved?)
+        next if segment.audio_content&.audio_url.blank?
 
         FeedItems::SegmentItem.new(feed: self, episode: episode, segment: segment)
       end
@@ -90,12 +90,12 @@ class Feed < ApplicationRecord
   end
 
   def enqueue_initial_sync
-    FeedRefreshScheduler.enqueue(show_id, force: true)
+    FeedRefreshScheduler.enqueue(show_external_id, force: true)
   end
 
   def enqueue_sync_on_show_change
-    return unless saved_change_to_show_id?
+    return unless saved_change_to_show_external_id?
 
-    FeedRefreshScheduler.enqueue(show_id, force: true)
+    FeedRefreshScheduler.enqueue(show_external_id, force: true)
   end
 end

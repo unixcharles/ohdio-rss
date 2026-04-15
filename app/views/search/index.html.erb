@@ -41,7 +41,7 @@
             <td><%= show.id %></td>
             <td><%= display_ohdio_type(show.type) %></td>
             <td>
-              <%= link_to 'Select', new_feed_path(show_id: show.id, name: show.title.presence || "Show ##{show.id}") %>
+              <%= link_to 'Select', new_feed_path(show_external_id: show.id, name: show.title.presence || "Show ##{show.id}") %>
             </td>
           </tr>
         <% end %>
