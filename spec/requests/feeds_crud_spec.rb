@@ -48,6 +48,17 @@ RSpec.describe 'Feeds CRUD', type: :request do
     expect(response.body).to include('show_external_id=2001')
   end
 
+  it 'normalizes title passed to new feed query params' do
+    show_result = Ohdio::Show.new(id: 2002, title: '<strong>Episode 1:</strong> Science Show', type: 'balado')
+    allow(Ohdio::Searcher).to receive(:search).with('science', filter: :balado).and_return([ show_result ])
+
+    get '/search', params: { q: 'science', filter: 'balado' }
+
+    expect(response).to have_http_status(:ok)
+    expect(response.body).to include('name=Science+Show')
+    expect(response.body).not_to include('%3Cstrong%3E')
+  end
+
   it 'shows replicated metadata and links to episodes page' do
     feed = Feed.create!(name: 'Metadata Feed', show_external_id: 3001)
     show = Show.create!(external_id: 3001, title: 'Metadata Show', description: 'All metadata here', image_url: 'https://example.com/image.jpg', ohdio_type: 'balado', page_size: 10, total_episodes: 1, url: 'https://example.com/show')

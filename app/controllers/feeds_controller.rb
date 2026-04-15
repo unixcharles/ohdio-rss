@@ -26,7 +26,7 @@ class FeedsController < ApplicationController
     @episode_query = params[:episode_query].to_s.strip
     @segment_query = params[:segment_query].to_s.strip
     @show_external_id = params[:show_external_id].to_s.strip
-    @name = params[:name].to_s.strip
+    @name = normalized_feed_name_from_params
     @feed = Feed.new(
       name: @name,
       show_external_id: @show_external_id,
@@ -109,6 +109,10 @@ class FeedsController < ApplicationController
     return Feed::DEFAULT_MAX_EPISODES if value <= 0
 
     [ value, Feed::MAX_MAX_EPISODES ].min
+  end
+
+  def normalized_feed_name_from_params
+    helpers.display_episode_title(params[:name].to_s).strip
   end
 
   def enqueue_feed_refresh

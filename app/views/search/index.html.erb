@@ -36,12 +36,13 @@
       </thead>
       <tbody>
         <% @results.each do |show| %>
+          <% normalized_title = display_episode_title(show.title).presence || "Show ##{show.id}" %>
           <tr>
-            <td><%= show.title.presence || "Show ##{show.id}" %></td>
+            <td><%= normalized_title %></td>
             <td><%= show.id %></td>
             <td><%= display_ohdio_type(show.type) %></td>
             <td>
-              <%= link_to 'Select', new_feed_path(show_external_id: show.id, name: show.title.presence || "Show ##{show.id}") %>
+              <%= link_to 'Select', new_feed_path(show_external_id: show.id, name: normalized_title) %>
             </td>
           </tr>
         <% end %>
