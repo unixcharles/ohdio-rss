@@ -87,7 +87,7 @@ RSpec.describe 'Feeds RSS', type: :request do
 
     expect(response).to have_http_status(:ok)
     expect(response.content_type).to include('application/xml')
-    expect(response.body).to include('<title>My Show</title>')
+    expect(response.body).to include('<title>Test Feed</title>')
     expect(response.body).to include('/downloads/')
     expect(response.body).to include('Episode Two')
     expect(response.body).not_to include('Episode Three')

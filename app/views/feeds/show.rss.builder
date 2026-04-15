@@ -3,7 +3,7 @@ xml.rss version: "2.0", 'xmlns:itunes': "http://www.itunes.com/dtds/podcast-1.0.
                      'xmlns:content': "http://purl.org/rss/1.0/modules/content/" do
   xml.channel do
     xml.copyright("Radio-Canada")
-    xml.title(@show.title || @feed.name)
+    xml.title(@feed.name)
     channel_description = plain_text_description(@show.description || @feed.name)
     xml.description(channel_description)
     xml.tag!("itunes:summary", channel_description)
