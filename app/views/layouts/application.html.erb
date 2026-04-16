@@ -49,5 +49,96 @@
 
       <%= yield %>
     </main>
+    <script type="module">
+      let activeAudio = null;
+      let activePlayer = null;
+
+      function fmt(secs) {
+        if (!isFinite(secs) || secs < 0) return '0:00';
+        const t = Math.floor(secs);
+        const h = Math.floor(t / 3600);
+        const m = Math.floor((t % 3600) / 60);
+        const s = t % 60;
+        const mm = String(m).padStart(h > 0 ? 2 : 1, '0');
+        const ss = String(s).padStart(2, '0');
+        return h > 0 ? `${h}:${mm}:${ss}` : `${mm}:${ss}`;
+      }
+
+      function seekPct(audio) {
+        if (!audio.duration) return 0;
+        return (audio.currentTime / audio.duration) * 100;
+      }
+
+      function bindAudio(player, audio, seek, currentTimeEl, durationEl) {
+        audio.addEventListener('loadedmetadata', () => {
+          durationEl.textContent = fmt(audio.duration);
+          seek.max = 1000;
+        });
+
+        audio.addEventListener('timeupdate', () => {
+          if (!audio.duration) return;
+          const pct = seekPct(audio);
+          seek.value = pct * 10;
+          seek.style.setProperty('--seek-pct', pct + '%');
+          currentTimeEl.textContent = fmt(audio.currentTime);
+        });
+
+        audio.addEventListener('ended', () => {
+          player.classList.remove('is-playing');
+          player.querySelector('[data-play-pause]').setAttribute('aria-label', 'Play');
+          activeAudio = null;
+          activePlayer = null;
+        });
+      }
+
+      document.addEventListener('click', e => {
+        const btn = e.target.closest('[data-play-pause]');
+        if (!btn) return;
+
+        const player = btn.closest('[data-audio-player]');
+        const audio  = player.querySelector('[data-audio]');
+        const seek   = player.querySelector('[data-seek]');
+        const currentTimeEl = player.querySelector('[data-current-time]');
+        const durationEl    = player.querySelector('[data-duration]');
+
+        if (!audio._bound) {
+          bindAudio(player, audio, seek, currentTimeEl, durationEl);
+          audio._bound = true;
+        }
+
+        if (audio.paused) {
+          if (activeAudio && activeAudio !== audio) {
+            activeAudio.pause();
+            activePlayer.classList.remove('is-playing');
+            activePlayer.querySelector('[data-play-pause]').setAttribute('aria-label', 'Play');
+          }
+          audio.play();
+          player.classList.add('is-playing');
+          btn.setAttribute('aria-label', 'Pause');
+          activeAudio  = audio;
+          activePlayer = player;
+        } else {
+          audio.pause();
+          player.classList.remove('is-playing');
+          btn.setAttribute('aria-label', 'Play');
+          activeAudio  = null;
+          activePlayer = null;
+        }
+      });
+
+      document.addEventListener('input', e => {
+        const seek = e.target.closest('[data-seek]');
+        if (!seek) return;
+
+        const player = seek.closest('[data-audio-player]');
+        const audio  = player.querySelector('[data-audio]');
+        if (!audio.duration) return;
+
+        const pct = seek.value / 10;
+        audio.currentTime = (pct / 100) * audio.duration;
+        seek.style.setProperty('--seek-pct', pct + '%');
+        player.querySelector('[data-current-time]').textContent = fmt(audio.currentTime);
+      });
+    </script>
   </body>
 </html>

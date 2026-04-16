@@ -10,14 +10,34 @@
     <% end %>
   </h3>
   <p><%= sanitize_description(item.description) %></p>
-  <p><strong>Published:</strong> <%= item.published_at.present? ? l(item.published_at, format: :long) : 'N/A' %></p>
-  <p>
-    <strong>Download:</strong>
-    <%= audio_url.present? ? link_to('Download', audio_url, target: '_blank', rel: 'noopener') : 'N/A' %>
+  <p class="meta muted">
+    <%= item.published_at.present? ? l(item.published_at, format: :long) : 'N/A' %>
+    <% if item.duration.present? && item.duration > 0 %>
+      &middot; <%= format_duration(item.duration) %>
+    <% end %>
   </p>
-  <% if item.show_segments_link? %>
-    <p>
-      <%= link_to 'View segments', item.segment_link_path %>
-    </p>
+
+  <% if audio_url.present? %>
+    <div class="audio-player" data-audio-player>
+      <button class="audio-player-btn" data-play-pause aria-label="Play">
+        <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 19h4V5H6zm8-14v14h4V5z"/></svg>
+      </button>
+      <div class="audio-player-track">
+        <input class="audio-player-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek" data-seek>
+        <div class="audio-player-times">
+          <span data-current-time>0:00</span>
+          <span data-duration>–:––</span>
+        </div>
+      </div>
+      <audio data-audio src="<%= audio_url %>" preload="none"></audio>
+    </div>
   <% end %>
+
+  <p class="meta" style="margin-top: 0.5rem">
+    <%= audio_url.present? ? link_to('Download', audio_url, target: '_blank', rel: 'noopener') : 'N/A' %>
+    <% if item.show_segments_link? %>
+      &middot; <%= link_to 'View segments', item.segment_link_path %>
+    <% end %>
+  </p>
 </div>

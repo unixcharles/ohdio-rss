@@ -34,6 +34,16 @@ module ApplicationHelper
     base_url.chomp("/")
   end
 
+  def format_duration(seconds)
+    return nil unless seconds.present? && seconds > 0
+
+    total = seconds.to_i
+    h = total / 3600
+    m = (total % 3600) / 60
+    s = total % 60
+    h > 0 ? format("%d:%02d:%02d", h, m, s) : format("%d:%02d", m, s)
+  end
+
   def public_rss_feed_url(feed)
     "#{public_base_url}#{rss_feed_path(uid: feed.uid, format: :rss)}"
   end
