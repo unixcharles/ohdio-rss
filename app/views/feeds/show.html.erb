@@ -10,7 +10,7 @@
     <% if @show_metadata[:image_url].present? %>
       <%= image_tag rss_image_url(@show_metadata[:image_url]), alt: @show_metadata[:title], class: 'show-thumb' %>
     <% end %>
-    <h2><%= @show_metadata[:title] %></h2>
+    <h2><%= display_episode_title(@show_metadata[:title]) %></h2>
     <h3 class="muted"><%= display_ohdio_type(@show_metadata[:type]) %></h3>
     <p><%= sanitize_description(@show_metadata[:description]) %></p>
     <% if @show_metadata[:url].present? %>
