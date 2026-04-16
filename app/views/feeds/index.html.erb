@@ -12,7 +12,7 @@
     <tbody>
         <% @feeds.each do |feed| %>
           <tr>
-            <td><%= link_to feed.name, feed_path(feed) %></td>
+            <td><%= link_to display_episode_title(feed.name), feed_path(feed) %></td>
           <td>
             <span class="muted">
               <% if feed.episode_query.present? || feed.segment_query.present? %>

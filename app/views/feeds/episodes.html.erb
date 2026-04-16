@@ -1,4 +1,4 @@
-<h1><%= @feed.name %> - <%= @feed.segment_query.present? && @show&.emission_premiere? ? 'Filtered segments' : 'Episodes' %></h1>
+<h1><%= display_episode_title(@feed.name) %> - <%= @feed.segment_query.present? && @show&.emission_premiere? ? 'Filtered segments' : 'Episodes' %></h1>
 
 <% if @show.present? %>
   <section class="panel subheader">

@@ -1,4 +1,4 @@
-<h1><%= @feed.name %> - Segments</h1>
+<h1><%= display_episode_title(@feed.name) %> - Segments</h1>
 
 <% if @show.present? %>
   <p><strong>Episode:</strong> <%= display_episode_title(@episode.title) %> (<%= @episode.ohdio_episode_id %>)</p>

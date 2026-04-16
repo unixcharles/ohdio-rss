@@ -1,4 +1,4 @@
-<h1><%= @feed.name %></h1>
+<h1><%= display_episode_title(@feed.name) %></h1>
 
 <section class="panel">
   <% rss_url = public_rss_feed_url(@feed) %>
