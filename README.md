@@ -1,24 +1,39 @@
-# README
+# OhdioRSS
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+`ohdio-rss` is a Rails application that generates RSS feeds from Radio-Canada's [Ohdio](https://ici.radio-canada.ca/ohdio) audio streaming platform.
 
-Things you may want to cover:
+It supports podcasts, radio shows, series, etc normally only available on Ohdio. Feeds update automatically in the background and can be subscribed to from any podcast application.
 
-* Ruby version
+## Usage
 
-* System dependencies
+- [OhdioRSS](#ohdiorss)
+  - [Usage](#usage)
+  - [Creating a feed](#creating-a-feed)
+  - [Feed filters](#feed-filters)
+  - [Deployment](#deployment)
+  - [Requirements](#requirements)
+  - [License](#license)
 
-* Configuration
+## Creating a feed
 
-* Database creation
+Search for a show from the home page. Once a feed is created, its RSS URL can be added to any podcast application.
 
-* Database initialization
+## Feed filters
 
-* How to run the test suite
+Each feed supports optional filters:
 
-* Services (job queues, cache servers, search engines, etc.)
+- **Query** — include only episodes whose title matches a search string
+- **Segment Query** - include only segement whose title matches a search string
+- **Exclude replays** — skip episodes marked as replays
 
-* Deployment instructions
+## Requirements
 
-* ...
+Ruby >= 4.0, FFmpeg
+
+## Pull Request?
+
+Yes.
+
+## License
+
+[MIT License](http://opensource.org/licenses/MIT)
