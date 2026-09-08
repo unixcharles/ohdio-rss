@@ -128,7 +128,7 @@ RSpec.describe OhdioRssBuilder do
     expect(xml).not_to include('<em>')
   end
 
-  it 'emits one RSS item per matching segment when segment_query is set' do
+  it 'emits one RSS item per matching segment when a segment filter is set' do
     show = Show.create!(external_id: 7, title: 'Segment Show', description: 'Show description', ohdio_type: 'emission_premiere')
     episode = show.episodes.create!(
       ohdio_episode_id: 'ep-1',
@@ -141,7 +141,8 @@ RSpec.describe OhdioRssBuilder do
     matching_segment = episode.segments.create!(title: 'bloc politique', duration: 30, seek_time: 0, audio_content_external_id: matching_medium.external_id, position: 1)
     episode.segments.create!(title: 'bloc culture', duration: 30, seek_time: 0, audio_content_external_id: skipped_medium.external_id, position: 2)
 
-    feed = Feed.create!(name: 'Test Feed', show_external_id: 7, segment_query: 'politique')
+    feed = Feed.create!(name: 'Test Feed', show_external_id: 7)
+    feed.segment_filters.create!(keyword: 'politique', include: true)
 
     xml = described_class.new(feed: feed, base_url: base_url).generate
 

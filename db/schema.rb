@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_15_160000) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_08_180300) do
   create_table "audio_contents", force: :cascade do |t|
     t.string "audio_url"
     t.datetime "created_at", null: false
@@ -42,13 +42,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_15_160000) do
     t.index ["show_id"], name: "index_episodes_on_show_id"
   end
 
+  create_table "feed_filters", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "feed_id", null: false
+    t.boolean "include", default: true, null: false
+    t.string "keyword", null: false
+    t.string "kind", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feed_id", "kind"], name: "index_feed_filters_on_feed_id_and_kind"
+    t.index ["feed_id"], name: "index_feed_filters_on_feed_id"
+  end
+
   create_table "feeds", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.text "episode_query"
     t.boolean "exclude_replays", default: true, null: false
     t.integer "max_episodes", default: 100, null: false
     t.string "name", null: false
-    t.text "segment_query"
     t.integer "show_external_id", null: false
     t.string "uid", null: false
     t.datetime "updated_at", null: false
@@ -89,5 +98,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_15_160000) do
   end
 
   add_foreign_key "episodes", "shows"
+  add_foreign_key "feed_filters", "feeds"
   add_foreign_key "segments", "episodes"
 end

@@ -27,12 +27,22 @@ RSpec.describe 'Feeds CRUD', type: :request do
   end
 
   it 'creates a feed with exclude_replays disabled' do
-    post '/feeds', params: { feed: { name: 'No Filter Feed', show_external_id: 1006, exclude_replays: '0', max_episodes: 50, episode_query: 'Simon' } }
+    post '/feeds', params: { feed: { name: 'No Filter Feed', show_external_id: 1006, exclude_replays: '0', max_episodes: 50 } }
 
     expect(response).to redirect_to(feed_path(Feed.last))
     expect(Feed.last.exclude_replays).to be(false)
     expect(Feed.last.max_episodes).to eq(50)
-    expect(Feed.last.episode_query).to eq('Simon')
+  end
+
+  it 'creates a feed with include/exclude episode filters' do
+    post '/feeds', params: {
+      feed: { name: 'Filtered Feed', show_external_id: 1007 },
+      episode_filter_keyword: [ 'Simon', 'Frank' ],
+      episode_filter_include: [ 'true', 'false' ]
+    }
+
+    expect(response).to redirect_to(feed_path(Feed.last))
+    expect(Feed.last.episode_filters.pluck(:keyword, :include)).to contain_exactly([ 'Simon', true ], [ 'Frank', false ])
   end
 
   it 'searches shows on search page with query and filter' do
@@ -223,8 +233,11 @@ RSpec.describe 'Feeds CRUD', type: :request do
     expect(response).to have_http_status(:not_found)
   end
 
-  it 'filters episodes using feed episode_query' do
-    feed = Feed.create!(name: 'Query Feed', show_external_id: 3010, episode_query: 'Simon OR Tyler AND NOT Frank')
+  it 'filters episodes using feed episode filters' do
+    feed = Feed.create!(name: 'Query Feed', show_external_id: 3010)
+    feed.episode_filters.create!(keyword: 'Simon', include: true)
+    feed.episode_filters.create!(keyword: 'Tyler', include: true)
+    feed.episode_filters.create!(keyword: 'Frank', include: false)
     show = Show.create!(external_id: 3010, title: 'Query Show', ohdio_type: 'emission_premiere')
     ep1 = show.episodes.create!(ohdio_episode_id: 'ep-1', title: 'Simon parle')
     ep2 = show.episodes.create!(ohdio_episode_id: 'ep-2', title: 'Tyler et Frank')
@@ -242,6 +255,84 @@ RSpec.describe 'Feeds CRUD', type: :request do
     expect(response.body).to include('Simon parle')
     expect(response.body).to include('Tyler parle')
     expect(response.body).not_to include('Tyler et Frank')
+  end
+
+  it 'shows the edit form with existing filters' do
+    feed = Feed.create!(name: 'Editable Feed', show_external_id: 4001)
+    feed.episode_filters.create!(keyword: 'Simon', include: true)
+
+    get "/feeds/#{feed.id}/edit"
+
+    expect(response).to have_http_status(:ok)
+    expect(response.body).to include('value="Simon"')
+  end
+
+  it 'updates a feed and replaces its filters' do
+    feed = Feed.create!(name: 'Updatable Feed', show_external_id: 4002)
+    feed.episode_filters.create!(keyword: 'OldKeyword', include: true)
+
+    patch "/feeds/#{feed.id}", params: {
+      feed: { name: 'Renamed Feed', show_external_id: 4002, max_episodes: 25 },
+      episode_filter_keyword: [ 'NewKeyword' ],
+      episode_filter_include: [ 'true' ]
+    }
+
+    expect(response).to redirect_to(feed_path(feed))
+    feed.reload
+    expect(feed.name).to eq('Renamed Feed')
+    expect(feed.max_episodes).to eq(25)
+    expect(feed.episode_filters.pluck(:keyword)).to eq([ 'NewKeyword' ])
+  end
+
+  it 'adds a blank filter row without saving anything' do
+    expect do
+      post '/feeds', params: {
+        feed: { name: 'Draft Feed', show_external_id: 4003 },
+        episode_filter_keyword: [ 'Simon' ],
+        episode_filter_include: [ 'true' ],
+        add_episode_filter: '1'
+      }
+    end.not_to change(Feed, :count)
+
+    expect(response).to have_http_status(:ok)
+    expect(response.body.scan('filter-row').size).to be >= 2
+    expect(response.body).to include('value="Simon"')
+  end
+
+  it 'removes a filter row without saving anything' do
+    expect do
+      post '/feeds', params: {
+        feed: { name: 'Draft Feed', show_external_id: 4004 },
+        episode_filter_keyword: [ 'Simon', 'Tyler' ],
+        episode_filter_include: [ 'true', 'true' ],
+        remove_episode_filter: '0'
+      }
+    end.not_to change(Feed, :count)
+
+    expect(response).to have_http_status(:ok)
+    expect(response.body).not_to include('value="Simon"')
+    expect(response.body).to include('value="Tyler"')
+  end
+
+  it 'previews matching episodes without saving anything' do
+    feed = Feed.create!(name: 'Preview Feed', show_external_id: 4005)
+    show = Show.create!(external_id: 4005, title: 'Preview Show')
+    show.episodes.create!(ohdio_episode_id: 'ep-1', title: 'Simon parle')
+    show.episodes.create!(ohdio_episode_id: 'ep-2', title: 'Tyler parle')
+
+    expect do
+      patch "/feeds/#{feed.id}", params: {
+        feed: { name: feed.name, show_external_id: 4005 },
+        episode_filter_keyword: [ 'Simon' ],
+        episode_filter_include: [ 'true' ],
+        commit: 'Preview'
+      }
+    end.not_to change { feed.reload.episode_filters.count }
+
+    expect(response).to have_http_status(:ok)
+    expect(response.body).to include('Preview')
+    expect(response.body).to include('Simon parle')
+    expect(response.body).not_to include('Tyler parle')
   end
 
   it 'deletes a feed' do

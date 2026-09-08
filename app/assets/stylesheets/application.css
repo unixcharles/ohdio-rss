@@ -193,6 +193,67 @@ a {
   padding: 0.55rem 0.9rem;
 }
 
+.button-secondary {
+  padding: 0.4rem 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  font: inherit;
+  color: var(--text-primary);
+}
+
+.feed-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.filter-fieldset {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.filter-fieldset legend {
+  font-weight: 600;
+  padding: 0 0.35rem;
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.filter-row-keyword {
+  width: 16rem;
+}
+
+.preview-list,
+.preview-sublist {
+  list-style: none;
+  padding-left: 0;
+}
+
+.preview-list > li {
+  margin-bottom: 0.75rem;
+}
+
+.preview-sublist {
+  margin-top: 0.35rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+  color: var(--text-secondary);
+}
+
 .show-thumb {
   float: right;
   width: 120px;

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "feeds#index"
 
-  resources :feeds, except: %i[edit update] do
+  resources :feeds do
     get :episodes, on: :member
     get "episodes/:episode_id/segments", to: "feeds#segments", on: :member, as: :episode_segments
   end

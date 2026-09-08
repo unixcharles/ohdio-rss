@@ -1,0 +1,16 @@
+<fieldset class="filter-fieldset">
+  <legend><%= title %></legend>
+
+  <% rows.each_with_index do |row, index| %>
+    <div class="filter-row">
+      <%= text_field_tag "#{kind}_filter_keyword[]", row[:keyword], placeholder: 'keyword', class: 'form-input filter-row-keyword' %>
+      <%= select_tag "#{kind}_filter_include[]",
+                     options_for_select([ [ 'Include', 'true' ], [ 'Exclude', 'false' ] ], row[:include] ? 'true' : 'false'),
+                     class: 'filter-row-select' %>
+      <%= button_tag 'Remove', name: "remove_#{kind}_filter", value: index.to_s, type: 'submit', class: 'button-secondary' %>
+    </div>
+  <% end %>
+
+  <%= button_tag 'Add keyword', name: "add_#{kind}_filter", value: '1', type: 'submit', class: 'button-secondary' %>
+  <small><%= hint %></small>
+</fieldset>

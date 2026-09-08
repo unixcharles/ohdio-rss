@@ -37,8 +37,8 @@ RSpec.describe 'Downloads', type: :request do
     end
   end
 
-  it 'downloads a single clipped segment when segment_query is present' do
-    feed.update!(segment_query: 'politique')
+  it 'downloads a single clipped segment when a segment filter is present' do
+    feed.segment_filters.create!(keyword: 'politique', include: true)
     medium_one = AudioContent.create!(external_id: 'm1', audio_url: 'https://cdn.example.com/part-1.mp3', resolved: true, resolved_at: Time.current)
     medium_two = AudioContent.create!(external_id: 'm2', audio_url: 'https://cdn.example.com/part-2.mp3', resolved: true, resolved_at: Time.current)
     segment = episode.segments.create!(title: 'bloc politique', audio_content_external_id: medium_one.external_id, seek_time: 10, duration: 30, position: 1)
@@ -64,8 +64,8 @@ RSpec.describe 'Downloads', type: :request do
     end
   end
 
-  it 'returns 404 when segment_query excludes all valid segments' do
-    feed.update!(segment_query: 'politique')
+  it 'returns 404 when the segment filter excludes all valid segments' do
+    feed.segment_filters.create!(keyword: 'politique', include: true)
     medium_one = AudioContent.create!(external_id: 'm1', audio_url: 'https://cdn.example.com/part-1.mp3', resolved: true, resolved_at: Time.current)
     segment = episode.segments.create!(title: 'bloc culture', audio_content_external_id: medium_one.external_id, seek_time: 10, duration: 30, position: 1)
 
@@ -74,8 +74,8 @@ RSpec.describe 'Downloads', type: :request do
     expect(response).to have_http_status(:not_found)
   end
 
-  it 'returns 404 on episode download when segment_query is present' do
-    feed.update!(segment_query: 'politique')
+  it 'returns 404 on episode download when a segment filter is present' do
+    feed.segment_filters.create!(keyword: 'politique', include: true)
     medium_one = AudioContent.create!(external_id: 'm1', audio_url: 'https://cdn.example.com/part-1.mp3', resolved: true, resolved_at: Time.current)
     episode.segments.create!(title: 'bloc politique', audio_content_external_id: medium_one.external_id, seek_time: 10, duration: 30, position: 1)
 
@@ -111,8 +111,8 @@ RSpec.describe 'Downloads', type: :request do
     expect(response).to have_http_status(:not_found)
   end
 
-  it 'returns 404 when episode is excluded by feed query' do
-    feed.update!(episode_query: 'Simon')
+  it 'returns 404 when episode is excluded by feed filter' do
+    feed.episode_filters.create!(keyword: 'Simon', include: true)
     filtered_episode = show.episodes.create!(ohdio_episode_id: 'ep-filtered', is_replay: false)
     audio_content = AudioContent.create!(external_id: 'm5', audio_url: 'https://cdn.example.com/filtered.mp3', resolved: true, resolved_at: Time.current)
     filtered_episode.segments.create!(audio_content_external_id: audio_content.external_id, position: 1)
