@@ -15,13 +15,13 @@
             <td><%= link_to display_episode_title(feed.name), feed_path(feed) %></td>
           <td>
             <span class="muted">
-              <% if feed.episode_query.present? || feed.segment_query.present? %>
+              <% if feed.episode_filters.any? || feed.segment_filters.any? %>
                 <%= [
-                  ("Episode: #{feed.episode_query}" if feed.episode_query.present?),
-                  ("Segment: #{feed.segment_query}" if feed.segment_query.present?)
+                  ("Episode #{filter_summary(feed.episode_filters)}" if feed.episode_filters.any?),
+                  ("Segment #{filter_summary(feed.segment_filters)}" if feed.segment_filters.any?)
                 ].compact.join(' / ') %>
               <% else %>
-                No query
+                No filters
               <% end %>
             </span>
           </td>

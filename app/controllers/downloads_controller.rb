@@ -5,7 +5,7 @@ class DownloadsController < ApplicationController
 
     show = feed.show
     raise ActiveRecord::RecordNotFound if show.nil?
-    raise ActiveRecord::RecordNotFound if show.emission_premiere? && feed.segment_query.present?
+    raise ActiveRecord::RecordNotFound if show.emission_premiere? && feed.segment_filters.any?
 
     episode = feed.filtered_episodes(show: show).find_by!(ohdio_episode_id: params[:episode_id].to_s)
 
@@ -32,7 +32,7 @@ class DownloadsController < ApplicationController
 
     show = feed.show
     raise ActiveRecord::RecordNotFound if show.nil? || !show.emission_premiere?
-    raise ActiveRecord::RecordNotFound if feed.segment_query.blank?
+    raise ActiveRecord::RecordNotFound if feed.segment_filters.none?
 
     segment, unresolved = selected_segment_for(feed: feed, show: show, segment_id: params[:segment_id])
     return render_pending if unresolved
@@ -61,7 +61,7 @@ class DownloadsController < ApplicationController
         segment.audio_content_external_id.present? && (segment.audio_content.nil? || !segment.audio_content.resolved?)
       end
 
-      if feed.segment_query.blank?
+      if feed.segment_filters.none?
         urls = selected_segments.filter_map { |segment| segment.audio_content&.audio_url }
         [ urls, [], unresolved ]
       else

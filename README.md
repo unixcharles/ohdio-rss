@@ -16,15 +16,17 @@ It supports podcasts, radio shows, series, etc normally only available on Ohdio.
 
 ## Creating a feed
 
-Search for a show from the home page. Once a feed is created, its RSS URL can be added to any podcast application.
+Search for a show from the home page. Once a feed is created, its RSS URL can be added to any podcast application. Feeds can be edited (including their filters) at any time from the feed page.
 
 ## Feed filters
 
 Each feed supports optional filters:
 
-- **Query** — include only episodes whose title matches a search string
-- **Segment Query** - include only segement whose title matches a search string
+- **Episode filters** — a list of keywords, each marked Include or Exclude, matched against episode title/description. An episode is kept if it matches any Include keyword (or there are none) and no Exclude keyword.
+- **Segment filters** — the same include/exclude keyword list, matched against segment title instead, for segment-based shows.
 - **Exclude replays** — skip episodes marked as replays
+
+While editing a feed's filters, use Preview to see which episodes/segments currently match before saving.
 
 ## Requirements
 

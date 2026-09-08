@@ -8,6 +8,10 @@ class Feed < ApplicationRecord
 
   belongs_to :show, class_name: "Show", foreign_key: :show_external_id, primary_key: :external_id, optional: true, inverse_of: :feeds
 
+  has_many :feed_filters, dependent: :destroy, inverse_of: :feed
+  has_many :episode_filters, -> { where(kind: "episode") }, class_name: "FeedFilter", inverse_of: :feed
+  has_many :segment_filters, -> { where(kind: "segment") }, class_name: "FeedFilter", inverse_of: :feed
+
   validates :name, presence: true
   validates :show_external_id, presence: true, numericality: { only_integer: true }
   validates :uid, presence: true, uniqueness: true
@@ -17,8 +21,6 @@ class Feed < ApplicationRecord
                              greater_than: 0,
                              less_than_or_equal_to: MAX_MAX_EPISODES
                            }
-  validates :episode_query, length: { maximum: 500 }
-  validates :segment_query, length: { maximum: 500 }
 
   def self.search_ohdio(query, filter: :all)
     normalized_query = query.to_s.strip
@@ -34,25 +36,25 @@ class Feed < ApplicationRecord
     limited_ids = show.episodes.send(order_scope).limit(max_episodes).select(:id)
     scope = show.episodes.where(id: limited_ids).send(order_scope)
     scope = scope.where(is_replay: [ false, nil ]) if exclude_replays
-    scope = EpisodeQueryFilter.apply(scope, episode_query)
+    scope = FeedFilterMatcher.apply(scope, episode_filters, columns: %i[title description])
     scope = scope.where(has_valid_segments: true) if show.emission_premiere?
     scope
   end
 
   def filtered_segments_for_episode(episode:)
     scope = episode.segments.includes(:audio_content).order(:position).where.not(audio_content_external_id: nil)
-    return scope if segment_query.blank?
+    return scope if segment_filters.none?
 
     scope = scope.where("duration > 0")
 
-    EpisodeQueryFilter.apply(scope, segment_query, columns: [ :title ])
+    FeedFilterMatcher.apply(scope, segment_filters, columns: [ :title ])
   end
 
   def items
     show_record = show
     return [] if show_record.nil?
 
-    if show_record.emission_premiere? && segment_query.present?
+    if show_record.emission_premiere? && segment_filters.any?
       segment_items(show_record)
     else
       episode_items(show_record)

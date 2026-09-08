@@ -1,4 +1,9 @@
-<%= form_with(model: feed) do |form| %>
+<%= form_with(model: feed, class: 'feed-form') do |form| %>
+  <div class="form-actions">
+    <%= form.submit(feed.persisted? ? 'Save' : 'Create feed', name: 'commit', class: 'button-primary') %>
+    <%= form.submit('Preview', name: 'commit', class: 'button-secondary') %>
+  </div>
+
   <% if feed.errors.any? %>
     <div class="form-errors">
       <h3><%= pluralize(feed.errors.count, 'error') %> prevented this feed from being saved:</h3>
@@ -29,27 +34,22 @@
   </div>
 
   <div class="form-field">
-    <%= form.label :episode_query, 'Episode query', class: 'form-label' %>
-    <%= form.text_field :episode_query,
-                        placeholder: 'Simon OR Tyler AND NOT Frank',
-                        class: 'form-input' %>
-    <small>Filter by title/description using AND, OR, NOT.</small>
-  </div>
-
-  <div class="form-field">
-    <%= form.label :segment_query, 'Segment query', class: 'form-label' %>
-    <%= form.text_field :segment_query,
-                        placeholder: 'politique OR humour',
-                        class: 'form-input' %>
-    <small>For segment-based shows, filter stitched segments using AND, OR, NOT.</small>
-  </div>
-
-  <div class="form-field">
     <label class="checkbox-label">
       <%= form.check_box :exclude_replays %>
       Exclude replays from RSS and downloads
     </label>
   </div>
 
-  <%= form.submit(feed.persisted? ? 'Save' : 'Create feed', class: 'button-primary') %>
+  <%= render 'filter_rows', rows: @episode_filter_rows, kind: 'episode', title: 'Episode filters',
+                            hint: 'Include/exclude episodes by matching their title or description.' %>
+
+  <%= render 'filter_rows', rows: @segment_filter_rows, kind: 'segment', title: 'Segment filters',
+                            hint: 'For segment-based shows, include/exclude stitched segments by matching their title.' %>
+
+  <div class="form-actions">
+    <%= form.submit(feed.persisted? ? 'Save' : 'Create feed', name: 'commit', class: 'button-primary') %>
+    <%= form.submit('Preview', name: 'commit', class: 'button-secondary') %>
+  </div>
 <% end %>
+
+<%= render 'filter_preview' if @preview_episodes.present? %>

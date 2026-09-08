@@ -49,7 +49,7 @@ module FeedItems
     end
 
     def show_segments_link?
-      show.emission_premiere? && feed.segment_query.blank?
+      show.emission_premiere? && feed.segment_filters.none?
     end
   end
 end

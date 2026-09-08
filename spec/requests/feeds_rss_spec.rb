@@ -126,8 +126,11 @@ RSpec.describe 'Feeds RSS', type: :request do
     expect(response.body).not_to include('Older Episode')
   end
 
-  it 'filters RSS items by feed episode_query' do
-    feed.update!(max_episodes: 10, episode_query: 'Simon OR Tyler AND NOT Frank')
+  it 'filters RSS items by feed episode filters' do
+    feed.update!(max_episodes: 10)
+    feed.episode_filters.create!(keyword: 'Simon', include: true)
+    feed.episode_filters.create!(keyword: 'Tyler', include: true)
+    feed.episode_filters.create!(keyword: 'Frank', include: false)
     show.update!(ohdio_type: 'balado')
 
     show.episodes.create!(
@@ -157,8 +160,8 @@ RSpec.describe 'Feeds RSS', type: :request do
     expect(response.body).not_to include('Tyler et Frank')
   end
 
-  it 'builds emission RSS items from matching segments when segment_query is present' do
-    feed.update!(segment_query: 'politique')
+  it 'builds emission RSS items from matching segments when a segment filter is present' do
+    feed.segment_filters.create!(keyword: 'politique', include: true)
 
     matching_episode = show.episodes.create!(
       ohdio_episode_id: 'ep-match',

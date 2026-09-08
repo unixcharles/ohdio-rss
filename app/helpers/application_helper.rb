@@ -47,4 +47,14 @@ module ApplicationHelper
   def public_rss_feed_url(feed)
     "#{public_base_url}#{rss_feed_path(uid: feed.uid, format: :rss)}"
   end
+
+  def filter_summary(filters)
+    includes = filters.select(&:include?).map(&:keyword)
+    excludes = filters.reject(&:include?).map(&:keyword)
+
+    [
+      ("Include: #{includes.join(', ')}" if includes.any?),
+      ("Exclude: #{excludes.join(', ')}" if excludes.any?)
+    ].compact.join(" · ")
+  end
 end

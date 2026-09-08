@@ -1,0 +1,31 @@
+<section class="panel">
+  <h2>Preview</h2>
+  <p class="meta muted">Not saved yet - this reflects the filters currently entered above.</p>
+
+  <% if @preview_episodes.empty? %>
+    <p>No episodes match these filters.</p>
+  <% else %>
+    <ul class="preview-list">
+      <% @preview_episodes.each do |episode| %>
+        <li>
+          <strong><%= display_episode_title(episode.title) %></strong>
+          <span class="meta muted">
+            <%= episode.published_at.present? ? l(episode.published_at, format: :long) : 'N/A' %>
+            <% if episode.duration.present? && episode.duration > 0 %>
+              &middot; <%= format_duration(episode.duration) %>
+            <% end %>
+          </span>
+
+          <% segments = @preview_segments_by_episode&.dig(episode) %>
+          <% if segments.present? %>
+            <ul class="preview-sublist">
+              <% segments.each do |segment| %>
+                <li><%= TextEntityNormalizer.call(segment.title) %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</section>
