@@ -9,6 +9,9 @@ gem "bootsnap", require: false
 gem "thruster", require: false
 
 gem "ohdio", path: "vendor/ohdio"
+# json 3.x drops the positional options arg to JSON.parse, which Rails 8.1.3.1's
+# ActiveSupport::JSON.decode still relies on. Pin until Rails ships a fix.
+gem "json", "< 3.0"
 gem "down"
 gem "pagy"
 gem "ostruct"
