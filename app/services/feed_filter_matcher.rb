@@ -25,8 +25,15 @@ class FeedFilterMatcher
   end
 
   def self.record_matches?(record, filter, columns)
-    keyword = filter.keyword.to_s.strip.downcase
-    columns.any? { |column| record.public_send(column).to_s.downcase.include?(keyword) }
+    keyword = normalize(filter.keyword.to_s.strip)
+    columns.any? { |column| normalize(record.public_send(column).to_s).include?(keyword) }
   end
   private_class_method :record_matches?
+
+  # Case-insensitive and accent-insensitive: "Hébert", "Hebert" and "hebert" all normalize alike.
+  # NFKD splits accented letters into base char + combining mark, then \p{Mn} drops the marks.
+  def self.normalize(string)
+    string.unicode_normalize(:nfkd).gsub(/\p{Mn}/, "").downcase
+  end
+  private_class_method :normalize
 end

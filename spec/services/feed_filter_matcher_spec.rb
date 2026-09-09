@@ -62,6 +62,23 @@ RSpec.describe FeedFilterMatcher do
     expect(described_class.apply(Episode.all, filters).pluck(:title)).to eq([ 'SIMON RACONTE' ])
   end
 
+  it 'matches accent-insensitively in both directions' do
+    create_episode(title: 'Chronique de Chantal Hébert')
+    create_episode(title: 'Entrevue avec Chantal Hebert')
+
+    filters = [ FeedFilter.new(kind: 'episode', keyword: 'hebert', include: true) ]
+
+    expect(described_class.apply(Episode.all, filters).pluck(:title)).to contain_exactly(
+      'Chronique de Chantal Hébert', 'Entrevue avec Chantal Hebert'
+    )
+
+    accented = [ FeedFilter.new(kind: 'episode', keyword: 'Hébert', include: true) ]
+
+    expect(described_class.apply(Episode.all, accented).pluck(:title)).to contain_exactly(
+      'Chronique de Chantal Hébert', 'Entrevue avec Chantal Hebert'
+    )
+  end
+
   it 'matches against the given columns, including description' do
     create_episode(title: 'Episode 1', description: 'parle de politique')
 
