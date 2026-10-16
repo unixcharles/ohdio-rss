@@ -5,6 +5,9 @@
     <h2><%= @show.title %></h2>
     <h3 class="muted"><%= display_ohdio_type(@show.ohdio_type) %></h3>
     <p><%= sanitize_description(@show.description) %></p>
+    <% if @show.url.present? %>
+      <p><%= link_to 'All episodes on Ohdio', @show.url, target: '_blank', rel: 'noopener' %></p>
+    <% end %>
   </section>
 
   <% if @pagy.present? && @pagy.pages > 1 %>

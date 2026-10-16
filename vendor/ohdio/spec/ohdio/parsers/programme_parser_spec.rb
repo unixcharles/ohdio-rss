@@ -17,6 +17,7 @@ RSpec.describe Ohdio::Parsers::ProgrammeParser do
       expect(show.id).to eq(9887)
       expect(show.title).to eq('La journée (est encore jeune)')
       expect(show.type).to eq('balado')
+      expect(show.url).to eq('https://ici.radio-canada.ca/ohdio/balados/9887/la-journee-est-encore-jeune')
     end
 
     it 'sets pagination attributes' do

@@ -8,7 +8,7 @@ module Ohdio
 
     # Selection shared by every programme query: exactly the fields ProgrammeParser reads.
     PROGRAMME_SELECTION = <<~GRAPHQL
-      header { title summary picture { pattern } }
+      header { title summary picture { pattern } share { url } }
       content {
         contentDetail {
           items {
