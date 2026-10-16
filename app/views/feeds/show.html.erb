@@ -49,6 +49,8 @@
   |
   <%= link_to 'Edit this feed', edit_feed_path(@feed) %>
   |
+  <%= link_to 'Change show', edit_feed_ohdio_show_path(@feed) %>
+  |
   <%= link_to 'Back to feeds', feeds_path %>
   |
   <%= button_to 'Delete this feed', @feed, method: :delete, form: { class: 'inline-action-form' }, class: 'inline-action-button', data: { turbo_confirm: 'Delete this feed?' } %>

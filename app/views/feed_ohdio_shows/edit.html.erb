@@ -1,0 +1,33 @@
+<h1>Change show for <%= display_episode_title(@feed.name) %></h1>
+
+<section class="panel">
+  <p class="meta"><strong>Currently following:</strong>
+    <%= @feed.show ? display_episode_title(@feed.show.title) : "Show ##{@feed.show_external_id}" %>
+    <span class="muted">(ID <%= @feed.show_external_id %>)</span>
+  </p>
+  <p class="muted">
+    Use this when Radio-Canada replaces a show with a new one. The feed keeps its RSS URL, filters and
+    settings, so your podcast app stays subscribed; the new show's episodes show up as new items.
+  </p>
+</section>
+
+<%= form_with url: feed_ohdio_show_path(@feed), method: :patch, class: 'feed-form' do %>
+  <% if @error.present? %>
+    <div class="form-errors">
+      <p><%= @error %></p>
+    </div>
+  <% end %>
+
+  <div class="form-field">
+    <%= label_tag :show_input, 'New show URL or ID', class: 'form-label' %>
+    <%= text_field_tag :show_input, @show_input, required: true, class: 'form-input',
+                       placeholder: 'https://ici.radio-canada.ca/ohdio/premiere/emissions/1124/tout-un-matin' %>
+    <small>The show's page on Ohdio, not an episode or segment page.</small>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag 'Change show', class: 'button-primary' %>
+  </div>
+<% end %>
+
+<p><%= link_to 'Back to feed', @feed %></p>
