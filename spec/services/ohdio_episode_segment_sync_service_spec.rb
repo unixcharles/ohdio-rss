@@ -19,7 +19,8 @@ RSpec.describe OhdioEpisodeSegmentSyncService do
     episode = show.episodes.create!(ohdio_episode_id: "ep-target")
 
     page_one = OpenStruct.new(episodes: [ OpenStruct.new(id: "ep-other", segments: []) ])
-    segment = OpenStruct.new(title: "bloc politique", duration: 30, seek_time: 5, media_id: "m1")
+    segment = OpenStruct.new(title: "bloc politique", duration: 30, seek_time: 5, media_id: "m1",
+                             share_url: "https://ici.radio-canada.ca/ohdio/premiere/emissions/x/segments/rattrapage/1/bloc-politique")
     target_episode = OpenStruct.new(id: "ep-target", segments: [ segment ])
     page_two = OpenStruct.new(episodes: [ target_episode ])
 
@@ -32,6 +33,7 @@ RSpec.describe OhdioEpisodeSegmentSyncService do
     expect(episode.has_valid_segments).to be(true)
     expect(episode.segments.count).to eq(1)
     expect(episode.segments.first.audio_content_external_id).to eq("m1")
+    expect(episode.segments.first.share_slug_words).to eq("bloc politique")
     expect(AudioContent.find_by(external_id: "m1")).to be_present
   end
 

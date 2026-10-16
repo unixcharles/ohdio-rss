@@ -98,6 +98,10 @@ RSpec.describe Ohdio::Parsers::ProgrammeParser do
       expect(seg.duration).to eq(540)
       expect(seg.media_id).to eq('10640292')
       expect(seg.seek_time).to eq(0)
+      expect(seg.share_url).to eq(
+        'https://ici.radio-canada.ca/ohdio/premiere/emissions/tout-un-matin/segments/rattrapage/2347125/' \
+        'ouverture-emission-avec-patrick-masbourian-et-son-equipe'
+      )
     end
 
     it 'wires audio_url_fetcher on segments' do

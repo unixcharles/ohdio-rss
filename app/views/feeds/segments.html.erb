@@ -11,6 +11,9 @@
         <h3>Segment <%= index + 1 %>: <%= TextEntityNormalizer.call(segment.title) %></h3>
         <p><strong>Duration:</strong> <%= segment.duration %></p>
         <p><strong>Seek time:</strong> <%= segment.seek_time %></p>
+        <% if segment.share_url.present? %>
+          <p><strong>Ohdio page:</strong> <%= link_to segment.share_slug_words, segment.share_url, target: '_blank', rel: 'noopener' %></p>
+        <% end %>
         <p><strong>Audio content ID:</strong> <%= segment.audio_content_external_id %></p>
         <p>
           <strong>Download:</strong>

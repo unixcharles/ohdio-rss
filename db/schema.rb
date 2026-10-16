@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_16_030000) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_16_040000) do
   create_table "audio_contents", force: :cascade do |t|
     t.string "audio_url"
     t.datetime "created_at", null: false
@@ -72,6 +72,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_16_030000) do
     t.integer "episode_id", null: false
     t.integer "position"
     t.integer "seek_time"
+    t.string "share_url"
     t.string "title"
     t.datetime "updated_at", null: false
     t.index ["episode_id", "audio_content_external_id"], name: "index_segments_on_episode_id_and_audio_content_external_id"

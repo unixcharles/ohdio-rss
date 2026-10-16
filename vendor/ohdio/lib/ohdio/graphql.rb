@@ -62,6 +62,7 @@ module Ohdio
               title
               duration { durationInSeconds }
               mediaPlaybackItem { mediaId mediaSeekTime }
+              share { url }
             }
           }
         }

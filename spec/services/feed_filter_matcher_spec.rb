@@ -94,4 +94,13 @@ RSpec.describe FeedFilterMatcher do
 
     expect(described_class.apply(Episode.all, filters).pluck(:title)).to eq([ 'Simon raconte' ])
   end
+
+  it 'treats hyphens as spaces on both sides' do
+    create_episode(title: 'Rafale de sujets avec Julien Poirier-Malo')
+    create_episode(title: 'rafale sujets avec julien poirier malo')
+
+    filters = [ FeedFilter.new(kind: 'episode', keyword: 'Poirier-Malo', include: true) ]
+
+    expect(described_class.apply(Episode.all, filters).count).to eq(2)
+  end
 end

@@ -29,7 +29,7 @@ module FeedItems
     end
 
     def link
-      episode.url
+      segment.share_url.presence || episode.url
     end
 
     def guid

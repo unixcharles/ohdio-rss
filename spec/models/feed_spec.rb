@@ -141,6 +141,24 @@ RSpec.describe Feed, type: :model do
 
       expect(feed.filtered_segments_for_episode(episode: episode).pluck(:title)).to eq([ 'bloc politique' ])
     end
+
+    it 'matches segment filters against the share URL slug when the title omits the contributor' do
+      show = Show.create!(external_id: 892, title: 'Tout un matin', ohdio_type: 'emission_premiere')
+      feed = described_class.create!(name: 'McSween', show_external_id: 892)
+      feed.segment_filters.create!(keyword: 'McSween', include: true)
+      feed.segment_filters.create!(keyword: 'Chantal Hébert', include: true)
+      episode = show.episodes.create!(ohdio_episode_id: 'ep-1', has_valid_segments: true)
+      base = 'https://ici.radio-canada.ca/ohdio/premiere/emissions/tout-un-matin/segments/rattrapage'
+
+      episode.segments.create!(title: "L'essence en folie? Une idée marketing", share_url: "#{base}/2503344/chronique-economique-pierre-yves-mcsween",
+                               audio_content_external_id: 'm1', seek_time: 0, duration: 520, position: 1)
+      episode.segments.create!(title: 'Dernière ligne droite albertaine, avec C. Hébert', share_url: "#{base}/2502195/politique-federale-avec-chantal-hebert",
+                               audio_content_external_id: 'm2', seek_time: 600, duration: 700, position: 2)
+      episode.segments.create!(title: 'Culture avec Claudia Hébert', share_url: "#{base}/2503345/culture-avec-claudia-hebert",
+                               audio_content_external_id: 'm3', seek_time: 1300, duration: 200, position: 3)
+
+      expect(feed.filtered_segments_for_episode(episode: episode).pluck(:position)).to eq([ 1, 2 ])
+    end
   end
 
   describe 'sync enqueue callbacks' do

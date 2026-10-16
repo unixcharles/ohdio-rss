@@ -43,7 +43,8 @@ class OhdioEpisodeSegmentSyncService
       title: TextEntityNormalizer.call(segment.title),
       duration: segment.duration,
       seek_time: segment.seek_time,
-      audio_content_external_id: external_id
+      audio_content_external_id: external_id,
+      share_url: segment.share_url
     )
     segment_record.save!
     segment_record.id

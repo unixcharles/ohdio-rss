@@ -146,6 +146,7 @@ module Ohdio
           duration: item.dig('duration', 'durationInSeconds'),
           media_id: media_id,
           seek_time: media['mediaSeekTime'] || DEFAULT_SEEK_TIME,
+          share_url: full_url(item.dig('share', 'url')),
           audio_url_fetcher: audio_url_fetcher
         )
       end

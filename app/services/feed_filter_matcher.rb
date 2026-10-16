@@ -32,8 +32,9 @@ class FeedFilterMatcher
 
   # Case-insensitive and accent-insensitive: "Hébert", "Hebert" and "hebert" all normalize alike.
   # NFKD splits accented letters into base char + combining mark, then \p{Mn} drops the marks.
+  # Hyphens count as spaces so "Poirier-Malo" also matches slug words ("poirier malo").
   def self.normalize(string)
-    string.unicode_normalize(:nfkd).gsub(/\p{Mn}/, "").downcase
+    string.unicode_normalize(:nfkd).gsub(/\p{Mn}/, "").tr("-", " ").downcase
   end
   private_class_method :normalize
 end

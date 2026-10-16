@@ -4,8 +4,10 @@ require 'json'
 
 module Ohdio
   class Segment
-    def initialize(title: nil, duration: nil, media_id: nil, seek_time: nil, audio_url_fetcher: nil, resolver: nil)
+    def initialize(title: nil, duration: nil, media_id: nil, seek_time: nil, share_url: nil, audio_url_fetcher: nil,
+                   resolver: nil)
       @title = title
+      @share_url = share_url
       @duration = duration
       @media_id = media_id
       @seek_time = seek_time
@@ -35,6 +37,13 @@ module Ohdio
       @seek_time
     end
 
+    # The segment's own page on Ohdio (its "rattrapage" page). Its slug names the recurring segment
+    # rather than the day's topic, e.g. .../2503344/chronique-economique-pierre-yves-mcsween.
+    def share_url
+      ensure_resolved(:@share_url)
+      @share_url
+    end
+
     def audio_url
       resolve! if @audio_url.nil? && @audio_url_fetcher.nil?
       @audio_url ||= @audio_url_fetcher ? @audio_url_fetcher.call : nil
@@ -58,6 +67,7 @@ module Ohdio
         duration: duration,
         media_id: media_id,
         seek_time: seek_time,
+        share_url: share_url,
         audio_url: include_audio_url ? audio_url : nil
       }
     end
@@ -79,6 +89,7 @@ module Ohdio
       @duration = segment.duration if @duration.nil?
       @seek_time = segment.seek_time if @seek_time.nil?
       @media_id = segment.media_id if @media_id.nil?
+      @share_url = segment.share_url if @share_url.nil?
       @audio_url = segment.audio_url if @audio_url.nil? && !segment.audio_url.nil?
     end
   end

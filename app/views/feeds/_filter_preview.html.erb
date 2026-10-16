@@ -20,7 +20,12 @@
           <% if segments.present? %>
             <ul class="preview-sublist">
               <% segments.each do |segment| %>
-                <li><%= TextEntityNormalizer.call(segment.title) %></li>
+                <li>
+                  <%= TextEntityNormalizer.call(segment.title) %>
+                  <% if segment.share_url.present? %>
+                    <span class="meta muted">&middot; <%= segment.share_slug_words %></span>
+                  <% end %>
+                </li>
               <% end %>
             </ul>
           <% end %>

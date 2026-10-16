@@ -47,7 +47,7 @@ class Feed < ApplicationRecord
 
     scope = scope.where("duration > 0")
 
-    FeedFilterMatcher.apply(scope, segment_filters, columns: [ :title ])
+    FeedFilterMatcher.apply(scope, segment_filters, columns: %i[title share_slug_words])
   end
 
   def items
