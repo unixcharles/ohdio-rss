@@ -100,7 +100,7 @@ RSpec.describe Ohdio::Client do
     context 'when the API returns errors' do
       it 'raises ApiError' do
         body = { 'errors' => [{ 'message' => 'Error' }] }.to_json
-        stub_request(:get, /graphql/).to_return(status: 200, body: body)
+        stub_request(:post, /graphql/).to_return(status: 200, body: body)
         expect { client.get_playback_list(18, '1020434') }.to raise_error(Ohdio::ApiError)
       end
     end

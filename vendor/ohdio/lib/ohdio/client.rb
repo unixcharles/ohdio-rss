@@ -34,8 +34,7 @@ module Ohdio
     end
 
     def get_playback_list(content_type_id, playlist_item_id)
-      params = Graphql.playback_params(content_type_id, playlist_item_id)
-      get(GRAPHQL_PATH, params)
+      post_graphql(Graphql::PLAYBACK_LIST_QUERY, params: Graphql.playback_variables(content_type_id, playlist_item_id))
     end
 
     def get_media_url(media_id)

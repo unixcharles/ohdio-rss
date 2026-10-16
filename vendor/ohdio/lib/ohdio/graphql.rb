@@ -1,16 +1,10 @@
 # frozen_string_literal: true
 
-require 'json'
-
 module Ohdio
   module Graphql
     CONTEXT = 'web'
 
     TYPES = %i[balado emission_premiere grande_serie audiobook].freeze
-
-    APQ_HASHES = {
-      playback_list: 'ae95ebffe69f06d85a0f287931b61e3b7bfb7485f28d4d906c376be5f830b8c0'
-    }.freeze
 
     # Selection shared by every programme query: exactly the fields ProgrammeParser reads.
     PROGRAMME_SELECTION = <<~GRAPHQL
@@ -33,9 +27,9 @@ module Ohdio
       }
     GRAPHQL
 
-    # Programmes are fetched with a full query document via POST rather than by persisted query hash:
-    # the Ohdio website moved to a different query and the programmeById/audioBookById hashes started
-    # failing with PersistedQueryNotFound.
+    # Every query is sent as a full document via POST rather than by persisted query hash: the Ohdio
+    # website moved to different queries and the hashes we relied on started failing with
+    # PersistedQueryNotFound. Persisted hashes can be evicted at any time; query text keeps working.
     PROGRAMME_QUERIES = {
       balado: <<~GRAPHQL,
         query programmeById($params: ProgrammeByIdInput!) {
@@ -59,6 +53,21 @@ module Ohdio
       GRAPHQL
     }.freeze
 
+    # Segments of an emission_premiere episode: exactly the fields ProgrammeParser#parse_segment reads.
+    PLAYBACK_LIST_QUERY = <<~GRAPHQL
+      query playbackListByGlobalId($params: PlaybackListByGlobalIdInput!) {
+        playbackListByGlobalId(params: $params) {
+          ... on PlaybackListEpisodePremiere {
+            items {
+              title
+              duration { durationInSeconds }
+              mediaPlaybackItem { mediaId mediaSeekTime }
+            }
+          }
+        }
+      }
+    GRAPHQL
+
     FORCE_WITHOUT_CUE_SHEET = {
       balado: true,
       emission_premiere: false,
@@ -80,16 +89,8 @@ module Ohdio
       }
     end
 
-    def self.playback_params(content_type_id, playlist_item_id)
-      {
-        'opname' => 'playbackListByGlobalId',
-        'extensions' => JSON.generate({
-                                        persistedQuery: { version: 1, sha256Hash: APQ_HASHES[:playback_list] }
-                                      }),
-        'variables' => JSON.generate({
-                                       params: { contentTypeId: content_type_id, id: playlist_item_id }
-                                     })
-      }
+    def self.playback_variables(content_type_id, playlist_item_id)
+      { contentTypeId: content_type_id, id: playlist_item_id }
     end
   end
 end

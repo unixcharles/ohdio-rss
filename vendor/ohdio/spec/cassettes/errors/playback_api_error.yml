@@ -1,8 +1,8 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://services.radio-canada.ca/bff/audio/graphql?extensions=%7B%22persistedQuery%22:%7B%22version%22:1,%22sha256Hash%22:%22ae95ebffe69f06d85a0f287931b61e3b7bfb7485f28d4d906c376be5f830b8c0%22%7D%7D&opname=playbackListByGlobalId&variables=%7B%22params%22:%7B%22contentTypeId%22:18,%22id%22:%221020434%22%7D%7D
+    method: post
+    uri: https://services.radio-canada.ca/bff/audio/graphql
     body:
       encoding: US-ASCII
       string: ''
