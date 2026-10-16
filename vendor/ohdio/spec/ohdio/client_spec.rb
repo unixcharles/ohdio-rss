@@ -15,33 +15,43 @@ RSpec.describe Ohdio::Client do
 
       it 'sends the required headers' do
         client.get_programme(:balado, 9887)
-        expect(WebMock).to have_requested(:get, /graphql/).with(
+        expect(WebMock).to have_requested(:post, /graphql/).with(
           headers: {
             'Content-Type' => 'application/json',
             'apollo-require-preflight' => 'true'
           }
         )
       end
+
+      it 'sends the full query document and variables in the POST body' do
+        client.get_programme(:balado, 9887)
+        expect(WebMock).to(have_requested(:post, /graphql/).with do |request|
+          payload = JSON.parse(request.body)
+          payload['query'].include?('... on EmissionBalado') &&
+            payload['variables'] == { 'params' => { 'context' => 'web', 'forceWithoutCueSheet' => true,
+                                                    'id' => 9887, 'pageNumber' => 1 } }
+        end)
+      end
     end
 
     context 'when the API returns an errors array' do
       it 'raises ApiError' do
         body = { 'errors' => [{ 'message' => 'Invalid AST Node' }] }.to_json
-        stub_request(:get, /graphql/).to_return(status: 200, body: body)
+        stub_request(:post, /graphql/).to_return(status: 200, body: body)
         expect { client.get_programme(:balado, 9887) }.to raise_error(Ohdio::ApiError, /Invalid AST Node/)
       end
     end
 
     context 'when the HTTP response is a 500' do
       it 'raises ApiError with the status code' do
-        stub_request(:get, /graphql/).to_return(status: 500, body: '')
+        stub_request(:post, /graphql/).to_return(status: 500, body: '')
         expect { client.get_programme(:balado, 9887) }.to raise_error(Ohdio::ApiError, /HTTP 500/)
       end
     end
 
     context 'when the HTTP response is a 404' do
       it 'raises ApiError with the status code' do
-        stub_request(:get, /graphql/).to_return(status: 404, body: '')
+        stub_request(:post, /graphql/).to_return(status: 404, body: '')
         expect { client.get_programme(:balado, 9887) }.to raise_error(Ohdio::ApiError, /HTTP 404/)
       end
     end
@@ -56,7 +66,7 @@ RSpec.describe Ohdio::Client do
           }
         }.to_json
 
-        stub_request(:get, /graphql/)
+        stub_request(:post, /graphql/)
           .to_return({ status: 429, body: '' }, { status: 200, body: success_body })
 
         allow(client).to receive(:sleep)
@@ -69,7 +79,7 @@ RSpec.describe Ohdio::Client do
 
     context 'when the server keeps responding with 429' do
       it 'raises ApiError after retries' do
-        stub_request(:get, /graphql/).to_return(status: 429, body: '')
+        stub_request(:post, /graphql/).to_return(status: 429, body: '')
         allow(client).to receive(:sleep)
 
         expect { client.get_programme(:balado, 9887) }.to raise_error(Ohdio::ApiError, /HTTP 429/)

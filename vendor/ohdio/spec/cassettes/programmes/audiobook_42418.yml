@@ -1,8 +1,8 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://services.radio-canada.ca/bff/audio/graphql?extensions=%7B%22persistedQuery%22:%7B%22version%22:1,%22sha256Hash%22:%22a676e346c1993bbfcf6924eac2f3e3d45ad3055721c6949b74fbd0d33a505a59%22%7D%7D&opname=audioBookById&variables=%7B%22params%22:%7B%22context%22:%22web%22,%22id%22:42418%7D%7D
+    method: post
+    uri: https://services.radio-canada.ca/bff/audio/graphql
     body:
       encoding: US-ASCII
       string: ''

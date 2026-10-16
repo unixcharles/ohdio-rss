@@ -137,14 +137,14 @@ RSpec.describe Ohdio::Fetcher do
 
       it 'raises ApiError when the API returns an error payload' do
         body = { 'errors' => [{ 'message' => 'Error' }] }.to_json
-        stub_request(:get, /graphql/).to_return(status: 200, body: body)
+        stub_request(:post, /graphql/).to_return(status: 200, body: body)
         expect do
           described_class.fetch(9887, type: :balado)
         end.to raise_error(Ohdio::ApiError)
       end
 
       it 'raises ApiError on HTTP 500' do
-        stub_request(:get, /graphql/).to_return(status: 500, body: '')
+        stub_request(:post, /graphql/).to_return(status: 500, body: '')
         expect do
           described_class.fetch(9887, type: :balado)
         end.to raise_error(Ohdio::ApiError, /HTTP 500/)

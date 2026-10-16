@@ -1,8 +1,8 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://services.radio-canada.ca/bff/audio/graphql?extensions=%7B%22persistedQuery%22:%7B%22version%22:1,%22sha256Hash%22:%223b505d1f3b3935981802bccab9c9ee63bbf6c5c55a0b996287fb789e1a90e660%22%7D%7D&opname=programmeById&variables=%7B%22params%22:%7B%22context%22:%22web%22,%22forceWithoutCueSheet%22:true,%22id%22:1124,%22pageNumber%22:1%7D%7D
+    method: post
+    uri: https://services.radio-canada.ca/bff/audio/graphql
     body:
       encoding: US-ASCII
       string: ''
@@ -53,8 +53,8 @@ http_interactions:
         '
   recorded_at: Mon, 13 Apr 2026 21:20:37 GMT
 - request:
-    method: get
-    uri: https://services.radio-canada.ca/bff/audio/graphql?extensions=%7B%22persistedQuery%22:%7B%22version%22:1,%22sha256Hash%22:%227e961f5b1091589230b1f56ca6be609d26e5c475934235103afb55589a397e0c%22%7D%7D&opname=programmeById&variables=%7B%22params%22:%7B%22context%22:%22web%22,%22forceWithoutCueSheet%22:false,%22id%22:1124,%22pageNumber%22:1%7D%7D
+    method: post
+    uri: https://services.radio-canada.ca/bff/audio/graphql
     body:
       encoding: US-ASCII
       string: ''

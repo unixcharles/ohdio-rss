@@ -30,8 +30,7 @@ module Ohdio
     RETRY_MAX_DELAY = 8.0
 
     def get_programme(type, id, page: 1)
-      params = Graphql.programme_params(type, id, page)
-      get(GRAPHQL_PATH, params)
+      post_graphql(Graphql.programme_query(type), params: Graphql.programme_variables(type, id, page))
     end
 
     def get_playback_list(content_type_id, playlist_item_id)
