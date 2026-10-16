@@ -12,7 +12,10 @@ class OhdioShowSyncService
     synced_episode_ids, synced_episodes_count = sync_episodes(show_record, fetched_show)
     deleted_episodes_count = prune_missing_episodes(show_record, fetched_show, synced_episode_ids)
     prune_episodes_beyond_limit(show_record)
-    ShowStalenessCheck.call(show_record) if @page == 1
+    if @page == 1
+      ShowStalenessCheck.call(show_record)
+      enqueue_missing_segment_syncs(show_record, fetched_show, synced_episode_ids)
+    end
 
     page_had_any_change = show_metadata_changed || synced_episodes_count.positive? || deleted_episodes_count.positive?
 
@@ -87,6 +90,28 @@ class OhdioShowSyncService
   def enqueue_followup_jobs(show_record, episode_record, page_hint)
     if show_record.emission_premiere?
       SyncEpisodeSegmentsJob.perform_later(episode_record.id, page_hint, @max_episodes)
+    end
+  end
+
+  # Older pages are only re-synced when page 1 changes, so an episode whose segment sync never
+  # completed (failed, or its job was lost) would otherwise stay without segments forever. Episodes
+  # whose sync succeeded but found no segments have has_valid_segments: false and are not retried.
+  # Re-enqueuing every 15 minutes is safe: SyncEpisodeSegmentsJob discards duplicates.
+  def enqueue_missing_segment_syncs(show_record, fetched_show, just_synced_ohdio_ids)
+    return unless show_record.emission_premiere?
+
+    page_size = [ fetched_show.page_size.to_i, 1 ].max
+    window_ids = show_record.episodes.newest_first.limit(@max_episodes).pluck(:id)
+    missing_ids = show_record.episodes.where(id: window_ids, has_valid_segments: true).where.missing(:segments)
+                             .where.not(ohdio_episode_id: just_synced_ohdio_ids) # already enqueued by sync_episodes
+                             .pluck(:id).to_set
+
+    window_ids.each_with_index do |episode_id, position|
+      next unless missing_ids.include?(episode_id)
+
+      # Position in the newest-first list approximates the episode's page, so the job usually finds
+      # it on the first page it fetches instead of scanning every page.
+      SyncEpisodeSegmentsJob.perform_later(episode_id, (position / page_size) + 1, @max_episodes)
     end
   end
 
