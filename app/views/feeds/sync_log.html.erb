@@ -40,6 +40,28 @@
   <p>Show metadata is syncing in the background. Refresh in a few moments.</p>
 <% end %>
 
+<% if @job_queue %>
+  <section class="panel">
+    <h2>Background jobs (all shows)</h2>
+    <p class="meta"><strong>Failed:</strong> <%= @job_queue.failed %></p>
+    <p class="meta"><strong>Oldest waiting since:</strong>
+      <%= @job_queue.oldest_unfinished_at ? "#{l(@job_queue.oldest_unfinished_at, format: :short)} (#{time_ago_in_words(@job_queue.oldest_unfinished_at)} ago)" : 'Nothing waiting' %>
+    </p>
+    <% if @job_queue.unfinished_by_class.any? %>
+      <div class="table-scroll">
+        <table class="feed-table">
+          <thead><tr><th>Job</th><th>Waiting or running</th></tr></thead>
+          <tbody>
+            <% @job_queue.unfinished_by_class.each do |class_name, count| %>
+              <tr><td><%= class_name %></td><td><%= count %></td></tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </section>
+<% end %>
+
 <p class="actions">
   <%= link_to 'Back to feed', feed_path(@feed) %>
 </p>

@@ -1,4 +1,6 @@
 class SyncShowJob < OhdioApiJob
+  deduplicate_by { |show_external_id| show_external_id.to_s }
+
   def perform(show_external_id)
     max_episodes = effective_max_episodes(show_external_id)
     show_record, fetched_show, sync_summary = OhdioShowSyncService.new(show_external_id: show_external_id, max_episodes: max_episodes).call

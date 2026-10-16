@@ -25,6 +25,7 @@ class FeedsController < ApplicationController
   def sync_log
     @show = @feed.show
     @sync_errors = @show ? @show.sync_errors.newest_first : ShowSyncError.none
+    @job_queue = JobQueueStatus.snapshot
   end
 
   def new

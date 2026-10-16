@@ -1,4 +1,6 @@
 class ResolveAudioContentJob < OhdioApiJob
+  deduplicate_by { |audio_content_id| audio_content_id.to_s }
+
   def perform(audio_content_id)
     audio_content = AudioContent.find_by(id: audio_content_id)
     return if audio_content.nil? || audio_content.resolved?

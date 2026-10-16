@@ -25,6 +25,7 @@ module OhdioRateLimitedRetry
 
   def register_global_cooldown_on_error
     yield
+    OhdioApiThrottle.reset_error_backoff!
   rescue Ohdio::Error
     OhdioApiThrottle.register_error!
     raise
