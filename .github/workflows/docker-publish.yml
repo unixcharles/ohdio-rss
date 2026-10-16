@@ -47,6 +47,13 @@ jobs:
       - name: Verify vendored ohdio is present
         run: test -d vendor/ohdio
 
+      - name: Collect build metadata
+        id: build_info
+        run: |
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "committed_at=$(git log -1 --format=%cI)" >> "$GITHUB_OUTPUT"
+          echo "built_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
+
       - name: Build and push image
         uses: docker/build-push-action@v7
         with:
@@ -56,5 +63,9 @@ jobs:
           platforms: linux/amd64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            GIT_SHA=${{ steps.build_info.outputs.sha }}
+            GIT_COMMITTED_AT=${{ steps.build_info.outputs.committed_at }}
+            BUILT_AT=${{ steps.build_info.outputs.built_at }}
           cache-from: type=gha
           cache-to: type=gha,mode=max

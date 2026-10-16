@@ -69,6 +69,14 @@ USER 1000:1000
 COPY --chown=rails:rails --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --chown=rails:rails --from=build /rails /rails
 
+# Build metadata served at /version. Declared last so a new commit doesn't bust earlier layer caches.
+ARG GIT_SHA=unknown
+ARG GIT_COMMITTED_AT=unknown
+ARG BUILT_AT=unknown
+ENV GIT_SHA=$GIT_SHA \
+    GIT_COMMITTED_AT=$GIT_COMMITTED_AT \
+    BUILT_AT=$BUILT_AT
+
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
