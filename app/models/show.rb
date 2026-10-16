@@ -1,6 +1,7 @@
 class Show < ApplicationRecord
   has_many :feeds, foreign_key: :show_external_id, primary_key: :external_id, inverse_of: :show
   has_many :episodes, dependent: :destroy
+  has_many :sync_errors, class_name: "ShowSyncError", dependent: :delete_all
 
   validates :external_id, presence: true, uniqueness: true
 

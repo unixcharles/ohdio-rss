@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_08_180300) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_15_220100) do
   create_table "audio_contents", force: :cascade do |t|
     t.string "audio_url"
     t.datetime "created_at", null: false
@@ -79,6 +79,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_08_180300) do
     t.index ["episode_id"], name: "index_segments_on_episode_id"
   end
 
+  create_table "show_sync_errors", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "kind", null: false
+    t.datetime "last_occurred_at", null: false
+    t.text "message", null: false
+    t.integer "occurrences", default: 1, null: false
+    t.integer "show_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["show_id", "last_occurred_at"], name: "index_show_sync_errors_on_show_id_and_last_occurred_at"
+    t.index ["show_id"], name: "index_show_sync_errors_on_show_id"
+  end
+
   create_table "shows", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "description"
@@ -100,4 +112,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_08_180300) do
   add_foreign_key "episodes", "shows"
   add_foreign_key "feed_filters", "feeds"
   add_foreign_key "segments", "episodes"
+  add_foreign_key "show_sync_errors", "shows"
 end

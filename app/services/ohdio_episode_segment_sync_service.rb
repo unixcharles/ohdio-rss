@@ -18,6 +18,9 @@ class OhdioEpisodeSegmentSyncService
 
     @episode.segments.where.not(id: synced_ids.compact).destroy_all
     @episode.update!(has_valid_segments: valid_segments_scope(@episode.segments).exists?)
+  rescue StandardError => e
+    ShowSyncError.safely_record(@show, kind: "segments_failed", message: "#{e.class}: #{e.message}")
+    raise
   end
 
   private

@@ -1,0 +1,45 @@
+<h1><%= display_episode_title(@feed.name) %> - Sync log</h1>
+
+<% if @show.present? %>
+  <section class="panel">
+    <p class="meta"><strong>Show:</strong> <%= display_episode_title(@show.title) %></p>
+    <p class="meta"><strong>Status:</strong> <%= @show.sync_status %></p>
+    <p class="meta"><strong>Last successful sync:</strong> <%= @show.last_synced_at ? l(@show.last_synced_at, format: :long) : 'Never' %></p>
+  </section>
+
+  <% if @sync_errors.any? %>
+    <div class="table-scroll">
+      <table class="feed-table">
+        <thead>
+          <tr>
+            <th>Last seen</th>
+            <th>Kind</th>
+            <th>Message</th>
+            <th>Times</th>
+            <th>First seen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @sync_errors.each do |sync_error| %>
+            <tr>
+              <td><%= l(sync_error.last_occurred_at, format: :short) %></td>
+              <td><%= sync_error.kind.humanize %></td>
+              <td><%= sync_error.message %></td>
+              <td><%= sync_error.occurrences %></td>
+              <td class="muted"><%= l(sync_error.created_at, format: :short) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted">Entries older than <%= ShowSyncError::RETENTION.inspect %> are removed.</p>
+  <% else %>
+    <p>No sync problems recorded.</p>
+  <% end %>
+<% else %>
+  <p>Show metadata is syncing in the background. Refresh in a few moments.</p>
+<% end %>
+
+<p class="actions">
+  <%= link_to 'Back to feed', feed_path(@feed) %>
+</p>

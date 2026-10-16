@@ -2,7 +2,7 @@ class FeedsController < ApplicationController
   SEARCH_FILTERS = %w[all balado emission grande_serie audiobook].freeze
   FILTER_KINDS = %w[episode segment].freeze
 
-  before_action :set_feed, only: %i[show episodes segments edit update destroy]
+  before_action :set_feed, only: %i[show episodes segments sync_log edit update destroy]
   before_action :enqueue_feed_refresh, only: %i[show episodes segments edit]
 
   def index
@@ -11,6 +11,7 @@ class FeedsController < ApplicationController
 
   def show
     load_show_metadata
+    flag_recent_sync_errors
   end
 
   def episodes
@@ -19,6 +20,11 @@ class FeedsController < ApplicationController
 
   def segments
     load_segments
+  end
+
+  def sync_log
+    @show = @feed.show
+    @sync_errors = @show ? @show.sync_errors.newest_first : ShowSyncError.none
   end
 
   def new
@@ -77,6 +83,16 @@ class FeedsController < ApplicationController
       url: @show.url,
       chronological_order: @show.chronological_order?
     }
+  end
+
+  def flag_recent_sync_errors
+    return if @show.nil?
+
+    recent_count = @show.sync_errors.recent.count
+    return if recent_count.zero?
+
+    flash.now[:alert] = "This show had #{helpers.pluralize(recent_count, 'sync problem')} in the last 24 hours. " \
+                        "See the sync log below."
   end
 
   def load_episodes

@@ -34,4 +34,14 @@ RSpec.describe OhdioEpisodeSegmentSyncService do
     expect(episode.segments.first.audio_content_external_id).to eq("m1")
     expect(AudioContent.find_by(external_id: "m1")).to be_present
   end
+
+  it "logs a segments_failed entry on the show and re-raises" do
+    show = Show.create!(external_id: 124, title: "Emission", ohdio_type: "emission_premiere", page_size: 5, total_episodes: 5)
+    episode = show.episodes.create!(ohdio_episode_id: "ep-1")
+    allow(Ohdio::Fetcher).to receive(:fetch).and_raise(Ohdio::ApiError, "PersistedQueryNotFound")
+
+    expect { described_class.new(episode: episode).call }.to raise_error(Ohdio::ApiError)
+
+    expect(show.sync_errors.sole).to have_attributes(kind: "segments_failed", message: "Ohdio::ApiError: PersistedQueryNotFound")
+  end
 end

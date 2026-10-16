@@ -12,6 +12,7 @@ class OhdioShowSyncService
     synced_episode_ids, synced_episodes_count = sync_episodes(show_record, fetched_show)
     deleted_episodes_count = prune_missing_episodes(show_record, fetched_show, synced_episode_ids)
     prune_episodes_beyond_limit(show_record)
+    ShowStalenessCheck.call(show_record) if @page == 1
 
     page_had_any_change = show_metadata_changed || synced_episodes_count.positive? || deleted_episodes_count.positive?
 
@@ -131,6 +132,7 @@ class OhdioShowSyncService
     show_record = Show.find_or_initialize_by(external_id: @show_external_id)
     show_record.assign_attributes(sync_status: "failed", sync_error: error.message)
     show_record.save(validate: false)
+    ShowSyncError.safely_record(show_record, kind: "sync_failed", message: "Page #{@page}: #{error.class}: #{error.message}")
   end
 
   def normalize_max_episodes(value)

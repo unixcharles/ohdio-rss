@@ -131,6 +131,23 @@ a {
   border-bottom: 0;
 }
 
+.table-scroll {
+  overflow-x: auto;
+}
+
+.flash {
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.flash-alert {
+  border-color: #e0b4a8;
+  background: #fdf0ec;
+  color: #7a2e1b;
+}
+
 .episode-item {
   background: var(--surface);
   border: 1px solid var(--border);

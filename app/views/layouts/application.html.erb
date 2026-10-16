@@ -35,11 +35,11 @@
 
     <main class="page-shell">
       <% if notice.present? %>
-        <p><%= notice %></p>
+        <p class="flash flash-notice"><%= notice %></p>
       <% end %>
 
       <% if alert.present? %>
-        <p><%= alert %></p>
+        <p class="flash flash-alert"><%= alert %></p>
       <% end %>
 
       <%= yield %>
